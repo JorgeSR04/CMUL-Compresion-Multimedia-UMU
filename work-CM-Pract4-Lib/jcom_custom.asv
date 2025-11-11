@@ -56,9 +56,6 @@ XScan=scan(Xlab);
 % Concatenar todos los bytes en un solo array
 allBytes = [sbytesY; sbytesCb; sbytesCr];
 
-
-disp(length(sbytesCb));
-
 lengths.Y  = length(sbytesY);
 lengths.Cb = length(sbytesCb);
 lengths.Cr = length(sbytesCr);
@@ -69,52 +66,31 @@ nombrecomp=strcat(name,'.huf');
 
 fid = fopen(nombrecomp,'w');
 
-%% === CABECERA: Dimensiones y calidad ===
-fwrite(fid, caliQ,   'uint16');
-fwrite(fid, namp,    'uint32');
-fwrite(fid, mamp,    'uint32');
-fwrite(fid, delta_n, 'uint8');
-fwrite(fid, delta_m, 'uint8');
+% Dimensiones y calidad
+fwrite(fid,caliQ,'uint16');
+fwrite(fid,namp, 'uint32');
+fwrite(fid,mamp, 'uint32');
+fwrite(fid,delta_n, 'uint8');
+fwrite(fid,delta_m, 'uint8');
 
-%% === LUMINANCIA (Y) ===
-% Longitud
-fwrite(fid, lengths.Y, 'uint32');
+% Longitud Y por segmentos, bits y huffval
+fwrite(fid,lengths.Y, 'uint32');
+fwrite(fid,Bits.Y.DC, 'uint8');
+fwrite(fid,Bits.Y.AC, 'uint8');
+fwrite(fid,Huffval.Y.AC,'uint8');
+fwrite(fid,Huffval.Y.DC,'uint8');
+fwrite(fid,ultlY, 'uint8');
 
-% Bits
-fwrite(fid, length(Bits.Y.DC), 'uint8');
-fwrite(fid, Bits.Y.DC, 'uint8');
-fwrite(fid, length(Bits.Y.AC), 'uint8');
-fwrite(fid, Bits.Y.AC, 'uint8');
+% Longitud Cb y Cr
+fwrite(fid,lengths.Cb, 'uint32');
+fwrite(fid,Bits.C.DC, 'uint8');
+fwrite(fid,Bits.C.AC, 'uint8');
+fwrite(fid,Huffval.C.AC,'uint8');
+fwrite(fid,Huffval.C.DC,'uint8');
+fwrite(fid,ultlCb, 'uint8');
+fwrite(fid,ultlCr, 'uint8');
 
-% Huffval
-fwrite(fid, length(Huffval.Y.DC), 'uint8');
-fwrite(fid, Huffval.Y.DC, 'uint8');
-fwrite(fid, length(Huffval.Y.AC), 'uint8');
-fwrite(fid, Huffval.Y.AC, 'uint8');
-
-% Últimos valores
-fwrite(fid, ultlY, 'uint8');
-
-%% === CROMINANCIA (Cb y Cr) ===
-% Longitud
-fwrite(fid, lengths.Cb, 'uint32');
-
-% Bits
-fwrite(fid, length(Bits.C.DC), 'uint8');
-fwrite(fid, Bits.C.DC, 'uint8');
-fwrite(fid, length(Bits.C.AC), 'uint8');
-fwrite(fid, Bits.C.AC, 'uint8');
-
-% Huffval
-fwrite(fid, length(Huffval.C.DC), 'uint8');
-fwrite(fid, Huffval.C.DC, 'uint8');
-fwrite(fid, length(Huffval.C.AC), 'uint8');
-fwrite(fid, Huffval.C.AC, 'uint8');
-
-% Últimos valores
-fwrite(fid, ultlCb, 'uint8');
-fwrite(fid, ultlCr, 'uint8');
-
+%
 
 % Todos los datos codificados 
 fwrite(fid,allBytes,'uint8'); % Mensaje comprimido y segmentado.
@@ -132,7 +108,6 @@ RC= 100*(TO-TC)/TO; % TASA (rate) de compresión.
 
 
 disp(Bits.Y.AC);
-disp(Huffval.Y.AC);
 
 disp('-----------------');
 disp(sprintf('%s %s', 'Archivo comprimido:', nombrecomp));

@@ -22,7 +22,7 @@ Bits.Y = Bits_Y;
 Bits.C = Bits_C;
 
 huffval.Y = huffval_Y;
-huffval.Y = huffval_C;
+huffval.C = huffval_C;
 
 ehuf_Y_DC = ehuf_Y.DC;
 ehuf_Y_AC = ehuf_Y.AC;

@@ -13,7 +13,7 @@ function FScanrec=DecodeSingleScan(CodedString,mincodeDC,maxcodeDC,valptrDC,huff
 % Salidas:
 %  XScanrec: Scans reconstruidos de luminancia Y y crominancia Cb y Cr: Matriz mamp x namp X 3
 
-disptext=0; % Flag de verbosidad
+disptext=1; % Flag de verbosidad
 if disptext
     disp('--------------------------------------------------');
     disp('Funcion DecodeSingleScan:');
