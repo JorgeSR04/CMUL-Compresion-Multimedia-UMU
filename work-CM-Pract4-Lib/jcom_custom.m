@@ -46,12 +46,8 @@ Xlab=quantmat(Xtrans, caliQ);
 %  Cada bloque se reordena en zigzag
 XScan=scan(Xlab);
 
-[DC_Y, AC_Y] = separar_dc_ac(Xcan(:,:,1));      % Canal Y
-[DC_Cr, AC_Cr] = separar_dc_ac(Xcan(:,:,2));    % Canal Cr
-[DC_Cb, AC_Cb] = separar_dc_ac(Xcan(:,:,3));    % Canal Cb
-
 % Codifica los tres scans, usando Huffman por defecto
-[CodedY,CodedCb,CodedCr]=EncodeScans_dflt(XScan);  
+[CodedY,CodedCb,CodedCr]=EncodeCustomScans(XScan);  
 
 [sbytesY, ultlY]=bits2bytes(CodedY);
 [sbytesCb, ultlCb]=bits2bytes(CodedCb);
@@ -69,6 +65,12 @@ lengths.Cr = length(sbytesCr);
 nombrecomp=strcat(name,'.huf');
 
 fid = fopen(nombrecomp,'w');
+
+ulenBITS=uint8(length(BITS)); % Nº de filas de BITS
+uBITS=uint8(BITS); % Nº de palabras codigo de cada longitud
+ulenHUFFVAL=uint8(length(HUFFVAL));% Nº de filas de HUFFVAL
+uHUFFVAL=uint8(HUFFVAL); % Mensajes ordenados por long. de palabra
+
 fwrite(fid,caliQ,'uint16');
 fwrite(fid,namp, 'uint32');
 fwrite(fid,mamp, 'uint32');
