@@ -6,7 +6,7 @@ function [MSE,RC]=jdes_custom(fname)
 %  fname: Un string con nombre de archivo, incluido sufijo
 %         Admite BMP y JPEG, indexado y truecolor
 % Salidas:
-%  MSE. 
+%  MSE.
 %  RC. Relación de compresion de la imagen reconstruida
 % visualización de imagenes original y procesada
 
@@ -22,7 +22,10 @@ tc=cputime;
 
 %Lee la imagen almacenada en el archivo fname, obtiene una matriz para
 %calcular el mse
-[X, Xamp, tipo, m, n, mamp, namp, TO] = imlee(fname);  
+[X, Xamp, tipo, m, n, mamp, namp, TO] = imlee(fname);
+
+%Calculamos el tamaño de la imagen truecolor para posteriomente calcular FC
+lenx = m * n * 3;
 
 % Genera nombre archivo comprimido <fname>.huf
 [pathstr,name,ext] = fileparts(fname);
@@ -101,8 +104,6 @@ sbytesY  = allBytes(offsetY : offsetY + lengthY - 1);
 sbytesCb = allBytes(offsetCb : offsetCb + lengthCb - 1);
 sbytesCr = allBytes(offsetCr : end);  % Cr ocupa el resto
 
-disp(length(sbytesCb));
-
 % -----------------------------
 % Convertir bytes a bits
 % -----------------------------
@@ -130,7 +131,11 @@ Xrecrd=round(ycbcr2rgb(Xamprec/255)*255);
 Xrec=uint8(Xrecrd);
 
 % Calculo de RC
-RC = 0;
+TO=lenx; % Longitud del fichero original.
+TDatos = numel(allBytes);  % número total de bytes
+TC = TDatos;
+% Mostrar la(s) Relacion(es) de compresión.
+RC= 100*(TO-TC)/TO; % TASA (rate) de compresión.
 
 % Calculo de MSE
 mse=(sum(sum(sum((double(Xrec)-double(X)).^2))))/(m*n*3);
@@ -139,7 +144,11 @@ mse=(sum(sum(sum((double(Xrec)-double(X)).^2))))/(m*n*3);
 ddifer=abs(double(Xrec)-double(X));
 dmaxdifer=max(max(max(ddifer)));
 
-% Mostrar resultados
+% Mostrar resultados+
+disp('-----------------');
+disp(sprintf('%s %s', 'Archivo comprimido:', nombrecomp));
+disp(sprintf('%s %2.2f %s', 'RC archivo =', RC, '%.'));
+
 fprintf('Error cuadrático medio (MSE): %.6f\n', mse);
 fprintf('Diferencia máxima absoluta: %.6f\n', dmaxdifer);
 fprintf('Error promedio absoluto: %.6f\n', mean(ddifer(:)));
@@ -155,19 +164,19 @@ set(gca,'Position',[0 0 1 1]);
 image(Xrec);;
 set(gcf,'Name','Imagen reconstruida Xrec');
 
-
-disp('-----------------');
-disp(sprintf('%s %s', 'Archivo comprimido:', nombrecomp));
-disp(sprintf('%s %2.2f %s', 'RC archivo =', RC, '%.'));
-
-
+% ----------------------------------
+% Guarda la imagen descomprimida
+% ----------------------------------
+nombre_descomp = strcat(name, '_des_def.bmp');
+imwrite(Xrec, nombre_descomp, 'bmp');
+disp(['Imagen descomprimida guardada como: ', nombre_descomp]);
 
 % Tiempo de ejecucion
 e=cputime-tc;
 
 if disptext
-disp('Compresion terminada');
-disp(sprintf('%s %1.6f', 'Tiempo total de CPU:', e));
-disp('Terminado jdes_custom');
-disp('--------------------------------------------------');
+    disp('Compresion terminada');
+    disp(sprintf('%s %1.6f', 'Tiempo total de CPU:', e));
+    disp('Terminado jdes_custom');
+    disp('--------------------------------------------------');
 end

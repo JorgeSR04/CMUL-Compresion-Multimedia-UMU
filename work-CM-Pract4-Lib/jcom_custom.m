@@ -32,13 +32,13 @@ tc=cputime;
 delta_m = mamp - m;  % filas agregadas
 delta_n = namp - n;  % columnas agregadas
 
-%Calculamos el tamaño de la imagen truecolor para posteriomente calcular FC
+%Calculamos el tamaño de la imagen truecolor para posteriomente calcular RC
 lenx = m * n * 3;
 
 % Calcula DCT bidimensional en bloques de 8 x 8 pixeles
 Xtrans = imdct(Xamp);
 
-% Cuantizacion de coeficientes
+% Cuantizacion de coeficientes coefiecentes enteros
 Xlab=quantmat(Xtrans, caliQ);
 
 % Genera un scan por cada componente de color
@@ -46,8 +46,8 @@ Xlab=quantmat(Xtrans, caliQ);
 %  Cada bloque se reordena en zigzag
 XScan=scan(Xlab);
 
-% Codifica los tres scans, usando Huffman por defecto
-[CodedY,CodedCb,CodedCr, Bits, Huffval]=EncodeCustomScans(XScan);  
+% Codifica los tres scans, usando Huffman estadistico
+[CodedY,CodedCb,CodedCr, Bits, Huffval]=EncodeCustomScans(XScan);
 
 [sbytesY, ultlY]=bits2bytes(CodedY);
 [sbytesCb, ultlCb]=bits2bytes(CodedCb);
@@ -55,9 +55,6 @@ XScan=scan(Xlab);
 
 % Concatenar todos los bytes en un solo array
 allBytes = [sbytesY; sbytesCb; sbytesCr];
-
-
-disp(length(sbytesCb));
 
 lengths.Y  = length(sbytesY);
 lengths.Cb = length(sbytesCb);
@@ -116,7 +113,7 @@ fwrite(fid, ultlCb, 'uint8');
 fwrite(fid, ultlCr, 'uint8');
 
 
-% Todos los datos codificados 
+% Todos los datos codificados
 fwrite(fid,allBytes,'uint8'); % Mensaje comprimido y segmentado.
 fclose(fid);
 
@@ -131,21 +128,17 @@ TC = TDatos;
 RC= 100*(TO-TC)/TO; % TASA (rate) de compresión.
 
 
-disp(Bits.Y.AC);
-disp(Huffval.Y.AC);
-
 disp('-----------------');
 disp(sprintf('%s %s', 'Archivo comprimido:', nombrecomp));
 disp(sprintf('%s %2.2f %s', 'RC archivo =', RC, '%.'));
-
 
 
 % Tiempo de ejecucion
 e=cputime-tc;
 
 if disptext
-disp('Compresion terminada');
-disp(sprintf('%s %1.6f', 'Tiempo total de CPU:', e));
-disp('Terminado jcom_custom');
-disp('--------------------------------------------------');
+    disp('Compresion terminada');
+    disp(sprintf('%s %1.6f', 'Tiempo total de CPU:', e));
+    disp('Terminado jcom_custom');
+    disp('--------------------------------------------------');
 end

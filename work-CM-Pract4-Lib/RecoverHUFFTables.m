@@ -1,5 +1,16 @@
 function huffDec  = RecoverHUFFTables(Bits, huffval)
 
+% RecoverHUFFTables: Reconstruye las tablas de decodificación Huffman para componentes DC y AC.
+%
+% Entradas:
+%   Bits     : Estructura con los vectores de número de códigos por longitud (DC y AC)
+%   huffval  : Estructura con los valores Huffman asociados (DC y AC)
+%
+% Salidas:
+%   huffDec  : Estructura con las tablas de decodificación Huffman, que contiene:
+%              MINCODE, MAXCODE y VALPTR para DC y AC
+
+
 disptext=1; % Flag de verbosidad
 if disptext
     disp('--------------------------------------------------');

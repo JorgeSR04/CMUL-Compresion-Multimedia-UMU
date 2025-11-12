@@ -83,8 +83,8 @@ fclose(fid);
 % inculir todas las cabeceras de huffman
 
 TO=lenx; % Longitud del fichero original.
-TDatos = numel(allBytes);  % número total de bytes
-TC = TDatos;
+info = dir(nombrecomp); % Información del fichero comprimido
+TC = info.bytes;        % Tamaño real del archivo .huf en bytes
 % Mostrar la(s) Relacion(es) de compresión.
 RC= 100*(TO-TC)/TO; % TASA (rate) de compresión.
 

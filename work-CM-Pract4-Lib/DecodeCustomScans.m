@@ -1,16 +1,19 @@
 function XScanrec=DecodeCustomScans(CodedY,CodedCb,CodedCr,tam,Bits, huffval)
 
-% DecodeScans_dflt: Decodifica los tres scans binarios usando Huffman por defecto
-
-
+% DecodeCustomScans: Decodifica los tres scans binarios (Y, Cb, Cr) usando tablas Huffman personalizadas.
+%
 % Entradas:
-%   CodedY: String binario con scan Y codificado
-%   CodedCb: String binario con scan Cb codificado
-%   CodedCr: String binario con scan Cr codificado
-%   tam: Tamaño del scan a devolver [mamp namp]
+%   CodedY   : Cadena binaria codificada del componente Y
+%   CodedCb  : Cadena binaria codificada del componente Cb
+%   CodedCr  : Cadena binaria codificada del componente Cr
+%   tam      : Tamaño del scan a reconstruir [mamp namp]
+%   Bits     : Estructura con las tablas de longitud de código Huffman (Y y C)
+%   huffval  : Estructura con los valores Huffman asociados (Y y C)
+%
 % Salidas:
-%  XScanrec: Scans reconstruidos de luminancia Y y crominancia Cb y Cr: Matriz mamp x namp X 3
-
+%   XScanrec : Matriz tridimensional (mamp × namp × 3) con los scans reconstruidos
+%              de luminancia (Y) y crominancia (Cb y Cr)
+%
 disptext=1; % Flag de verbosidad
 if disptext
     disp('--------------------------------------------------');
@@ -50,13 +53,9 @@ tc=cputime;
 
 % Decodifica en binario cada Scan
 % Las tablas de crominancia se aplican, tanto a Cb, como a Cr
-disp("Empieza el primero ");
 YScanrec=DecodeSingleScan(CodedY,mincode_Y_DC,maxcode_Y_DC,valptr_Y_DC,huffval_Y_DC,mincode_Y_AC,maxcode_Y_AC,valptr_Y_AC,huffval_Y_AC,tam);
-disp("el primero lo hace bien");
 CbScanrec=DecodeSingleScan(CodedCb,mincode_C_DC,maxcode_C_DC,valptr_C_DC,huffval_C_DC,mincode_C_AC,maxcode_C_AC,valptr_C_AC,huffval_C_AC,tam);
-disp("el segundo lo hace bien");
 CrScanrec=DecodeSingleScan(CodedCr,mincode_C_DC,maxcode_C_DC,valptr_C_DC,huffval_C_DC,mincode_C_AC,maxcode_C_AC,valptr_C_AC,huffval_C_AC,tam);
-disp("el tercero lo hace bien");
 % Reconstruye matriz 3-D
 XScanrec=cat(3,YScanrec,CbScanrec,CrScanrec);
 
