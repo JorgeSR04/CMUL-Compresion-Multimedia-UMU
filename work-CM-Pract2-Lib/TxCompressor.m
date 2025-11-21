@@ -23,6 +23,7 @@ function TxCompressor(nombre)
 nombrecomp=strcat(name,'.huf');
 
 
+
 ulenBITS=uint8(length(BITS)); % Nº de filas de BITS
 uBITS=uint8(BITS); % Nº de palabras codigo de cada longitud
 ulenHUFFVAL=uint8(length(HUFFVAL));% Nº de filas de HUFFVAL
