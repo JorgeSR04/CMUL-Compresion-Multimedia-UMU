@@ -1,0 +1,159 @@
+\documentclass[a4paper, 12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[spanish]{babel}
+\usepackage{graphicx} % Paquete para incluir imágenes
+\usepackage{geometry} % Paquete para márgenes
+\usepackage{times}    % Fuente (Times New Roman)
+\setlength{\parskip}{0.3cm}
+\usepackage{fancyhdr}
+
+% Configuración de márgenes
+\geometry{
+ left=2.5cm,
+ right=2.5cm,
+ top=2.5cm,
+ bottom=2.5cm,
+ headheight=15pt % Altura necesaria para el encabezado
+}
+
+% Definimos el estilo "fancy" (el personalizado)
+\pagestyle{fancy}
+\fancyhf{} % Borra los valores por defecto
+
+% --- ENCABEZADO ---
+% L = Left (Izquierda), R = Right (Derecha)
+\lhead{\small Práctica Final: Compresión basada en DCT} 
+\rhead{\small Compresión Multimedia 25/26} 
+
+% --- PIE DE PÁGINA ---
+% C = Center (Centro) -> Aquí ponemos el número de página
+\cfoot{\thepage}
+
+% --- LÍNEAS (Las "líneas de Word") ---
+\renewcommand{\headrulewidth}{0.4pt} % Grosor de la línea de arriba (0pt para quitarla)
+\renewcommand{\footrulewidth}{0.4pt} % Grosor de la línea de abajo (0pt para quitarla)
+% Configuración de márgenes 
+\geometry{
+ left=2.5cm,
+ right=2.5cm,
+ top=2.5cm,
+ bottom=2.5cm
+}
+
+\begin{document}
+
+\begin{titlepage}
+    \centering
+    
+    % --- LOGOTIPO ---
+    % Ajusta el 'width' si el logo sale muy grande o muy pequeño.
+    \includegraphics[width=0.45\textwidth]{escudo_um.png} 
+    
+    \vspace{1cm} % Espacio vertical
+    
+    % --- UNIVERSIDAD ---
+    {\Large \textbf{Universidad de Murcia}}
+    
+    \vspace{1cm}
+    
+    % --- TITULACIÓN Y CURSO ---
+    {\large \textsc{Grado en Ingeniería Informática}} \\
+    \vspace{0.5cm}
+    {\large \textsc{Compresión Multimedia}} \\
+    \vspace{0.2cm}
+    {\large \textsc{Curso 25/26}}
+    
+    \vspace{2cm}
+    
+    % --- TÍTULO DEL PROYECTO ---
+    {\Huge \textbf{Proyecto Final}} \\
+    \vspace{0.5cm}
+    {\Large \textsc{Compresión de Imágenes Basada en DCT:}} \\
+    \vspace{0.1cm}
+    {\Large \textsc{Estudio Experimental}}
+    
+    \vspace{2cm}
+    
+    % --- DATOS DEL ALUMNO ---
+    {\large \textbf{Jorge Serrano Rueda}} \\
+    \vspace{0.1cm}
+    \texttt{jorge.serranor@um.es} \\ % He puesto un correo ficticio acorde al nombre
+    \vspace{0.5cm}
+    \textbf{Grupo: 1.1}
+    
+    \vfill % Empuja el resto hacia el final de la página
+    
+    % --- PROFESOR Y FECHA ---  NESPOLI, PANTALEONE 
+    Profesor: Nespoli, Pantaleone  \\
+    \vspace{1cm}
+    12 de diciembre de 2025
+    
+\end{titlepage}
+
+\newpage
+\listoffigures 
+\tableofcontents
+
+
+% --- INICIO DEL CONTENIDO ---
+
+\newpage % Esto obliga a que el resumen empiece en una página nueva limpia
+\pagenumbering{arabic} % Empieza a contar las páginas con números normales (1, 2, 3...)
+
+\section{Resumen}
+
+El presente documento recoge el trabajo desarrollado en el marco de las prácticas de la asignatura Compresión Multimedia (convocatoria de enero, curso 2025/2026). El núcleo del proyecto consiste en la implementación y evaluación de dos sistemas de compresión de imágenes fundamentados en la Transformada Discreta del Coseno (DCT) y la codificación Huffman.
+
+
+La estructura del informe abarca desde los fundamentos teóricos y la descripción detallada de la metodología experimental, hasta un exhaustivo análisis de los datos obtenidos, abordando tanto la perspectiva cualitativa como la cuantitativa. Finalmente, se presentan las conclusiones derivadas del estudio. El objetivo principal es contrastar el rendimiento de ambos compresores, identificando las variables que impactan en su eficacia para determinar las condiciones y configuraciones óptimas que garanticen los mejores resultados de forma generalizada.
+
+% Aquí puedes seguir escribiendo la siguiente sección, por ejemplo:
+% \section{Introducción}
+% ...
+
+\newpage 
+\section{Introducción}
+
+En el panorama tecnológico actual, la compresión de imágenes se ha erigido como un pilar indispensable, abarcando desde aplicaciones científicas avanzadas hasta las interacciones digitales cotidianas. La era digital ha traído consigo una producción y consumo masivo de contenidos visuales sin precedentes, planteando retos significativos en términos de almacenamiento y ancho de banda.
+
+La necesidad de transmitir datos de manera eficiente se hace evidente en escenarios críticos: desde el envío de fotografías en redes con conectividad limitada hasta el intercambio de imaginería médica de alta resolución, donde preservar la integridad del detalle es vital. En este contexto, los algoritmos de compresión son la herramienta clave para reducir el peso de los archivos garantizando la viabilidad de su transmisión.
+
+Fundamentado en la Teoría de la Información, este proyecto implementa codificadores basados en el algoritmo de Huffman en dos variantes. Paralelamente, se integra la Transformada Discreta del Coseno (DCT) que, en conjunción con procesos de cuantización, permite optimizar la tasa de compresión manteniendo una calidad visual aceptable. La combinación de estas técnicas permite una aproximación funcional al estándar JPEG. Mediante una metodología experimental rigurosa sobre un banco de imágenes específico, se evaluará el rendimiento, los límites operativos y los escenarios de uso óptimo para estas estrategias de compresión.
+
+Los resultados esperables del proyecto incluyen una reducción significativa del tamaño de las imágenes, manteniendo una calidad visual aceptable perceptible para el ojo humano. La combinación de la Transformada Discreta del Coseno y la codificación Huffman permite comprimir archivos BMP grandes en versiones mucho más ligeras, optimizando almacenamiento y transmisión. Además, se podrá evaluar cuantitativamente el rendimiento mediante métricas como la relación de compresión y el error promedio.
+
+\newpage
+\section{metodología}
+\subsection{Compresores desarrollados}
+\subsection{Obtencion de Imagenes experimentales}
+\subsection{Justificación de la métrica de clasificación}
+
+Para clasificar la complejidad de las imágenes, se ha optado por realizar los cálculos sobre su versión en \textbf{escala de grises}. Esto se debe a que la información estructural de una imagen (bordes, formas y texturas) reside principalmente en su intensidad luminosa, y no en su color. Dado que el sistema visual humano es más sensible al brillo que al color, y que los algoritmos tipo JPEG priorizan la conservación de la luminancia, el análisis en escala de grises ofrece una estimación más realista de la información relevante.
+
+Para cuantificar esta complejidad, se ha priorizado el uso de la \textbf{varianza} frente a la entropía. Mientras que la entropía mide la imprevisibilidad estadística (útil para la codificación), la varianza mide el contraste y la dispersión de los valores de los píxeles. Una varianza alta indica la presencia de cambios bruscos de intensidad y detalles finos (altas frecuencias). Dado que la transformada DCT tiene mayor dificultad para aproximar estas zonas de cambios rápidos sin introducir artefactos visuales, la varianza resulta ser el indicador más directo y fiable para predecir la dificultad de compresión de cada imagen.
+\subsection{Software desarrollado para el estudio}
+\subsection{Analisis cuantitativo}
+\subsection{Analisis cualitativo}
+\subsection{Discusión comparativa}
+
+% Parte extra no se hasta donde se realizara
+
+\subsection{Comparación con compresor JPEG}
+\subsection{Codificación zonal}
+\subsection{Codificación por umbral N-mayores}
+
+\newpage
+\section{Conclusiones}
+
+%---- Bibliografia -----
+
+\begin{thebibliography}{9}  % el número indica el ancho de la numeración
+
+\bibitem{ref1} Autor, \textit{Título del libro}, Editorial, Año.
+
+\bibitem{ref2} Autor, “Título del artículo”, Revista, Volumen, Número, Año.
+
+\end{thebibliography}
+
+
+\end{document}

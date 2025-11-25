@@ -1,0 +1,15 @@
+\babel@toc {spanish}{}\relax 
+\contentsline {section}{\numberline {1}Resumen}{1}{}%
+\contentsline {section}{\numberline {2}Introducción}{2}{}%
+\contentsline {section}{\numberline {3}metodología}{3}{}%
+\contentsline {subsection}{\numberline {3.1}Compresores desarrollados}{3}{}%
+\contentsline {subsection}{\numberline {3.2}Obtencion de Imagenes experimentales}{3}{}%
+\contentsline {subsection}{\numberline {3.3}Justificación de la métrica de clasificación}{3}{}%
+\contentsline {subsection}{\numberline {3.4}Software desarrollado para el estudio}{3}{}%
+\contentsline {subsection}{\numberline {3.5}Analisis cuantitativo}{3}{}%
+\contentsline {subsection}{\numberline {3.6}Analisis cualitativo}{3}{}%
+\contentsline {subsection}{\numberline {3.7}Discusión comparativa}{3}{}%
+\contentsline {subsection}{\numberline {3.8}Comparación con compresor JPEG}{3}{}%
+\contentsline {subsection}{\numberline {3.9}Codificación zonal}{3}{}%
+\contentsline {subsection}{\numberline {3.10}Codificación por umbral N-mayores}{3}{}%
+\contentsline {section}{\numberline {4}Conclusiones}{4}{}%

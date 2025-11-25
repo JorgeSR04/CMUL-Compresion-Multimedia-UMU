@@ -17,3 +17,21 @@ https://sipi.usc.edu/database/database.php?volume=textures
 https://sipi.usc.edu/database/database.php?volume=textures&image=15#top 512 x 512 entropia muy baja
 
 https://raw.pixls.us/
+
+https://people.math.sc.edu/Burkardt/data/bmp/bmp.html
+
+    https://people.math.sc.edu/Burkardt/data/bmp/snail.bmp
+
+
+https://www.pngegg.com/en/png-wlpgj/download
+https://www.pngegg.com/en/png-fjuls/download
+
+https://www.kaggle.com/datasets/zhenddos/png-files-256-x-256?resource=download
+
+https://www.kaggle.com/datasets/zhenddos/png-files-256-x-256?resource=download
+https://www.kaggle.com/datasets/zhenddos/png-files-256-x-256?resource=download
+https://www.kaggle.com/datasets/zhenddos/png-files-256-x-256?resource=download
+https://www.kaggle.com/datasets/zhenddos/png-files-256-x-256?resource=download
+
+
+https://play-lh.googleusercontent.com/sshATesdRaiuNrVIwnfleHfHqs3CtKsPrOAnlXOqAe_EvUSaTGEeKhRtzacKB1a_LA

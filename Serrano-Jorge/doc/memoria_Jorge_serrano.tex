@@ -1,0 +1,66 @@
+\documentclass[a4paper, 12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[spanish]{babel}
+\usepackage{graphicx} % Paquete para incluir imágenes
+\usepackage{geometry} % Paquete para márgenes
+\usepackage{times}    % Fuente (Times New Roman)
+
+% Configuración de márgenes 
+\geometry{
+ left=2.5cm,
+ right=2.5cm,
+ top=2.5cm,
+ bottom=2.5cm
+}
+
+\begin{document}
+
+\begin{titlepage}
+    \centering
+    
+    % --- LOGOTIPO ---
+    % Ajusta el 'width' si el logo sale muy grande o muy pequeño.
+    \includegraphics[width=0.6\textwidth]{escudo_um.png} 
+    
+    \vspace{1cm} % Espacio vertical
+    
+    % --- UNIVERSIDAD ---
+    {\Large \textbf{Universidad de Murcia}}
+    
+    \vspace{1cm}
+    
+    % --- TITULACIÓN Y CURSO ---
+    {\large \textsc{Grado en Ingeniería Informática}} \\
+    \vspace{0.5cm}
+    {\large \textsc{Compresión Multimedia}} \\
+    \vspace{0.2cm}
+    {\large \textsc{Curso 25/26}}
+    
+    \vspace{2.5cm}
+    
+    % --- TÍTULO DEL PROYECTO ---
+    {\Huge \textbf{Proyecto Final}} \\
+    \vspace{0.5cm}
+    {\Large \textsc{Compresión de Imágenes Basada en DCT:}} \\
+    \vspace{0.1cm}
+    {\Large \textsc{Estudio Experimental}}
+    
+    \vspace{3cm}
+    
+    % --- DATOS DEL ALUMNO (Modificado) ---
+    {\large \textbf{Jorge Serrano Rueda}} \\
+    \vspace{0.1cm}
+    \texttt{jorge.serranor@um.es} \\ % He puesto un correo ficticio acorde al nombre
+    \vspace{0.5cm}
+    \textbf{Grupo: 1.1}
+    
+    \vfill % Empuja el resto hacia el final de la página
+    
+    % --- PROFESOR Y FECHA ---
+    Profesor: nombre profesor \\
+    \vspace{1cm}
+    23 de junio de 2023
+    
+\end{titlepage}
+
+\end{document}
