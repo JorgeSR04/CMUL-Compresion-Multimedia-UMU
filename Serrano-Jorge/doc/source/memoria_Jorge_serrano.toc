@@ -4,12 +4,13 @@
 \contentsline {section}{\numberline {3}metodología}{3}{}%
 \contentsline {subsection}{\numberline {3.1}Compresores desarrollados}{3}{}%
 \contentsline {subsection}{\numberline {3.2}Obtencion de Imagenes experimentales}{3}{}%
-\contentsline {subsection}{\numberline {3.3}Justificación de la métrica de clasificación}{3}{}%
-\contentsline {subsection}{\numberline {3.4}Software desarrollado para el estudio}{3}{}%
-\contentsline {subsection}{\numberline {3.5}Analisis cuantitativo}{3}{}%
-\contentsline {subsection}{\numberline {3.6}Analisis cualitativo}{3}{}%
-\contentsline {subsection}{\numberline {3.7}Discusión comparativa}{3}{}%
-\contentsline {subsection}{\numberline {3.8}Comparación con compresor JPEG}{3}{}%
-\contentsline {subsection}{\numberline {3.9}Codificación zonal}{3}{}%
-\contentsline {subsection}{\numberline {3.10}Codificación por umbral N-mayores}{3}{}%
-\contentsline {section}{\numberline {4}Conclusiones}{4}{}%
+\contentsline {subsection}{\numberline {3.3}Justificación de la métrica de clasificación}{4}{}%
+\contentsline {subsection}{\numberline {3.4}Software desarrollado para el estudio}{5}{}%
+\contentsline {section}{\numberline {4}Resultados experimentales}{5}{}%
+\contentsline {subsection}{\numberline {4.1}Analisis cuantitativo}{5}{}%
+\contentsline {subsection}{\numberline {4.2}Analisis cualitativo}{5}{}%
+\contentsline {subsection}{\numberline {4.3}Discusión comparativa}{5}{}%
+\contentsline {subsection}{\numberline {4.4}Comparación con compresor JPEG}{5}{}%
+\contentsline {subsection}{\numberline {4.5}Codificación zonal}{5}{}%
+\contentsline {subsection}{\numberline {4.6}Codificación por umbral N-mayores}{5}{}%
+\contentsline {section}{\numberline {5}Conclusiones}{6}{}%

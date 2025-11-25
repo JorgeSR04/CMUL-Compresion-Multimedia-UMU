@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (MiKTeX 24.4) (preloaded format=pdflatex 2025.2.8)  25 NOV 2025 18:20
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (MiKTeX 24.4) (preloaded format=pdflatex 2025.2.8)  25 NOV 2025 20:45
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -202,23 +202,12 @@ File: ot1pcr.fd 2001/06/04 font definitions for OT1/pcr.
 
 [1
 
-{C:/Users/joque/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map}{C:/Users/joque/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/base/8r.enc} <./escudo_um.png>] (memoria_Jorge_serrano.lof
-LaTeX Info: Redefining \. on input line 1.
-LaTeX Info: Redefining \% on input line 1.
-)
+{C:/Users/joque/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map}{C:/Users/joque/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/base/8r.enc} <./escudo_um.png>]
+No file memoria_Jorge_serrano.lof.
 \tf@lof=\write3
 \openout3 = `memoria_Jorge_serrano.lof'.
 
- (memoria_Jorge_serrano.toc
-LaTeX Info: Redefining \. on input line 1.
-LaTeX Info: Redefining \% on input line 1.
-LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <12> on input line 5.
-LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <8> on input line 5.
-LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <6> on input line 5.
-)
+No file memoria_Jorge_serrano.toc.
 \tf@toc=\write4
 \openout4 = `memoria_Jorge_serrano.toc'.
 
@@ -229,10 +218,920 @@ LaTeX Font Info:    External font `cmex10' loaded for size
 [1]
 
 [2]
+Overfull \hbox (8.54187pt too wide) in paragraph at lines 138--141
+[]\OT1/ptm/m/n/12 Degradados sua-ves
+ []
+
+! Undefined control sequence.
+<argument> ....source 
+                      Images franjas .bmp
+l.144 ...xtwidth]{..\..\source\Images\franjas.bmp}
+                                                  
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+<argument> ....source Images 
+                             franjas .bmp
+l.144 ...xtwidth]{..\..\source\Images\franjas.bmp}
+                                                  
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+<argument> ....source Images franjas 
+                                     .bmp
+l.144 ...xtwidth]{..\..\source\Images\franjas.bmp}
+                                                  
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+<argument> ....source 
+                      Images franjas .bmp
+l.144 ...xtwidth]{..\..\source\Images\franjas.bmp}
+                                                  
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+<argument> ....source Images 
+                             franjas .bmp
+l.144 ...xtwidth]{..\..\source\Images\franjas.bmp}
+                                                  
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+<argument> ....source Images franjas 
+                                     .bmp
+l.144 ...xtwidth]{..\..\source\Images\franjas.bmp}
+                                                  
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+<argument> ....source 
+                      Images franjas .bmp
+l.144 ...xtwidth]{..\..\source\Images\franjas.bmp}
+                                                  
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+<argument> ....source Images 
+                             franjas .bmp
+l.144 ...xtwidth]{..\..\source\Images\franjas.bmp}
+                                                  
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+<argument> ....source Images franjas 
+                                     .bmp
+l.144 ...xtwidth]{..\..\source\Images\franjas.bmp}
+                                                  
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+<write> 
+LaTeX Warning: File `..\..\source 
+                                           \Images \franjas .bmp' not found\...
+l.144 ...xtwidth]{..\..\source\Images\franjas.bmp}
+                                                  
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+<write> ...eX Warning: File `..\..\source \Images 
+                                                  \franjas .bmp' not found\o...
+l.144 ...xtwidth]{..\..\source\Images\franjas.bmp}
+                                                  
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+<write> ...g: File `..\..\source \Images \franjas 
+                                                  .bmp' not found\on@line .
+l.144 ...xtwidth]{..\..\source\Images\franjas.bmp}
+                                                  
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+
+LaTeX Warning: File `..\...bmp' not found on input line 144.
+
+
+! LaTeX Error: Unknown graphics extension: .bmp.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.144 ...xtwidth]{..\..\source\Images\franjas.bmp}
+                                                  
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+! Undefined control sequence.
+<argument> ....source 
+                      Images cono .bmp
+l.157 ...\textwidth]{..\..\source\Images\cono.bmp}
+                                                  
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+<argument> ....source Images 
+                             cono .bmp
+l.157 ...\textwidth]{..\..\source\Images\cono.bmp}
+                                                  
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+<argument> ....source Images cono 
+                                  .bmp
+l.157 ...\textwidth]{..\..\source\Images\cono.bmp}
+                                                  
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+<argument> ....source 
+                      Images cono .bmp
+l.157 ...\textwidth]{..\..\source\Images\cono.bmp}
+                                                  
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+<argument> ....source Images 
+                             cono .bmp
+l.157 ...\textwidth]{..\..\source\Images\cono.bmp}
+                                                  
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+<argument> ....source Images cono 
+                                  .bmp
+l.157 ...\textwidth]{..\..\source\Images\cono.bmp}
+                                                  
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+<argument> ....source 
+                      Images cono .bmp
+l.157 ...\textwidth]{..\..\source\Images\cono.bmp}
+                                                  
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+<argument> ....source Images 
+                             cono .bmp
+l.157 ...\textwidth]{..\..\source\Images\cono.bmp}
+                                                  
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+<argument> ....source Images cono 
+                                  .bmp
+l.157 ...\textwidth]{..\..\source\Images\cono.bmp}
+                                                  
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+<write> 
+LaTeX Warning: File `..\..\source 
+                                           \Images \cono .bmp' not found\on@...
+l.157 ...\textwidth]{..\..\source\Images\cono.bmp}
+                                                  
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+<write> ...eX Warning: File `..\..\source \Images 
+                                                  \cono .bmp' not found\on@l...
+l.157 ...\textwidth]{..\..\source\Images\cono.bmp}
+                                                  
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+<write> ...ning: File `..\..\source \Images \cono 
+                                                  .bmp' not found\on@line .
+l.157 ...\textwidth]{..\..\source\Images\cono.bmp}
+                                                  
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+
+LaTeX Warning: File `..\...bmp' not found on input line 157.
+
+
+! LaTeX Error: Unknown graphics extension: .bmp.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.157 ...\textwidth]{..\..\source\Images\cono.bmp}
+                                                  
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+
+Overfull \hbox (4.16106pt too wide) in paragraph at lines 167--169
+[]\OT1/ptm/m/n/12 M[]ulti-ples
+ []
+
+! Undefined control sequence.
+<argument> ....source 
+                      Images lenna .bmp
+l.172 ...textwidth]{..\..\source\Images\lenna.bmp}
+                                                  
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+<argument> ....source Images 
+                             lenna .bmp
+l.172 ...textwidth]{..\..\source\Images\lenna.bmp}
+                                                  
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+<argument> ....source Images lenna 
+                                   .bmp
+l.172 ...textwidth]{..\..\source\Images\lenna.bmp}
+                                                  
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+<argument> ....source 
+                      Images lenna .bmp
+l.172 ...textwidth]{..\..\source\Images\lenna.bmp}
+                                                  
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+<argument> ....source Images 
+                             lenna .bmp
+l.172 ...textwidth]{..\..\source\Images\lenna.bmp}
+                                                  
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+<argument> ....source Images lenna 
+                                   .bmp
+l.172 ...textwidth]{..\..\source\Images\lenna.bmp}
+                                                  
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+<argument> ....source 
+                      Images lenna .bmp
+l.172 ...textwidth]{..\..\source\Images\lenna.bmp}
+                                                  
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+<argument> ....source Images 
+                             lenna .bmp
+l.172 ...textwidth]{..\..\source\Images\lenna.bmp}
+                                                  
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+<argument> ....source Images lenna 
+                                   .bmp
+l.172 ...textwidth]{..\..\source\Images\lenna.bmp}
+                                                  
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+<write> 
+LaTeX Warning: File `..\..\source 
+                                           \Images \lenna .bmp' not found\on...
+l.172 ...textwidth]{..\..\source\Images\lenna.bmp}
+                                                  
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+<write> ...eX Warning: File `..\..\source \Images 
+                                                  \lenna .bmp' not found\on@...
+l.172 ...textwidth]{..\..\source\Images\lenna.bmp}
+                                                  
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+<write> ...ing: File `..\..\source \Images \lenna 
+                                                  .bmp' not found\on@line .
+l.172 ...textwidth]{..\..\source\Images\lenna.bmp}
+                                                  
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+
+LaTeX Warning: File `..\...bmp' not found on input line 172.
+
+
+! LaTeX Error: Unknown graphics extension: .bmp.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.172 ...textwidth]{..\..\source\Images\lenna.bmp}
+                                                  
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+! Undefined control sequence.
+<argument> ....source 
+                      Images Paisaje .bmp
+l.184 ...xtwidth]{..\..\source\Images\Paisaje.bmp}
+                                                  
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+<argument> ....source Images 
+                             Paisaje .bmp
+l.184 ...xtwidth]{..\..\source\Images\Paisaje.bmp}
+                                                  
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+<argument> ....source Images Paisaje 
+                                     .bmp
+l.184 ...xtwidth]{..\..\source\Images\Paisaje.bmp}
+                                                  
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+<argument> ....source 
+                      Images Paisaje .bmp
+l.184 ...xtwidth]{..\..\source\Images\Paisaje.bmp}
+                                                  
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+<argument> ....source Images 
+                             Paisaje .bmp
+l.184 ...xtwidth]{..\..\source\Images\Paisaje.bmp}
+                                                  
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+<argument> ....source Images Paisaje 
+                                     .bmp
+l.184 ...xtwidth]{..\..\source\Images\Paisaje.bmp}
+                                                  
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+<argument> ....source 
+                      Images Paisaje .bmp
+l.184 ...xtwidth]{..\..\source\Images\Paisaje.bmp}
+                                                  
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+<argument> ....source Images 
+                             Paisaje .bmp
+l.184 ...xtwidth]{..\..\source\Images\Paisaje.bmp}
+                                                  
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+<argument> ....source Images Paisaje 
+                                     .bmp
+l.184 ...xtwidth]{..\..\source\Images\Paisaje.bmp}
+                                                  
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+<write> 
+LaTeX Warning: File `..\..\source 
+                                           \Images \Paisaje .bmp' not found\...
+l.184 ...xtwidth]{..\..\source\Images\Paisaje.bmp}
+                                                  
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+<write> ...eX Warning: File `..\..\source \Images 
+                                                  \Paisaje .bmp' not found\o...
+l.184 ...xtwidth]{..\..\source\Images\Paisaje.bmp}
+                                                  
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+<write> ...g: File `..\..\source \Images \Paisaje 
+                                                  .bmp' not found\on@line .
+l.184 ...xtwidth]{..\..\source\Images\Paisaje.bmp}
+                                                  
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+
+LaTeX Warning: File `..\...bmp' not found on input line 184.
+
+
+! LaTeX Error: Unknown graphics extension: .bmp.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.184 ...xtwidth]{..\..\source\Images\Paisaje.bmp}
+                                                  
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+! Undefined control sequence.
+<argument> ....source 
+                      Images mono .bmp
+l.197 ...\textwidth]{..\..\source\Images\mono.bmp}
+                                                  
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+<argument> ....source Images 
+                             mono .bmp
+l.197 ...\textwidth]{..\..\source\Images\mono.bmp}
+                                                  
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+<argument> ....source Images mono 
+                                  .bmp
+l.197 ...\textwidth]{..\..\source\Images\mono.bmp}
+                                                  
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+<argument> ....source 
+                      Images mono .bmp
+l.197 ...\textwidth]{..\..\source\Images\mono.bmp}
+                                                  
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+<argument> ....source Images 
+                             mono .bmp
+l.197 ...\textwidth]{..\..\source\Images\mono.bmp}
+                                                  
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+<argument> ....source Images mono 
+                                  .bmp
+l.197 ...\textwidth]{..\..\source\Images\mono.bmp}
+                                                  
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+<argument> ....source 
+                      Images mono .bmp
+l.197 ...\textwidth]{..\..\source\Images\mono.bmp}
+                                                  
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+<argument> ....source Images 
+                             mono .bmp
+l.197 ...\textwidth]{..\..\source\Images\mono.bmp}
+                                                  
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+<argument> ....source Images mono 
+                                  .bmp
+l.197 ...\textwidth]{..\..\source\Images\mono.bmp}
+                                                  
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+<write> 
+LaTeX Warning: File `..\..\source 
+                                           \Images \mono .bmp' not found\on@...
+l.197 ...\textwidth]{..\..\source\Images\mono.bmp}
+                                                  
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+<write> ...eX Warning: File `..\..\source \Images 
+                                                  \mono .bmp' not found\on@l...
+l.197 ...\textwidth]{..\..\source\Images\mono.bmp}
+                                                  
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+<write> ...ning: File `..\..\source \Images \mono 
+                                                  .bmp' not found\on@line .
+l.197 ...\textwidth]{..\..\source\Images\mono.bmp}
+                                                  
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+
+LaTeX Warning: File `..\...bmp' not found on input line 197.
+
+
+! LaTeX Error: Unknown graphics extension: .bmp.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.197 ...\textwidth]{..\..\source\Images\mono.bmp}
+                                                  
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+
 
 [3]
+! Undefined control sequence.
+<argument> ....source 
+                      Images fresas .bmp
+l.209 ...extwidth]{..\..\source\Images\fresas.bmp}
+                                                  
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
 
-[4] (memoria_Jorge_serrano.aux
+! Undefined control sequence.
+<argument> ....source Images 
+                             fresas .bmp
+l.209 ...extwidth]{..\..\source\Images\fresas.bmp}
+                                                  
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+<argument> ....source Images fresas 
+                                    .bmp
+l.209 ...extwidth]{..\..\source\Images\fresas.bmp}
+                                                  
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+<argument> ....source 
+                      Images fresas .bmp
+l.209 ...extwidth]{..\..\source\Images\fresas.bmp}
+                                                  
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+<argument> ....source Images 
+                             fresas .bmp
+l.209 ...extwidth]{..\..\source\Images\fresas.bmp}
+                                                  
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+<argument> ....source Images fresas 
+                                    .bmp
+l.209 ...extwidth]{..\..\source\Images\fresas.bmp}
+                                                  
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+<argument> ....source 
+                      Images fresas .bmp
+l.209 ...extwidth]{..\..\source\Images\fresas.bmp}
+                                                  
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+<argument> ....source Images 
+                             fresas .bmp
+l.209 ...extwidth]{..\..\source\Images\fresas.bmp}
+                                                  
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+<argument> ....source Images fresas 
+                                    .bmp
+l.209 ...extwidth]{..\..\source\Images\fresas.bmp}
+                                                  
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+<write> 
+LaTeX Warning: File `..\..\source 
+                                           \Images \fresas .bmp' not found\o...
+l.209 ...extwidth]{..\..\source\Images\fresas.bmp}
+                                                  
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+<write> ...eX Warning: File `..\..\source \Images 
+                                                  \fresas .bmp' not found\on...
+l.209 ...extwidth]{..\..\source\Images\fresas.bmp}
+                                                  
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+<write> ...ng: File `..\..\source \Images \fresas 
+                                                  .bmp' not found\on@line .
+l.209 ...extwidth]{..\..\source\Images\fresas.bmp}
+                                                  
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+
+LaTeX Warning: File `..\...bmp' not found on input line 209.
+
+
+! LaTeX Error: Unknown graphics extension: .bmp.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.209 ...extwidth]{..\..\source\Images\fresas.bmp}
+                                                  
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+
+Overfull \hbox (1.472pt too wide) in paragraph at lines 222--223
+\OT1/ptm/m/n/12 que su-po-nen un des-af[]^^Po pa-ra la com-pre-si[]on DCT (ej. \OT1/pcr/m/n/12 cameraman.bmp\OT1/ptm/m/n/12 , \OT1/pcr/m/n/12 tierra.bmp\OT1/ptm/m/n/12 ). 
+ []
+
+
+
+[4]
+
+[5]
+
+[6]
+
+[7] (memoria_Jorge_serrano.aux
 LaTeX Info: Redefining \. on input line 8.
 LaTeX Info: Redefining \% on input line 8.
 )
@@ -242,17 +1141,17 @@ L3 programming layer <2025-01-18>
  ***********
  ) 
 Here is how much of TeX's memory you used:
- 3833 strings out of 473530
- 65391 string characters out of 5714795
- 475631 words of memory out of 5000000
- 27024 multiletter control sequences out of 15000+600000
- 580571 words of font info for 70 fonts, out of 8000000 for 9000
+ 3876 strings out of 473530
+ 65927 string characters out of 5714795
+ 479763 words of memory out of 5000000
+ 27077 multiletter control sequences out of 15000+600000
+ 579718 words of font info for 64 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 57i,12n,65p,756b,365s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 57i,12n,65p,756b,474s stack positions out of 10000i,1000n,20000p,200000b,200000s
 <C:/Users/joque/AppData/Local/Programs/MiKTeX/fonts/type1/urw/courier/ucrr8a.pfb><C:/Users/joque/AppData/Local/Programs/MiKTeX/fonts/type1/urw/times/utmb8a.pfb><C:/Users/joque/AppData/Local/Programs/MiKTeX/fonts/type1/urw/times/utmr8a.pfb><C:/Users/joque/AppData/Local/Programs/MiKTeX/fonts/type1/urw/times/utmri8a.pfb>
-Output written on memoria_Jorge_serrano.pdf (6 pages, 197980 bytes).
+Output written on memoria_Jorge_serrano.pdf (9 pages, 205443 bytes).
 PDF statistics:
- 45 PDF objects out of 1000 (max. 8388607)
+ 56 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  6 words of extra memory for PDF output out of 10000 (max. 10000000)
 

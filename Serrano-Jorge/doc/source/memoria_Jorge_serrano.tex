@@ -124,14 +124,112 @@ Los resultados esperables del proyecto incluyen una reducción significativa del
 
 \newpage
 \section{metodología}
+
 \subsection{Compresores desarrollados}
 \subsection{Obtencion de Imagenes experimentales}
+
+A continuación presentamos las imágenes seleccionadas y justificamos el motivo por el que consideramos interesante cada una:
+
+\begin{description}
+    \item[Grupo Sintético: Desafío a Bordes y Degradados Perfectos]
+    
+    \begin{description}
+        \item[\textbf{franjas.bmp}]
+        Degradados suaves de color puro, transiciones bruscas en las esquinas y un bloque central. 
+        Es la prueba máxima para el Efecto de Bloque (Blockiness) y el Banding. 
+        Dado que el degradado es matemáticamente perfecto, cualquier error visible es atribuible directamente a la cuantización de los coeficientes de baja frecuencia de la DCT.
+        
+        \begin{figure}[h!]
+            \centering
+            \includegraphics[width=0.5\textwidth]{..\..\source\Images\franjas.bmp}
+            \caption{franjas.bmp}
+            \label{fig:franjas}
+        \end{figure}
+        
+        \item[\textbf{cono.bmp}]
+        Bordes limpios (líneas rectas y contorno), degradados suaves (sombra) y color uniforme. 
+        Se utiliza para inducir el Efecto de Anillado (Ringing) en sus bordes afilados. 
+        La DCT tiene problemas para representar transiciones bruscas, lo que resulta en oscilaciones visibles alrededor de los límites. 
+        También evalúa el rendimiento en áreas de color uniforme.
+        
+        \begin{figure}[h!]
+            \centering
+            \includegraphics[width=0.5\textwidth]{..\..\source\Images\cono.bmp}
+            \caption{cono.bmp}
+            \label{fig:cono}
+        \end{figure}
+    \end{description}
+
+    \item[Grupo Estándar: Comportamiento en Escenarios Naturales (Mixto)]
+    
+    \begin{description}
+        \item[\textbf{lenna.bmp}]
+        Múltiples texturas (plumas, sombrero, pelo), piel suave y bordes. Es el estándar de la industria. 
+        Evalúa el equilibrio del compresor. Al contener zonas de baja frecuencia (piel) junto a zonas de alta frecuencia (plumas), permite analizar cómo el compresor distribuye el error de cuantización en una escena compleja y variada.
+        
+        \begin{figure}[h!]
+            \centering
+            \includegraphics[width=0.5\textwidth]{..\..\source\Images\lenna.bmp}
+            \caption{lenna.bmp}
+            \label{fig:lenna}
+        \end{figure}
+        
+        \item[\textbf{Paisaje.bmp}]
+        Cielo uniforme (gran área de baja frecuencia), montañas detalladas (alta frecuencia), agua (textura repetitiva). 
+        Es ideal para estudiar el Blockiness en un contexto natural (el cielo) y el manejo de la complejidad cromática (el contraste entre el azul y el verde/marrón). 
+        Demuestra si la compresión introduce artefactos en grandes áreas homogéneas.
+        
+        \begin{figure}[h!]
+            \centering
+            \includegraphics[width=0.5\textwidth]{..\..\source\Images\Paisaje.bmp}
+            \caption{Paisaje.bmp}
+            \label{fig:paisaje}
+        \end{figure}
+        
+        \item[\textbf{mono.bmp}]
+        Pelaje denso con textura muy fina y compleja, y grandes cambios de contraste (ojos, dientes). 
+        La textura del pelaje genera una gran cantidad de coeficientes DCT de alta frecuencia. 
+        Al aplicar la cuantización agresiva, se observa una pérdida severa de nitidez y el pelaje se "empasta". 
+        Es la prueba de estrés para la preservación del detalle fino.
+        
+        \begin{figure}[h!]
+            \centering
+            \includegraphics[width=0.5\textwidth]{..\..\source\Images\mono.bmp}
+            \caption{mono.bmp}
+            \label{fig:mono}
+        \end{figure}
+        
+        \item[\textbf{fresas.bmp}]
+        Textura repetitiva (semillas) y color rojo saturado. 
+        A pesar de la posible baja varianza en el canal rojo dominante, las semillas crean micro-bordes repetitivos en los canales de croma. 
+        Esto es útil para evaluar cómo el compresor maneja la redundancia espacial y si es capaz de preservar los detalles pequeños y repetitivos antes de borrarlos.
+        
+        \begin{figure}[h!]
+            \centering
+            \includegraphics[width=0.5\textwidth]{..\..\source\Images\fresas.bmp}
+            \caption{fresas.bmp}
+            \label{fig:fresas}
+        \end{figure}
+    \end{description}
+\end{description}
+
+
+Para el estudio experimental, se realizó un filtrado previo sobre un banco de imágenes estándar, calculando su varianza como métrica de complejidad espacial. Se descartaron imágenes redundantes para seleccionar un subconjunto representativo clasificado en tres niveles:
+
+\begin{description}
+    \item[Baja Complejidad (Varianza < 2000):] Imágenes con predominio de zonas homogéneas (ej. \texttt{fresas.bmp}).
+    \item[Media Complejidad (2000 < Varianza < 4000):] Imágenes de uso común en literatura con equilibrio entre texturas y bordes (ej. \texttt{lenna.bmp}, \texttt{pepper.bmp}).
+    \item[Alta Complejidad (Varianza > 4000):] Imágenes con alta densidad de detalles y texturas finas que suponen un desafío para la compresión DCT (ej. \texttt{cameraman.bmp}, \texttt{tierra.bmp}).
+\end{description}
+
 \subsection{Justificación de la métrica de clasificación}
 
 Para clasificar la complejidad de las imágenes, se ha optado por realizar los cálculos sobre su versión en \textbf{escala de grises}. Esto se debe a que la información estructural de una imagen (bordes, formas y texturas) reside principalmente en su intensidad luminosa, y no en su color. Dado que el sistema visual humano es más sensible al brillo que al color, y que los algoritmos tipo JPEG priorizan la conservación de la luminancia, el análisis en escala de grises ofrece una estimación más realista de la información relevante.
 
 Para cuantificar esta complejidad, se ha priorizado el uso de la \textbf{varianza} frente a la entropía. Mientras que la entropía mide la imprevisibilidad estadística (útil para la codificación), la varianza mide el contraste y la dispersión de los valores de los píxeles. Una varianza alta indica la presencia de cambios bruscos de intensidad y detalles finos (altas frecuencias). Dado que la transformada DCT tiene mayor dificultad para aproximar estas zonas de cambios rápidos sin introducir artefactos visuales, la varianza resulta ser el indicador más directo y fiable para predecir la dificultad de compresión de cada imagen.
 \subsection{Software desarrollado para el estudio}
+
+\section{Resultados experimentales}
 \subsection{Analisis cuantitativo}
 \subsection{Analisis cualitativo}
 \subsection{Discusión comparativa}
@@ -144,6 +242,11 @@ Para cuantificar esta complejidad, se ha priorizado el uso de la \textbf{varianz
 
 \newpage
 \section{Conclusiones}
+
+ % ---- Anexo ----
+\newpage
+
+
 
 %---- Bibliografia -----
 
