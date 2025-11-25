@@ -1,1 +1,0 @@
-El codigo ha sido probado en la versión disponible en EVA 
