@@ -62,7 +62,7 @@ lengths.Cr = length(sbytesCr);
 
 % Genera nombre archivo comprimido <fname>.huf
 [pathstr,name,ext] = fileparts(fname);
-nombrecomp=strcat(name,'.huf');
+nombrecomp=strcat(name,'.hud');
 
 fid = fopen(nombrecomp,'w');
 fwrite(fid,caliQ,'uint16');

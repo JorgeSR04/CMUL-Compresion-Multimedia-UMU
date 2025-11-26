@@ -106,7 +106,7 @@
             [MSE_c, ~] = jdes_custom(nombre_completo);
 
             % 3. Gestión de archivos
-            fichero_huf_gen = [nombre_base '.huc'];
+            fichero_huf_gen = [nombre_base '.huf'];
             fichero_bmp_gen = [nombre_base '_des_def.bmp']; % Tus funciones usan este sufijo fijo
 
             if ismember(Q, calidades_a_guardar)

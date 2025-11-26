@@ -29,7 +29,7 @@ lenx = m * n * 3;
 
 % Genera nombre archivo comprimido <fname>.huf
 [pathstr,name,ext] = fileparts(fname);
-nombrecomp=strcat(name,'.huf');
+nombrecomp=strcat(name,'.hud');
 
 % -----------------------------
 % Lectura del archivo comprimido
@@ -120,15 +120,15 @@ fprintf('Diferencia máxima absoluta: %.6f\n', dmaxdifer);
 fprintf('Error promedio absoluto: %.6f\n', mean(ddifer(:)));
 
 % Test visual
-[m,n,p] = size(X);
-figure('Units','pixels','Position',[100 100 n m]);
-set(gca,'Position',[0 0 1 1]);
-image(X);
-set(gcf,'Name','Imagen original X');
-figure('Units','pixels','Position',[100 100 n m]);
-set(gca,'Position',[0 0 1 1]);
-image(Xrec);;
-set(gcf,'Name','Imagen reconstruida Xrec');
+%[m,n,p] = size(X);
+%figure('Units','pixels','Position',[100 100 n m]);
+%set(gca,'Position',[0 0 1 1]);
+%image(X);
+%set(gcf,'Name','Imagen original X');
+%figure('Units','pixels','Position',[100 100 n m]);
+%set(gca,'Position',[0 0 1 1]);
+%image(Xrec);;
+%set(gcf,'Name','Imagen reconstruida Xrec');
 
 
 % ----------------------------------

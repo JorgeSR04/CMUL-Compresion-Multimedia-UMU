@@ -157,15 +157,15 @@ fprintf('Diferencia máxima absoluta: %.6f\n', dmaxdifer);
 fprintf('Error promedio absoluto: %.6f\n', mean(ddifer(:)));
 
 % Test visual
-[m,n,p] = size(X);
-figure('Units','pixels','Position',[100 100 n m]);
-set(gca,'Position',[0 0 1 1]);
-image(X);
-set(gcf,'Name','Imagen original X');
-figure('Units','pixels','Position',[100 100 n m]);
-set(gca,'Position',[0 0 1 1]);
-image(Xrec);;
-set(gcf,'Name','Imagen reconstruida Xrec');
+%[m,n,p] = size(X);
+%figure('Units','pixels','Position',[100 100 n m]);
+%set(gca,'Position',[0 0 1 1]);
+%image(X);
+%set(gcf,'Name','Imagen original X');
+%figure('Units','pixels','Position',[100 100 n m]);
+%set(gca,'Position',[0 0 1 1]);
+%image(Xrec);;
+%set(gcf,'Name','Imagen reconstruida Xrec');
 
 % ----------------------------------
 % Guarda la imagen descomprimida

@@ -21,8 +21,8 @@ end
 tc=cputime;
 
     % Calcula frecuencias
-    DC_freq = Freq256(DC_data);
-    AC_freq = Freq256(AC_data);
+    DC_freq = Freq256(DC_data(:,1));
+    AC_freq = Freq256(AC_data(:,1));
 
     % Genera tablas de especificación
     [DC_BITS, DC_HUFFVAL] = HSpecTables(DC_freq);
