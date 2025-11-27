@@ -1,141 +1,157 @@
-    % =========================================================================
-    % SCRIPT DE AUTOMATIZACI√ìN MEJORADO: PROYECTO COMPRESI√ìN IM√?GENES DCT
-    % =========================================================================
-    clear; clc; close all;
+% =========================================================================
+% SCRIPT DE AUTOMATIZACI”N MEJORADO: PROYECTO COMPRESI”N IM¡GENES DCT
+% =========================================================================
+clear; clc; close all;
 
-    input_dir = './Images';  
+input_dir = './Images';
 
-    % Verificar si el directorio existe
-    if ~exist(input_dir, 'dir')
-        error('El directorio "%s" no existe.', input_dir);
+% Verificar si el directorio existe
+if ~exist(input_dir, 'dir')
+    error('El directorio "%s" no existe.', input_dir);
+end
+
+% Obtener la lista de archivos .bmp en el directorio
+archivos_imagen = dir(fullfile(input_dir, '*.bmp'));
+
+% Asegurarse de que se hayan encontrado im·genes
+if isempty(archivos_imagen)
+    error('No se encontraron im·genes .bmp en el directorio "%s".', input_dir);
+end
+
+% -------------------------------------------------------------------------
+% 1. CONFIGURACI”N
+% -------------------------------------------------------------------------
+lista_imagenes = {archivos_imagen.name};
+
+% Factores de calidad a probar
+lista_caliQ = [5, 25, 50, 100, 200, 400, 800, 1600];
+
+% øQuÈ calidades queremos GUARDAR fÌsicamente para la entrega?
+calidades_a_guardar = [5, 25, 50, 100, 200, 400, 800, 1600];
+
+disp('=== INICIANDO BATERÕA DE PRUEBAS CON M…TRICAS AVANZADAS ===');
+
+% Estructura para guardar resultados numÈricos
+resultados = struct();
+
+% -------------------------------------------------------------------------
+% 2. BUCLE PRINCIPAL
+% -------------------------------------------------------------------------
+% Carpetas para organizar salidas
+output_custom_dir = "./Custom";
+if ~exist(output_custom_dir, 'dir'), mkdir(output_custom_dir); end
+output_default_dir = "./Default";
+if ~exist(output_default_dir, 'dir'), mkdir(output_default_dir); end
+output_Results_dir = "./Results";
+if ~exist(output_Results_dir, 'dir'), mkdir(output_Results_dir); end
+
+for i = 1:length(lista_imagenes)
+    nombre_completo = fullfile(input_dir, archivos_imagen(i).name);
+    [~, nombre_base, ext] = fileparts(nombre_completo);
+
+    fprintf('\nProcesando imagen [%d/%d]: %s\n', i, length(lista_imagenes), nombre_base);
+
+    % Verificar existencia
+    if ~exist(nombre_completo, 'file')
+        fprintf('  ERROR: No se encuentra %s. Saltando...\n', nombre_completo);
+        continue;
     end
 
-    % Obtener la lista de archivos .bmp en el directorio
-    archivos_imagen = dir(fullfile(input_dir, '*.bmp'));
+    % --- Inicializar vectores para gr·ficas (AHORA INCLUYEN PSNR Y SSIM) ---
+    vec_MSE_dflt = []; vec_RC_dflt = []; vec_PSNR_dflt = []; vec_SSIM_dflt = [];
+    vec_MSE_cust = []; vec_RC_cust = []; vec_PSNR_cust = []; vec_SSIM_cust = [];
 
-    % Asegurarse de que se hayan encontrado im·genes
-    if isempty(archivos_imagen)
-        error('No se encontraron im·genes .bmp en el directorio "%s".', input_dir);
-    end
+    for Q = lista_caliQ
+        fprintf('  > Calidad Q=%3d... ', Q);
 
+        % =========================================================
+        % PARTE A: DEFAULT (jcom_dflt / jdes_dflt)
+        % =========================================================
 
-    % -------------------------------------------------------------------------
-    % 1. CONFIGURACI√ìN
-    % -------------------------------------------------------------------------
-    % Pon aqu√≠ tus im√°genes .BMP (aseg√∫rate de que existan)
+        % 1. CompresiÛn
+        RC_d = jcom_dflt(nombre_completo, Q);
 
-    lista_imagenes = {archivos_imagen.name}; 
+        % 2. DescompresiÛn
+        % NUEVO: Recogemos 4 variables. Ignoramos la 2 (RC interna) y la 5 (FSIM)
+        [MSE_d, ~, PSNR_d, SSIM_d] = jdes_dflt(nombre_completo);
 
-    % Factores de calidad a probar (M√≠nimo 6 valores)
-    lista_caliQ = [5, 25, 50, 75,100, 200, 500, 1000];  % , 
+        % 3. GestiÛn de archivos
+        fichero_huf_gen = [nombre_base '.hud'];
+        fichero_bmp_gen = [nombre_base '_des_def.bmp'];
 
-    % ¬øQu√© calidades queremos GUARDAR f√≠sicamente para la entrega? (Pide 3)
-    calidades_a_guardar = [50, 100, 200]; 
-
-    disp('=== INICIANDO BATER√?A DE PRUEBAS ===');
-
-    % Estructura para guardar resultados num√©ricos
-    resultados = struct();
-
-    % -------------------------------------------------------------------------
-    % 2. BUCLE PRINCIPAL
-    % -------------------------------------------------------------------------
-     % Carpeta para organizar salidas
-    
-    output_custom_dir = "./Custom";
-    if ~exist(output_custom_dir, 'dir'), mkdir(output_custom_dir); end
-    output_default_dir = "./Default";
-    if ~exist(output_default_dir, 'dir'), mkdir(output_default_dir); end
-    
-    
-    for i = 1:3  %length(lista_imagenes)
-        nombre_completo = fullfile(input_dir, archivos_imagen(i).name);
-        [~, nombre_base, ext] = fileparts(nombre_completo);
-
-        fprintf('\nProcesando imagen [%d/%d]: %s\n', i, length(lista_imagenes), nombre_base);
-
-        % Verificar existencia
-        if ~exist(nombre_completo, 'file')
-            fprintf('  ERROR: No se encuentra %s. Saltando...\n', nombre_completo);
-            continue;
+        if ismember(Q, calidades_a_guardar)
+            movefile(fichero_huf_gen, fullfile(output_default_dir, [nombre_base '_Q' num2str(Q) '_Default.hud']));
+            % movefile(fichero_bmp_gen, fullfile(output_default_dir, [nombre_base '_Q' num2str(Q) '_Default.bmp']));
+        else
+            delete(fichero_huf_gen);
+            delete(fichero_bmp_gen);
         end
 
-        % Inicializar vectores para gr√°ficas
-        vec_MSE_dflt = []; vec_RC_dflt = [];
-        vec_MSE_cust = []; vec_RC_cust = [];
-
-        for Q = lista_caliQ
-            fprintf('  > Calidad Q=%3d... ', Q);
-
-            % --- PARTE A: DEFAULT (jcom_dflt / jdes_dflt) ---
-
-            % 1. Compresi√≥n
-            % Genera internamente: nombre_base.huf
-            RC_d = jcom_dflt(nombre_completo, Q);
-
-            % 2. Descompresi√≥n
-            % Lee: nombre_base.huf -> Genera: nombre_base_des_def.bmp
-            [MSE_d, ~] = jdes_dflt(nombre_completo);
-
-            % 3. Gesti√≥n de archivos (Renombrar y Mover)
-            fichero_huf_gen = [nombre_base '.hud'];
-            fichero_bmp_gen = [nombre_base '_des_def.bmp'];
-
-            if ismember(Q, calidades_a_guardar)
-                % Si es una calidad clave, la guardamos bien etiquetada
-                movefile(fichero_huf_gen, fullfile(output_default_dir, [nombre_base '_Q' num2str(Q) '_Default.hud']));
-                %movefile(fichero_bmp_gen, fullfile(output_default_dir, [nombre_base '_Q' num2str(Q) '_Default.bmp']));
-            else
-                % Si no, borramos los temporales para no ensuciar
-                delete(fichero_huf_gen);
-                %delete(fichero_bmp_gen);
-            end
-
-            % Guardar datos
-            vec_MSE_dflt(end+1) = MSE_d;
-            vec_RC_dflt(end+1)  = RC_d;
+        % Guardar datos en vectores temporales
+        
+        vec_MSE_dflt(end+1)  = MSE_d;
+        vec_RC_dflt(end+1)   = RC_d;
+        vec_PSNR_dflt(end+1) = PSNR_d; % Nuevo
+        vec_SSIM_dflt(end+1) = SSIM_d; % Nuevo
 
 
-            % --- PARTE B: CUSTOM (jcom_custom / jdes_custom) ---
+        % =========================================================
+        % PARTE B: CUSTOM (jcom_custom / jdes_custom)
+        % =========================================================
 
-            % 1. Compresi√≥n Custom
-            RC_c = jcom_custom(nombre_completo, Q);
+        % 1. CompresiÛn Custom
+        RC_c = jcom_custom(nombre_completo, Q);
 
-            % 2. Descompresi√≥n Custom
-            % CUIDADO: jdes_custom TAMBI√âN genera '_des_def.bmp', sobrescribir√≠a si no hubi√©ramos movido el anterior
-            [MSE_c, ~] = jdes_custom(nombre_completo);
+        % 2. DescompresiÛn Custom
+        % NUEVO: Asumimos que jdes_custom tambiÈn devuelve [MSE, RC, PSNR, SSIM]
+        [MSE_c, ~, PSNR_c, SSIM_c] = jdes_custom(nombre_completo);
 
-            % 3. Gesti√≥n de archivos
-            fichero_huf_gen = [nombre_base '.huc'];
-            fichero_bmp_gen = [nombre_base '_des_def.bmp']; % Tus funciones usan este sufijo fijo
+        % 3. GestiÛn de archivos
+        fichero_huf_gen = [nombre_base '.huc'];
+        fichero_bmp_gen = [nombre_base '_des_cus.bmp'];
 
-            if ismember(Q, calidades_a_guardar)
-                movefile(fichero_huf_gen, fullfile(output_custom_dir, [nombre_base '_Q' num2str(Q) '_Custom.huc']));
-                %movefile(fichero_bmp_gen, fullfile(output_custom_dir, [nombre_base '_Q' num2str(Q) '_Custom.bmp']));
-            else
-                delete(fichero_huf_gen);
-                %delete(fichero_bmp_gen);
-            end
-
-            vec_MSE_cust(end+1) = MSE_c;
-            vec_RC_cust(end+1)  = RC_c;
-
-            fprintf('OK (MSE Def: %.2f | Cust: %.2f)\n', MSE_d, MSE_c);
+        if ismember(Q, calidades_a_guardar)
+            movefile(fichero_huf_gen, fullfile(output_custom_dir, [nombre_base '_Q' num2str(Q) '_Custom.huc']));
+            movefile(fichero_bmp_gen, fullfile(output_custom_dir, [nombre_base '_Q' num2str(Q) '_Custom.bmp']));
+        else
+            delete(fichero_huf_gen);
+            delete(fichero_bmp_gen);
         end
 
-        % Guardar en estructura
-        resultados(i).nombre = nombre_base;
-        disp(resultados(i).nombre);
-        resultados(i).Q = lista_caliQ;
-        resultados(i).dflt.MSE = vec_MSE_dflt;
-        resultados(i).dflt.RC  = vec_RC_dflt;
-        resultados(i).cust.MSE = vec_MSE_cust;
-        resultados(i).cust.RC  = vec_RC_cust;
+        vec_MSE_cust(end+1)  = MSE_c;
+        vec_RC_cust(end+1)   = RC_c;
+        vec_PSNR_cust(end+1) = PSNR_c; % Nuevo
+        vec_SSIM_cust(end+1) = SSIM_c; % Nuevo
 
-        % Guardado parcial por seguridad
-        %save(fullfile(output_dir, 'resultados_finales.mat'), 'resultados');
+        fprintf('OK (SSIM Def: %.3f | SSIM Cust: %.3f)\n', SSIM_d, SSIM_c);
     end
 
-    generarGraficas(resultados);
+    % ---------------------------------------------------------------------
+    % Guardar en estructura "resultados"
+    % ---------------------------------------------------------------------
+    resultados(i).nombre = nombre_base;
+    
+    resultados(i).Q = lista_caliQ;
+    
+    % Datos Default
+    resultados(i).dflt.MSE  = vec_MSE_dflt;
+    resultados(i).dflt.RC   = vec_RC_dflt;
+    resultados(i).dflt.PSNR = vec_PSNR_dflt; 
+    resultados(i).dflt.SSIM = vec_SSIM_dflt; 
+    
+    % Datos Custom
+    resultados(i).cust.MSE  = vec_MSE_cust;
+    resultados(i).cust.RC   = vec_RC_cust;
+    resultados(i).cust.PSNR = vec_PSNR_cust; 
+    resultados(i).cust.SSIM = vec_SSIM_cust; 
 
-    disp('=== PROCESO COMPLETADO ===');
+    % Guardado parcial por seguridad
+    save(fullfile(output_Results_dir, 'resultados_finales.mat'), 'resultados');
+end
+
+
+
+generarGraficas(resultados);
+generarCSV(resultados);
+
+disp('=== PROCESO COMPLETADO ===');

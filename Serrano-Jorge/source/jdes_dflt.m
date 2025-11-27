@@ -1,5 +1,4 @@
-function [MSE,RC]=jdes_dflt(fname)
-
+function [MSE, RC, PSNR, valSSIM] = jdes_dflt(fname)
 % jdes_dflt: Compresion de imagenes basada en transformadas
 
 % Entradas:
@@ -106,6 +105,28 @@ RC= 100*(TO-TC)/TO; % TASA (rate) de compresión.
 % Calculo de MSE
 MSE=(sum(sum(sum((double(Xrec)-double(X)).^2))))/(m*n*3);
 
+% ---------------------------------------------------------
+% Cálculo de PSNR, SSIM y FSIM
+% ---------------------------------------------------------
+
+% 1. Cálculo de PSNR (Peak Signal-to-Noise Ratio)
+% Como la imagen es uint8, el pico máximo es 255.
+if MSE > 0
+    PSNR = 10 * log10((255^2) / MSE);
+else
+    PSNR = 99; % Si el error es 0, el PSNR es infinito. Ponemos un tope.
+end
+
+% 2. Cálculo de SSIM (Structural Similarity Index)
+% Requiere Image Processing Toolbox. Compara estructura, luminancia y contraste.
+% X y Xrec deben ser del mismo tipo (uint8).
+try
+    valSSIM = ssim(Xrec, X);
+catch
+    warning('No se pudo calcular SSIM (posible falta de Toolbox).');
+    valSSIM = 0;
+end
+    
 % Test de valor de diferencias double
 ddifer=abs(double(Xrec)-double(X));
 dmaxdifer=max(max(max(ddifer)));

@@ -27,10 +27,10 @@
     lista_imagenes = {archivos_imagen.name}; 
 
     % Factores de calidad a probar (Mínimo 6 valores)
-    lista_caliQ = [5, 25, 50, 75,100, 200, 500, 1000];  % , 
+    lista_caliQ = [5, 25, 50, 75,100, 500, 1000];  % , 
 
     % ¿Qué calidades queremos GUARDAR físicamente para la entrega? (Pide 3)
-    calidades_a_guardar = [50, 100, 200]; 
+    calidades_a_guardar = [5, 25, 50, 75,100, 500, 1000];
 
     disp('=== INICIANDO BATER�?A DE PRUEBAS ===');
 
@@ -46,9 +46,10 @@
     if ~exist(output_custom_dir, 'dir'), mkdir(output_custom_dir); end
     output_default_dir = "./Default";
     if ~exist(output_default_dir, 'dir'), mkdir(output_default_dir); end
+        output_Results_dir = "./Results";
+    if ~exist(output_Results_dir, 'dir'), mkdir(output_Results_dir); end
     
-    
-    for i = 1:3  %length(lista_imagenes)
+    for i = 1:1  %length(lista_imagenes)
         nombre_completo = fullfile(input_dir, archivos_imagen(i).name);
         [~, nombre_base, ext] = fileparts(nombre_completo);
 
@@ -88,7 +89,7 @@
             else
                 % Si no, borramos los temporales para no ensuciar
                 delete(fichero_huf_gen);
-                %delete(fichero_bmp_gen);
+                delete(fichero_bmp_gen);
             end
 
             % Guardar datos
@@ -106,15 +107,15 @@
             [MSE_c, ~] = jdes_custom(nombre_completo);
 
             % 3. Gestión de archivos
-            fichero_huf_gen = [nombre_base '.huf'];
-            fichero_bmp_gen = [nombre_base '_des_def.bmp']; % Tus funciones usan este sufijo fijo
+            fichero_huf_gen = [nombre_base '.huc'];
+            fichero_bmp_gen = [nombre_base '_des_cus.bmp']; % Tus funciones usan este sufijo fijo
 
             if ismember(Q, calidades_a_guardar)
                 movefile(fichero_huf_gen, fullfile(output_custom_dir, [nombre_base '_Q' num2str(Q) '_Custom.huc']));
-                %movefile(fichero_bmp_gen, fullfile(output_custom_dir, [nombre_base '_Q' num2str(Q) '_Custom.bmp']));
+                movefile(fichero_bmp_gen, fullfile(output_custom_dir, [nombre_base '_Q' num2str(Q) '_Custom.bmp']));
             else
                 delete(fichero_huf_gen);
-                %delete(fichero_bmp_gen);
+                delete(fichero_bmp_gen);
             end
 
             vec_MSE_cust(end+1) = MSE_c;
@@ -133,7 +134,7 @@
         resultados(i).cust.RC  = vec_RC_cust;
 
         % Guardado parcial por seguridad
-        %save(fullfile(output_dir, 'resultados_finales.mat'), 'resultados');
+        save(fullfile(output_Results_dir, 'resultados_finales.mat'), 'resultados');
     end
 
     generarGraficas(resultados);

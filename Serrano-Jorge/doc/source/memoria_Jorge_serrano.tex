@@ -1,13 +1,21 @@
 \documentclass[a4paper, 12pt]{article}
-\usepackage[utf8]{inputenc}
-\usepackage[spanish]{babel}
-\usepackage{graphicx} % Paquete para incluir imágenes
-\usepackage{geometry} % Paquete para márgenes
-\usepackage{times}    % Fuente (Times New Roman)
-\setlength{\parskip}{0.3cm}
-\usepackage{fancyhdr}
 
-% Configuración de márgenes
+% --- PAQUETES DE IDIOMA Y CODIFICACIÓN ---
+\usepackage[utf8]{inputenc}
+\usepackage[spanish, es-tabla]{babel} % es-tabla usa "Tabla" en vez de "Cuadro"
+
+% --- PAQUETES DE FORMATO Y DISEÑO ---
+\usepackage{graphicx} % Para incluir imágenes
+\usepackage{geometry} % Para márgenes
+\usepackage{times}    % Fuente Times New Roman
+\usepackage{fancyhdr} % Para encabezados y pies de página
+\usepackage{hyperref} % Para enlaces y marcadores en el PDF
+\usepackage{url}      % Para formatear URLs correctamente
+
+% --- CONFIGURACIÓN DE PÁGINA ---
+\setlength{\parskip}{0.3cm} % Espacio entre párrafos
+
+% Configuración de márgenes unificada
 \geometry{
  left=2.5cm,
  right=2.5cm,
@@ -16,47 +24,37 @@
  headheight=15pt % Altura necesaria para el encabezado
 }
 
-% Definimos el estilo "fancy" (el personalizado)
+% --- CONFIGURACIÓN DE ENCABEZADO Y PIE ---
 \pagestyle{fancy}
 \fancyhf{} % Borra los valores por defecto
 
-% --- ENCABEZADO ---
-% L = Left (Izquierda), R = Right (Derecha)
+% Encabezado (L = Izquierda, R = Derecha)
 \lhead{\small Práctica Final: Compresión basada en DCT} 
 \rhead{\small Compresión Multimedia 25/26} 
 
-% --- PIE DE PÁGINA ---
-% C = Center (Centro) -> Aquí ponemos el número de página
+% Pie de página (C = Centro -> Número de página)
 \cfoot{\thepage}
 
-% --- LÍNEAS (Las "líneas de Word") ---
-\renewcommand{\headrulewidth}{0.4pt} % Grosor de la línea de arriba (0pt para quitarla)
-\renewcommand{\footrulewidth}{0.4pt} % Grosor de la línea de abajo (0pt para quitarla)
-% Configuración de márgenes 
-\geometry{
- left=2.5cm,
- right=2.5cm,
- top=2.5cm,
- bottom=2.5cm
-}
+% Líneas separadoras
+\renewcommand{\headrulewidth}{0.4pt} 
+\renewcommand{\footrulewidth}{0.4pt} 
 
+% --- INICIO DEL DOCUMENTO ---
 \begin{document}
 
+% --- PORTADA ---
 \begin{titlepage}
     \centering
     
-    % --- LOGOTIPO ---
-    % Ajusta el 'width' si el logo sale muy grande o muy pequeño.
+    % LOGOTIPO
     \includegraphics[width=0.45\textwidth]{escudo_um.png} 
     
-    \vspace{1cm} % Espacio vertical
+    \vspace{1cm}
     
-    % --- UNIVERSIDAD ---
     {\Large \textbf{Universidad de Murcia}}
     
     \vspace{1cm}
     
-    % --- TITULACIÓN Y CURSO ---
     {\large \textsc{Grado en Ingeniería Informática}} \\
     \vspace{0.5cm}
     {\large \textsc{Compresión Multimedia}} \\
@@ -65,7 +63,6 @@
     
     \vspace{2cm}
     
-    % --- TÍTULO DEL PROYECTO ---
     {\Huge \textbf{Proyecto Final}} \\
     \vspace{0.5cm}
     {\Large \textsc{Compresión de Imágenes Basada en DCT:}} \\
@@ -74,43 +71,38 @@
     
     \vspace{2cm}
     
-    % --- DATOS DEL ALUMNO ---
+    % DATOS DEL ALUMNO
     {\large \textbf{Jorge Serrano Rueda}} \\
     \vspace{0.1cm}
-    \texttt{jorge.serranor@um.es} \\ % He puesto un correo ficticio acorde al nombre
+    \texttt{jorge.serranor@um.es} \\
     \vspace{0.5cm}
     \textbf{Grupo: 1.1}
     
-    \vfill % Empuja el resto hacia el final de la página
+    \vfill
     
-    % --- PROFESOR Y FECHA ---  NESPOLI, PANTALEONE 
-    Profesor: Nespoli, Pantaleone  \\
+    % PROFESOR Y FECHA
+    Profesor: Nespoli, Pantaleone \\
     \vspace{1cm}
     12 de diciembre de 2025
     
 \end{titlepage}
 
+% --- ÍNDICES ---
 \newpage
 \listoffigures 
 \tableofcontents
 
-
-% --- INICIO DEL CONTENIDO ---
-
-\newpage % Esto obliga a que el resumen empiece en una página nueva limpia
-\pagenumbering{arabic} % Empieza a contar las páginas con números normales (1, 2, 3...)
+% --- RESUMEN ---
+\newpage 
+\pagenumbering{arabic} % Reinicia contador a 1
 
 \section{Resumen}
 
 El presente documento recoge el trabajo desarrollado en el marco de las prácticas de la asignatura Compresión Multimedia (convocatoria de enero, curso 2025/2026). El núcleo del proyecto consiste en la implementación y evaluación de dos sistemas de compresión de imágenes fundamentados en la Transformada Discreta del Coseno (DCT) y la codificación Huffman.
 
-
 La estructura del informe abarca desde los fundamentos teóricos y la descripción detallada de la metodología experimental, hasta un exhaustivo análisis de los datos obtenidos, abordando tanto la perspectiva cualitativa como la cuantitativa. Finalmente, se presentan las conclusiones derivadas del estudio. El objetivo principal es contrastar el rendimiento de ambos compresores, identificando las variables que impactan en su eficacia para determinar las condiciones y configuraciones óptimas que garanticen los mejores resultados de forma generalizada.
 
-% Aquí puedes seguir escribiendo la siguiente sección, por ejemplo:
-% \section{Introducción}
-% ...
-
+% --- INTRODUCCIÓN ---
 \newpage 
 \section{Introducción}
 
@@ -122,104 +114,61 @@ Fundamentado en la Teoría de la Información, este proyecto implementa codifica
 
 Los resultados esperables del proyecto incluyen una reducción significativa del tamaño de las imágenes, manteniendo una calidad visual aceptable perceptible para el ojo humano. La combinación de la Transformada Discreta del Coseno y la codificación Huffman permite comprimir archivos BMP grandes en versiones mucho más ligeras, optimizando almacenamiento y transmisión. Además, se podrá evaluar cuantitativamente el rendimiento mediante métricas como la relación de compresión y el error promedio.
 
+% --- METODOLOGÍA ---
 \newpage
-\section{metodología}
+\section{Metodología}
 
 \subsection{Compresores desarrollados}
-\subsection{Obtencion de Imagenes experimentales}
+% (Aquí iría la descripción de tu software)
+
+\subsection{Obtención de Imágenes experimentales}
 
 A continuación presentamos las imágenes seleccionadas y justificamos el motivo por el que consideramos interesante cada una:
 
-\begin{description}
-    \item[Grupo Sintético: Desafío a Bordes y Degradados Perfectos]
-    
-    \begin{description}
-        \item[\textbf{franjas.bmp}]
-        Degradados suaves de color puro, transiciones bruscas en las esquinas y un bloque central. 
-        Es la prueba máxima para el Efecto de Bloque (Blockiness) y el Banding. 
-        Dado que el degradado es matemáticamente perfecto, cualquier error visible es atribuible directamente a la cuantización de los coeficientes de baja frecuencia de la DCT.
-        
-        \begin{figure}[h!]
-            \centering
-            %\includegraphics[width=0.5\textwidth]{..\..\source\Images\franjas.bmp}
-            \caption{franjas.bmp}
-            \label{fig:franjas}
-        \end{figure}
-        
-        \item[\textbf{cono.bmp}]
-        Bordes limpios (líneas rectas y contorno), degradados suaves (sombra) y color uniforme. 
-        Se utiliza para inducir el Efecto de Anillado (Ringing) en sus bordes afilados. 
-        La DCT tiene problemas para representar transiciones bruscas, lo que resulta en oscilaciones visibles alrededor de los límites. 
-        También evalúa el rendimiento en áreas de color uniforme.
-        
-        \begin{figure}[h!]
-            \centering
-            %\includegraphics[width=0.5\textwidth]{..\..\source\Images\cono.bmp}
-            \caption{cono.bmp}
-            \label{fig:cono}
-        \end{figure}
-    \end{description}
+\begin{itemize}
+    \item \textbf{franjas.bmp}: Degradados matemáticos ideales para detectar artefactos de cuantización. Permite medir \textit{banding} y \textit{blockiness} en transiciones controladas.
+    \begin{center}
+        % \includegraphics[width=0.6\textwidth]{franjas.bmp}
+        % [Imagen: franjas.bmp]
+    \end{center}
 
-    \item[Grupo Estándar: Comportamiento en Escenarios Naturales (Mixto)]
-    
-    \begin{description}
-        \item[\textbf{lenna.bmp}]
-        Múltiples texturas (plumas, sombrero, pelo), piel suave y bordes. Es el estándar de la industria. 
-        Evalúa el equilibrio del compresor. Al contener zonas de baja frecuencia (piel) junto a zonas de alta frecuencia (plumas), permite analizar cómo el compresor distribuye el error de cuantización en una escena compleja y variada.
-        
-        \begin{figure}[h!]
-            \centering
-            %\includegraphics[width=0.5\textwidth]{..\..\source\Images\lenna.bmp}
-            \caption{lenna.bmp}
-            \label{fig:lenna}
-        \end{figure}
-        
-        \item[\textbf{Paisaje.bmp}]
-        Cielo uniforme (gran área de baja frecuencia), montañas detalladas (alta frecuencia), agua (textura repetitiva). 
-        Es ideal para estudiar el Blockiness en un contexto natural (el cielo) y el manejo de la complejidad cromática (el contraste entre el azul y el verde/marrón). 
-        Demuestra si la compresión introduce artefactos en grandes áreas homogéneas.
-        
-        \begin{figure}[h!]
-            \centering
-            %\includegraphics[width=0.5\textwidth]{..\..\source\Images\Paisaje.bmp}
-            \caption{Paisaje.bmp}
-            \label{fig:paisaje}
-        \end{figure}
-        
-        \item[\textbf{mono.bmp}]
-        Pelaje denso con textura muy fina y compleja, y grandes cambios de contraste (ojos, dientes). 
-        La textura del pelaje genera una gran cantidad de coeficientes DCT de alta frecuencia. 
-        Al aplicar la cuantización agresiva, se observa una pérdida severa de nitidez y el pelaje se "empasta". 
-        Es la prueba de estrés para la preservación del detalle fino.
-        
-        \begin{figure}[h!]
-            \centering
-           % \includegraphics[width=0.5\textwidth]{..\..\source\Images\mono.bmp}
-            \caption{mono.bmp}
-            \label{fig:mono}
-        \end{figure}
-        
-        \item[\textbf{fresas.bmp}]
-        Textura repetitiva (semillas) y color rojo saturado. 
-        A pesar de la posible baja varianza en el canal rojo dominante, las semillas crean micro-bordes repetitivos en los canales de croma. 
-        Esto es útil para evaluar cómo el compresor maneja la redundancia espacial y si es capaz de preservar los detalles pequeños y repetitivos antes de borrarlos.
-        
-        \begin{figure}[h!]
-            \centering
-           % \includegraphics[width=0.5\textwidth]{..\..\source\Images\fresas.bmp}
-            \caption{fresas.bmp}
-            \label{fig:fresas}
-        \end{figure}
-    \end{description}
-\end{description}
+    \item \textbf{lenna.bmp}: Contiene piel suave, texturas finas y bordes. Adecuada para evaluar distribución del error en escenas mixtas, equilibrando detalle y suavidad.
+    \begin{center}
+        % \includegraphics[width=0.6\textwidth]{lenna.bmp}
+        % [Imagen: lenna.bmp]
+    \end{center}
 
+    \item \textbf{fresas.bmp}: Textura repetitiva de pequeño tamaño y color dominante saturado. Útil para estudiar manejo de microdetalles y redundancia espacial sin perder estructura repetitiva.
+    \begin{center}
+        % \includegraphics[width=0.6\textwidth]{fresas.bmp}
+        % [Imagen: fresas.bmp]
+    \end{center}
+
+    \item \textbf{ave\_cactus.bmp}: Fondo plano con bordes de alto contraste y detalles finos. Permite medir \textit{ringing} en bordes, \textit{banding} en el cielo y pérdida de detalle en las espinas.
+    \begin{center}
+        % \includegraphics[width=0.6\textwidth]{ave_cactus.bmp}
+        % [Imagen: ave_cactus.bmp]
+    \end{center}
+
+    \item \textbf{rocas\_grietas.bmp}: Líneas duras, diagonales y grietas irregulares. Adecuada para evaluar \textit{aliasing}, deformación geométrica y artefactos de bloque en alto contraste.
+    \begin{center}
+        % \includegraphics[width=0.6\textwidth]{rocas_grietas.bmp}
+        % [Imagen: rocas_grietas.bmp]
+    \end{center}
+
+    \item \textbf{colinas\_suaves.bmp}: Dominada por gradientes amplios de baja frecuencia. Facilita detectar posterización y \textit{banding} en transiciones de luminancia suaves.
+    \begin{center}
+        % \includegraphics[width=0.6\textwidth]{colinas_suaves.bmp}
+        % [Imagen: colinas_suaves.bmp]
+    \end{center}
+\end{itemize}
 
 Para el estudio experimental, se realizó un filtrado previo sobre un banco de imágenes estándar, calculando su varianza como métrica de complejidad espacial. Se descartaron imágenes redundantes para seleccionar un subconjunto representativo clasificado en tres niveles:
 
 \begin{description}
-    \item[Baja Complejidad (Varianza < 2000):] Imágenes con predominio de zonas homogéneas (ej. \texttt{fresas.bmp}).
-    \item[Media Complejidad (2000 < Varianza < 4000):] Imágenes de uso común en literatura con equilibrio entre texturas y bordes (ej. \texttt{lenna.bmp}, \texttt{pepper.bmp}).
-    \item[Alta Complejidad (Varianza > 4000):] Imágenes con alta densidad de detalles y texturas finas que suponen un desafío para la compresión DCT (ej. \texttt{cameraman.bmp}, \texttt{tierra.bmp}).
+    \item[Baja Complejidad (Varianza $<$ 2000):] Imágenes con predominio de zonas homogéneas (ej. \texttt{fresas.bmp}).
+    \item[Media Complejidad (2000 $<$ Varianza $<$ 4000):] Imágenes de uso común en literatura con equilibrio entre texturas y bordes (ej. \texttt{lenna.bmp}, \texttt{pepper.bmp}).
+    \item[Alta Complejidad (Varianza $>$ 4000):] Imágenes con alta densidad de detalles y texturas finas que suponen un desafío para la compresión DCT (ej. \texttt{cameraman.bmp}, \texttt{tierra.bmp}).
 \end{description}
 
 \subsection{Justificación de la métrica de clasificación}
@@ -227,39 +176,54 @@ Para el estudio experimental, se realizó un filtrado previo sobre un banco de i
 Para clasificar la complejidad de las imágenes, se ha optado por realizar los cálculos sobre su versión en \textbf{escala de grises}. Esto se debe a que la información estructural de una imagen (bordes, formas y texturas) reside principalmente en su intensidad luminosa, y no en su color. Dado que el sistema visual humano es más sensible al brillo que al color, y que los algoritmos tipo JPEG priorizan la conservación de la luminancia, el análisis en escala de grises ofrece una estimación más realista de la información relevante.
 
 Para cuantificar esta complejidad, se ha priorizado el uso de la \textbf{varianza} frente a la entropía. Mientras que la entropía mide la imprevisibilidad estadística (útil para la codificación), la varianza mide el contraste y la dispersión de los valores de los píxeles. Una varianza alta indica la presencia de cambios bruscos de intensidad y detalles finos (altas frecuencias). Dado que la transformada DCT tiene mayor dificultad para aproximar estas zonas de cambios rápidos sin introducir artefactos visuales, la varianza resulta ser el indicador más directo y fiable para predecir la dificultad de compresión de cada imagen.
+
 \subsection{Software desarrollado para el estudio}
+% Contenido pendiente...
 
+% --- RESULTADOS ---
 \section{Resultados experimentales}
-\subsection{Analisis cuantitativo}
-\subsection{Analisis cualitativo}
-\subsection{Discusión comparativa}
 
-% Parte extra no se hasta donde se realizara
+\subsection{Análisis cuantitativo}
+% Contenido pendiente...
+
+\subsection{Análisis cualitativo}
+% Contenido pendiente...
+
+\subsection{Discusión comparativa}
+% Contenido pendiente...
 
 \subsection{Comparación con compresor JPEG}
-\subsection{Codificación zonal}
-\subsection{Codificación por umbral N-mayores}
+% Contenido pendiente...
 
+\subsection{Codificación zonal}
+% Contenido pendiente...
+
+\subsection{Codificación por umbral N-mayores}
+% Contenido pendiente...
+
+% --- CONCLUSIONES ---
 \newpage
 \section{Conclusiones}
+% Contenido pendiente...
 
- % ---- Anexo ----
+% --- ANEXO ---
 \newpage
+\appendix
+\section{Anexo}
+% Contenido del anexo...
 
+% --- BIBLIOGRAFÍA ---
+\newpage
+\begin{thebibliography}{9}
 
-
-%---- Bibliografia -----
-
-\begin{thebibliography}{9}  % el número indica el ancho de la numeración
-
-\bibitem{ref1} Autor, \textit{Título del libro}, Editorial, Año.
-
-\bibitem{ref2} Autor, “Título del artículo”, Revista, Volumen, Número, Año.
-
-https://es.wikipedia.org/wiki/Artefactos_de_anillo
-https://www.sciencedirect.com/topics/computer-science/blocking-artifact
+    \bibitem{ref1} Autor, \textit{Título del libro}, Editorial, Año.
+    
+    \bibitem{ref2} Autor, ``Título del artículo'', \textit{Revista}, Volumen, Número, Año.
+    
+    \bibitem{wiki_artefactos} Wikipedia, ``Artefactos de anillo''. Disponible en: \url{https://es.wikipedia.org/wiki/Artefactos_de_anillo}
+    
+    \bibitem{sciencedirect_blocking} ScienceDirect, ``Blocking Artifact''. Disponible en: \url{https://www.sciencedirect.com/topics/computer-science/blocking-artifact}
 
 \end{thebibliography}
-
 
 \end{document}
