@@ -123,7 +123,7 @@ end
 try
     valSSIM = ssim(Xrec, X);
 catch
-    warning('No se pudo calcular SSIM (posible falta de Toolbox).');
+    warning('No se pudo calcular SSIM falta de Toolbox.');
     valSSIM = 0;
 end
     

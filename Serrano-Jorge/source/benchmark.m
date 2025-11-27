@@ -81,7 +81,7 @@ for i = 1:length(lista_imagenes)
 
         if ismember(Q, calidades_a_guardar)
             movefile(fichero_huf_gen, fullfile(output_default_dir, [nombre_base '_Q' num2str(Q) '_Default.hud']));
-            % movefile(fichero_bmp_gen, fullfile(output_default_dir, [nombre_base '_Q' num2str(Q) '_Default.bmp']));
+            movefile(fichero_bmp_gen, fullfile(output_default_dir, [nombre_base '_Q' num2str(Q) '_Default.bmp']));
         else
             delete(fichero_huf_gen);
             delete(fichero_bmp_gen);

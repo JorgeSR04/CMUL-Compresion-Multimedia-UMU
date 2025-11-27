@@ -4,53 +4,70 @@ function generarCSV(resultados)
     output_Results_dir = "./Results";
     if ~exist(output_Results_dir, 'dir'), mkdir(output_Results_dir); end
 
-    fprintf('Generando archivos Excel y CSV por imagen...\n');
+    fprintf('Generando tablas Excel con formato limpio...\n');
 
-    % Bucle: Procesar una imagen cada vez
     for i = 1:length(resultados)
         
-        % 1. Obtener el nombre de la imagen actual para el archivo
         nombre_imagen = resultados(i).nombre;
         
-        % 2. Extraer los datos y asegurar que sean columnas (usando (:))
+        % 1. Extraer datos numéricos
         CaliQ = resultados(i).Q(:);
         
         % Datos DEFAULT
-        Def_MSE  = resultados(i).dflt.MSE(:);
-        Def_RC   = resultados(i).dflt.RC(:);
-        Def_SNR  = resultados(i).dflt.PSNR(:); % Usamos PSNR como SNR
-        Def_SSIM = resultados(i).dflt.SSIM(:);
+        D_MSE  = resultados(i).dflt.MSE(:);
+        D_RC   = resultados(i).dflt.RC(:);
+        D_SNR  = resultados(i).dflt.PSNR(:);
+        D_SSIM = resultados(i).dflt.SSIM(:);
         
         % Datos CUSTOM
-        Cust_MSE  = resultados(i).cust.MSE(:);
-        Cust_RC   = resultados(i).cust.RC(:);
-        Cust_SNR  = resultados(i).cust.PSNR(:);
-        Cust_SSIM = resultados(i).cust.SSIM(:);
+        C_MSE  = resultados(i).cust.MSE(:);
+        C_RC   = resultados(i).cust.RC(:);
+        C_SNR  = resultados(i).cust.PSNR(:);
+        C_SSIM = resultados(i).cust.SSIM(:);
         
-        % 3. Crear la tabla con el orden solicitado:
-        % CaliQ | DEFAULT (4 cols) | CUSTOM (4 cols)
-        T = table(CaliQ, ...
-                  Def_RC, Def_MSE,Def_SNR, Def_SSIM, ...
-                  Cust_RC, Cust_MSE,S Cust_SNR, Cust_SSIM);
-              
-        % 4. Poner nombres bonitos a las cabeceras
-        T.Properties.VariableNames = {'CaliQ', ...
-            'Default_MSE', 'Default_RC', 'Default_SNR', 'Default_SSIM', ...
-            'Custom_MSE', 'Custom_RC', 'Custom_SNR', 'Custom_SSIM'};
+        % Creamos una columna separadora vacía (NaNs) para que haya hueco visual
+        Separador = nan(length(CaliQ), 1); 
         
-        % 5. Guardar archivos con el nombre de la imagen
+        % 2. Construir la Matriz de Datos Numéricos
+        % Orden: Q | Def_Datos | Separador | Cust_Datos
+        DatosMatriz = [CaliQ, D_MSE, D_RC, D_SNR, D_SSIM, Separador, C_MSE, C_RC, C_SNR, C_SSIM];
+
+        % 3. Diseñar los ENCABEZADOS (Dos filas)
+        
+        % Fila 1: Los "Super-títulos"
+        % Nota: Ponemos 'DEFAULT' y 'CUSTOM' al inicio de su bloque
+        Header_Fila1 = {'', 'DEFAULT', '', '', '', '', 'CUSTOM', '', '', ''};
+        
+        % Fila 2: Los nombres de métricas limpios
+        Header_Fila2 = {'CaliQ', 'MSE', 'RC', 'PSNR', 'SSIM', '', 'MSE', 'RC', 'PSNR', 'SSIM'};
+        
+        % Combinamos ambas filas en un Cell Array
+        Encabezados = [Header_Fila1; Header_Fila2];
+        
+        % 4. Guardar en Excel
         nombre_excel = fullfile(output_Results_dir, [nombre_imagen '.xlsx']);
-        nombre_csv   = fullfile(output_Results_dir, [nombre_imagen '.csv']);
         
         try
-            writetable(T, nombre_excel);
-            writetable(T, nombre_csv);
-            fprintf('  -> Guardado: %s\n', nombre_imagen);
+            % Paso A: Escribir los encabezados (Filas 1 y 2)
+            writecell(Encabezados, nombre_excel, 'Range', 'A1');
+            
+            % Paso B: Escribir los datos numéricos debajo (desde Fila 3)
+            writematrix(DatosMatriz, nombre_excel, 'Range', 'A3');
+            
+            fprintf('  -> Tabla guardada: %s.xlsx\n', nombre_imagen);
+            
         catch ME
-            warning('Error guardando %s: %s', nombre_imagen, ME.message);
+            warning('Error guardando Excel de %s: %s', nombre_imagen, ME.message);
         end
+        
+        % (Opcional) Guardar CSV simplificado (El CSV no soporta celdas combinadas)
+        % Para CSV usamos una tabla simple para que no se rompa el formato
+        nombre_csv = fullfile(output_Results_dir, [nombre_imagen '.csv']);
+        T_csv = table(CaliQ, D_MSE, D_RC, D_SNR, D_SSIM, C_MSE, C_RC, C_SNR, C_SSIM);
+        T_csv.Properties.VariableNames = {'Q', 'Def_MSE', 'Def_RC', 'Def_PSNR', 'Def_SSIM', 'Cust_MSE', 'Cust_RC', 'Cust_PSNR', 'Cust_SSIM'};
+        writetable(T_csv, nombre_csv);
+        
     end
     
-    fprintf('=== Tablas generadas exitosamente en folder Results ===\n');
-
+    fprintf('=== Proceso finalizado ===\n');
 end
