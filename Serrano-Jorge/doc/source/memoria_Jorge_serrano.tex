@@ -11,6 +11,7 @@
 \usepackage{fancyhdr} % Para encabezados y pies de página
 \usepackage{hyperref} % Para enlaces y marcadores en el PDF
 \usepackage{url}      % Para formatear URLs correctamente
+\usepackage{amsmath} % Imprescindible para entornos de ecuaciones como 'equation'
 
 % --- CONFIGURACIÓN DE PÁGINA ---
 \setlength{\parskip}{0.3cm} % Espacio entre párrafos
@@ -118,7 +119,95 @@ Los resultados esperables del proyecto incluyen una reducción significativa del
 \newpage
 \section{Metodología}
 
-\subsection{Compresores desarrollados}
+\subsection{Compresores Desarrollados y Principios de Compresión \textit{Lossy}}
+
+Para el desarrollo de esta práctica se han implementado dos compresores de imagen que emplean un esquema de \textbf{compresión con pérdida} (\textit{lossy}), basado en los principios del estándar \textbf{JPEG} (ITU T.81). Ambos compresores siguen una secuencia de tres pasos clave: Transformada, Cuantificación y Codificación.
+
+\subsection{Proceso de Compresión}
+
+\subsubsection{Transformada Discreta del Coseno (DCT)}
+El primer paso consiste en dividir la imagen en bloques de $8 \times 8$ píxeles. A cada bloque se le aplica la \textbf{Transformada Discreta del Coseno} (DCT). La DCT tiene como objetivo \textbf{decorrelacionar} y \textbf{compactar la energía} de los datos, transformando los valores espaciales en \textbf{coeficientes de frecuencia}. La mayor parte de la información visual significativa (las bajas frecuencias) se concentra en los coeficientes DC y las primeras componentes AC, mientras que los coeficientes de alta frecuencia (que representan detalles finos o ruido) tienden a aproximarse a cero. Este fenómeno es crucial para el siguiente paso de eliminación de datos.
+
+\subsubsection{Cuantificación y el Factor CaliQ (Introducción de Pérdida)}
+La cuantificación es el paso donde se introduce la pérdida de información y se logra la compresión principal.
+
+\begin{itemize}
+    \item Los coeficientes de frecuencia de la DCT son \textbf{divididos} por una matriz de pesos extraídos de las \textbf{Tablas de Cuantificación} recomendadas en el estándar \textbf{ITU T.81}.
+    \item Se utiliza un parámetro de escalado, denominado \textbf{CaliQ} (Calidad de Cuantificación), para \textbf{multiplicar} cada valor de la tabla ITU T.81, controlando directamente el nivel de pérdida.
+\end{itemize}
+
+La operación de cuantificación se define como:
+\begin{equation}
+\text{Coeficiente Cuantificado} = \text{round}\left( \frac{\text{Coeficiente DCT}}{\text{Valor de Tabla ITU T.81} \times \text{CaliQ}} \right)
+\end{equation}
+
+Un valor de \textbf{CaliQ más alto} implica un divisor mayor. Esto resulta en que una mayor cantidad de coeficientes de frecuencia, especialmente aquellos que contienen poca energía, se \textbf{redondeen a cero} (proceso de truncamiento). Este paso busca \textbf{maximizar la anulación de coeficientes}, lo que reduce significativamente la cantidad de datos a codificar. Cuanto mayor sea CaliQ, mayor debe ser la \textbf{magnitud} de un coeficiente original para que no sea anulado.
+
+Como la cuantificación introduce pérdidas, la calidad visual de la imagen resultante será inversamente proporcional al factor $\text{CaliQ}$ utilizado. La calidad se medirá mediante métricas objetivas como los \textbf{bits medios por píxel (BPP)} y el \textbf{Error Cuadrático Medio (MSE)}, las cuales se detallarán posteriormente.
+
+\subsubsection{Codificación de Entropía (Algoritmo Huffman)}
+Finalmente, los coeficientes cuantificados se codifican utilizando el algoritmo de \textbf{Huffman}. Este es un método de codificación de longitud variable que optimiza la compresión asignando códigos binarios más cortos a los valores (palabras) que ocurren con mayor frecuencia y códigos más largos a los menos frecuentes. La eficiencia de este paso depende de los coeficientes cuantificados.
+
+\subsubsection{Diferenciación de Compresores}
+
+La diferencia fundamental entre los dos compresores reside en la implementación y el uso de las tablas del algoritmo de Huffman:
+
+\begin{itemize}
+    \item \textbf{Compresor Default:}
+    Este compresor utiliza las tablas Huffman predeterminadas especificadas en el estándar ITU T.81 (JPEG). Estas tablas están diseñadas para un ámbito general de imágenes, pero no son óptimas para los valores de las frecuencias específicas de la imagen procesada.
+
+    \item \textbf{Compresor Custom:}
+    Este compresor calcula tablas Huffman específicas para cada imagen. Analiza la frecuencia real de aparición de cada coeficiente cuantificado y genera un conjunto de códigos que están óptimamente ajustados a esa distribución de datos particular. Por lo tanto, se espera que este compresor logre resultados mejores o simlares de compresión que el compresor \textit{Default} para un mismo factor $\text{CaliQ}$.
+\end{itemize}
+
+\subsection{Datos de entrada}
+\subsubsection{Formato de los datos}
+Los datos de entrada para el análisis experimental han sido imagenes Truecolor con formato BMP , otros formatos con compresión sin peridas tambíen podrían ser validos. En caso de que se usen formato con perdidas las metricas utilizas y datos obtenidos no tendrian interes experimental.
+
+//TODO: Justificar por que los datos se convierten a Dimensiones YCbCr
+
+\subsubsection{Valores elegidos para CaliQ}
+Respecto a los factores elegidos, utilizamos los siguientes valores:
+
+\[
+[5, 25, 50, 100, 200, 400, 800, 1600]
+\]
+ 
+Nota: Los valores inferiores a 100 produciran una salida con mayor calidad que la del estandar jpeg 
+
+Con el objetivo de explorar dos aspectos principales: primero, identificar el punto óptimo entre la compresión y la preservación de la calidad visual; y segundo, analizar los principios y límites del compresor, determinando en qué casos el factor \texttt{caliQ} resulta insignificante.
+
+
+\subsection{Método de evaluación}
+En este estudio se realizan dos analisis de los resultados obtenidos:
+\begin{itemize}
+    \item  \textbf{Cualitativo:} Se analiza desde un punto de vista visual, tenemos en cuenta como de notorios son los cambios introducidos por el proceso de cuantifiación.
+    \item   \textbf{Cuantitativo:} Se analiza a nivel teorico y técnico los resultados obtenidos utilizando metricas. 
+\end{itemize}
+
+\subsubsection{Métricas de evaluación}
+
+// TODO CONTAR TODOS LO QUE USAMOS
+
+\subsection{Procedimiento experimental y software}
+La metodología seguida para la realización del estudio ha sido simple pero efectiva, garantizando la sistematicidad y la trazabilidad de los datos. Primero se desarrolló un fichero \textbf{benchmark} para automatizar la generación de imágenes, gráficos, tablas y otros recursos. Una vez finalizado este paso, se realizó una elección de imágenes. Elegidos los datos experimentales, se formuló una \textbf{hipótesis} sobre los resultados esperables para cada una de ellas, para finalmente ejecutar las pruebas y tests, generando los gráficos y tablas necesarios para el análisis.
+\subsubsection{Versión de MATLAB}
+Con el fin de asegurar la replicabilidad de los resultados, se empleó MATLAB R2020b, accesible a través de los escritorios virtuales (EVA).
+\subsubsection{Software Desarrollado}
+Para garantizar la uniformidad y eficiencia del experimento, se implementó un script principal de automatización, denominado benchmark, cuya función fue gestionar el flujo de trabajo:
+
+\begin{itemize}
+    \item \textbf{Flujo:} El sistema recorre automáticamente el conjunto de imágenes seleccionadas y aplica la totalidad de los factores de calidad ($Q$) definidos. Esta metodología responde a la pregunta de cómo se obtuvieron los datos necesarios para trazar las curvas de rendimiento.
+    
+    \item \textbf{Obtención:} En cada iteración (Imagen $\times$ Factor $Q$), el marco ejecuta las funciones de descompresión y recopila las métricas clave: Relación de Compresión (RC), Error Cuadrático Medio (MSE), SNR y SSIM.
+    
+    \item \textbf{Gestión de datos:} Una vez completada la batería de pruebas, el software organiza los datos en una estructura unificada y emplea funciones específicas para:
+    \begin{itemize}
+        \item \textbf{generaGraficas:} Generar los gráficos de rendimiento, como las curvas de RC versus SSIM.
+        \item \textbf{generaCSV:} rear tablas de resultados en formatos \texttt{.xlsx} o \texttt{.csv}, con una organización limpia y jerárquica adecuada para el informe.
+    \end{itemize}
+\end{itemize}
+
 % (Aquí iría la descripción de tu software)
 
 \subsection{Obtención de Imágenes experimentales}
@@ -182,9 +271,7 @@ Para clasificar la complejidad de las imágenes, se ha optado por realizar los c
 
 Para cuantificar esta complejidad, se ha priorizado el uso de la \textbf{varianza} frente a la entropía. Mientras que la entropía mide la imprevisibilidad estadística (útil para la codificación), la varianza mide el contraste y la dispersión de los valores de los píxeles. Una varianza alta indica la presencia de cambios bruscos de intensidad y detalles finos (altas frecuencias). Dado que la transformada DCT tiene mayor dificultad para aproximar estas zonas de cambios rápidos sin introducir artefactos visuales, la varianza resulta ser el indicador más directo y fiable para predecir la dificultad de compresión de cada imagen.
 
-\subsection{Software desarrollado para el estudio}
-% Contenido pendiente...
-
+ 
 % --- RESULTADOS ---
 \section{Resultados experimentales}
 

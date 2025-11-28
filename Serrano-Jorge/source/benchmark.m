@@ -91,8 +91,8 @@ for i = 1:length(lista_imagenes)
         
         vec_MSE_dflt(end+1)  = MSE_d;
         vec_RC_dflt(end+1)   = RC_d;
-        vec_PSNR_dflt(end+1) = PSNR_d; % Nuevo
-        vec_SSIM_dflt(end+1) = SSIM_d; % Nuevo
+        vec_PSNR_dflt(end+1) = PSNR_d;  
+        vec_SSIM_dflt(end+1) = SSIM_d; 
 
 
         % =========================================================
@@ -120,8 +120,8 @@ for i = 1:length(lista_imagenes)
 
         vec_MSE_cust(end+1)  = MSE_c;
         vec_RC_cust(end+1)   = RC_c;
-        vec_PSNR_cust(end+1) = PSNR_c; % Nuevo
-        vec_SSIM_cust(end+1) = SSIM_c; % Nuevo
+        vec_PSNR_cust(end+1) = PSNR_c; 
+        vec_SSIM_cust(end+1) = SSIM_c; 
 
         fprintf('OK (SSIM Def: %.3f | SSIM Cust: %.3f)\n', SSIM_d, SSIM_c);
     end
