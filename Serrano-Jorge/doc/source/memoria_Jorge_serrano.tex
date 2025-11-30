@@ -181,13 +181,64 @@ Con el objetivo de explorar dos aspectos principales: primero, identificar el pu
 \subsection{Método de evaluación}
 En este estudio se realizan dos analisis de los resultados obtenidos:
 \begin{itemize}
-    \item  \textbf{Cualitativo:} Se analiza desde un punto de vista visual, tenemos en cuenta como de notorios son los cambios introducidos por el proceso de cuantifiación.
+    \item  \textbf{Cualitativo:} Se analiza desde un punto de vista visual, tenemos en cuenta como de notorios son los cambios introducidos por el proceso de cuantifiación. Catalogaremos los resultados objetivamente basandonos en la observación y valorando la similitud entre las imagenes reconstruidas y las originales.
     \item   \textbf{Cuantitativo:} Se analiza a nivel teorico y técnico los resultados obtenidos utilizando metricas. 
 \end{itemize}
 
 \subsubsection{Métricas de evaluación}
 
-// TODO CONTAR TODOS LO QUE USAMOS
+\textbf{Error Cuadrático Medio (MSE)} es el error introducido por el cuantificador y mide la distancia promedio entre cada valor original de la imagen y el valor correspondiente en la imagen recuperada, es una medida de fidelidad.
+
+
+\begin{equation}
+\text{MSE} = \frac{1}{N} \sum_{i=1}^{N} \left( x_{i} - Q(x_{i}) \right)^2
+\end{equation}
+
+\begin{itemize}
+    \item[$N$] \textbf{Número Total de Coeficientes} (o píxeles) evaluados en la imagen o en el bloque.
+    \item[$\sum_{i=1}^{N}$] \textbf{Sumatoria}. Indica la suma de los errores al cuadrado para todos los coeficientes desde $i=1$ hasta $N$.
+    \item[$x_{i}$] \textbf{Coeficiente DCT Original} en la posición $i$.
+    \item[$Q(x_{i})$] \textbf{Coeficiente Cuantificado} en la posición $i$ (el valor que introduce la pérdida).
+\end{itemize}
+
+\textbf{Tasa de CompresiónRC (RC \%)} indica qué porcentaje del tamaño original del fichero se ha reducido (eliminado) después de comprimirlo.
+
+
+\begin{equation}
+\text{RC (\%)} = \frac{T_{i} - T_{o}}{T_{i}} \times 100
+\end{equation}
+
+\begin{itemize}
+    \item[$T_{i}$] \textbf{Tamaño de la Fuente Inicial} (o tamaño del archivo original).
+    \item[$T_{o}$] \textbf{Tamaño del Archivo Comprimido} (o tamaño de salida).
+\end{itemize}
+
+
+\begin{equation}
+\text{SNR}(dB) = 10 \cdot \log_{10} \frac{\sigma_{s}^{2}}{\sigma_{q}^{2}} = 20 \cdot \log_{10} \frac{\sigma_{s}}{\sigma_{q}}
+\end{equation}
+
+\begin{itemize}
+    \item[$\text{SNR}(dB)$] \textbf{Relación Señal a Ruido} (\textit{Signal-to-Noise Ratio}). Métrica que compara el nivel de potencia de la señal con el nivel del ruido de fondo, expresada en decibelios (dB).
+    \item[$\sigma_{s}^{2}$] \textbf{Varianza de la Señal} (Potencia de la Señal). Representa la potencia de la señal original o de los coeficientes DCT.
+    \item[$\sigma_{q}^{2}$] \textbf{Varianza del Ruido de Cuantificación} (Potencia del Ruido). Representa la potencia del error o distorsión introducida por el proceso de cuantificación.
+    \item[$\log_{10}$] \textbf{Logaritmo en Base 10}.
+\end{itemize}
+
+
+\begin{equation}
+\text{SSIM}(x, y) = [l(x, y)]^{\alpha} \cdot [c(x, y)]^{\beta} \cdot [s(x, y)]^{\gamma}
+\end{equation}
+
+\noindent \textbf{Leyenda de Variables:}
+\begin{itemize}
+    \item[$\text{SSIM}(x, y)$] \textbf{Índice de Similitud Estructural} entre la ventana de la imagen original ($x$) y la ventana de la imagen recuperada ($y$). El valor está en el rango $[0, 1]$, donde $1$ indica identidad perfecta.
+    \item[$\mu_{x}$ y $\mu_{y}$] \textbf{Media} de los valores de píxel en la ventana $x$ y $y$, respectivamente (comparación de \textbf{Luminancia}).
+    \item[$\sigma_{x}^{2}$ y $\sigma_{y}^{2}$] \textbf{Varianza} de los valores de píxel en $x$ y $y$, respectivamente. La raíz cuadrada ($\sigma$) es la desviación estándar (comparación de \textbf{Contraste}).
+    \item[$\sigma_{xy}$] \textbf{Covarianza} entre $x$ e $y$ (comparación de \textbf{Estructura}).
+    \item[$C_{1}, C_{2}, C_{3}$] \textbf{Constantes pequeñas} para evitar inestabilidad cuando los denominadores son muy cercanos a cero. Se definen usualmente como $C_1 = (K_1 L)^2$ y $C_2 = (K_2 L)^2$, donde $L$ es el rango dinámico de los píxeles (ej: 255 para 8-bit) y $K_1, K_2$ son constantes pequeñas (ej: $0.01$ y $0.03$). $C_3 = C_2 / 2$.
+\end{itemize}
+
 
 \subsection{Procedimiento experimental y software}
 La metodología seguida para la realización del estudio ha sido simple pero efectiva, garantizando la sistematicidad y la trazabilidad de los datos. Primero se desarrolló un fichero \textbf{benchmark} para automatizar la generación de imágenes, gráficos, tablas y otros recursos. Una vez finalizado este paso, se realizó una elección de imágenes. Elegidos los datos experimentales, se formuló una \textbf{hipótesis} sobre los resultados esperables para cada una de ellas, para finalmente ejecutar las pruebas y tests, generando los gráficos y tablas necesarios para el análisis.
@@ -207,8 +258,6 @@ Para garantizar la uniformidad y eficiencia del experimento, se implementó un s
         \item \textbf{generaCSV:} rear tablas de resultados en formatos \texttt{.xlsx} o \texttt{.csv}, con una organización limpia y jerárquica adecuada para el informe.
     \end{itemize}
 \end{itemize}
-
-% (Aquí iría la descripción de tu software)
 
 \subsection{Obtención de Imágenes experimentales}
 

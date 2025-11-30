@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (MiKTeX 24.4) (preloaded format=pdflatex 2025.2.8)  28 NOV 2025 14:05
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (MiKTeX 24.4) (preloaded format=pdflatex 2025.2.8)  28 NOV 2025 22:05
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -403,7 +403,7 @@ LaTeX Info: Redefining \% on input line 1.
 pdfTeX warning (ext4): destination with the same identifier (name{page.1}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.28 ...\numberline {5}Conclusiones}{9}{section.5}
+l.28 ...numberline {5}Conclusiones}{10}{section.5}
                                                   % [1])
 \tf@toc=\write5
 \openout5 = `memoria_Jorge_serrano.toc'.
@@ -431,19 +431,19 @@ l.119 \newpage
 [4]
 
 [5]
-LaTeX Font Info:    Trying to load font information for TS1+ptm on input line 206.
+
+[6]
+LaTeX Font Info:    Trying to load font information for TS1+ptm on input line 257.
  (C:\Users\joque\AppData\Local\Programs\MiKTeX\tex/latex/psnfss\ts1ptm.fd
 File: ts1ptm.fd 2001/06/04 font definitions for TS1/ptm.
 )
 
-[6]
-Overfull \hbox (1.47704pt too wide) in paragraph at lines 265--266
+[7]
+Overfull \hbox (1.47704pt too wide) in paragraph at lines 314--315
 \OT1/ptm/m/n/12 que su-po-nen un des-af[]^^Po pa-ra la com-pre-si[]on DCT (ej. \OT1/pcr/m/n/12 cameraman.bmp\OT1/ptm/m/n/12 , \OT1/pcr/m/n/12 tierra.bmp\OT1/ptm/m/n/12 ). 
  []
 
 
-
-[7]
 
 [8]
 
@@ -451,7 +451,9 @@ Overfull \hbox (1.47704pt too wide) in paragraph at lines 265--266
 
 [10]
 
-[11] (memoria_Jorge_serrano.aux
+[11]
+
+[12] (memoria_Jorge_serrano.aux
 LaTeX Info: Redefining \. on input line 11.
 LaTeX Info: Redefining \% on input line 11.
 )
@@ -463,17 +465,17 @@ Package rerunfilecheck Info: File `memoria_Jorge_serrano.out' has not changed.
 (rerunfilecheck)             Checksum: 660F19C96F2C6399E70FA46704C3F743;5523.
  ) 
 Here is how much of TeX's memory you used:
- 11731 strings out of 473530
- 187254 string characters out of 5714795
- 607622 words of memory out of 5000000
- 34747 multiletter control sequences out of 15000+600000
- 584202 words of font info for 78 fonts, out of 8000000 for 9000
+ 11740 strings out of 473530
+ 187351 string characters out of 5714795
+ 609622 words of memory out of 5000000
+ 34751 multiletter control sequences out of 15000+600000
+ 584429 words of font info for 79 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  75i,12n,79p,792b,772s stack positions out of 10000i,1000n,20000p,200000b,200000s
-<C:/Users/joque/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmex10.pfb><C:/Users/joque/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi12.pfb><C:/Users/joque/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Users/joque/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Users/joque/AppData/Local/Programs/MiKTeX/fonts/type1/urw/courier/ucrr8a.pfb><C:/Users/joque/AppData/Local/Programs/MiKTeX/fonts/type1/urw/times/utmb8a.pfb><C:/Users/joque/AppData/Local/Programs/MiKTeX/fonts/type1/urw/times/utmbi8a.pfb><C:/Users/joque/AppData/Local/Programs/MiKTeX/fonts/type1/urw/times/utmr8a.pfb><C:/Users/joque/AppData/Local/Programs/MiKTeX/fonts/type1/urw/times/utmri8a.pfb>
-Output written on memoria_Jorge_serrano.pdf (14 pages, 289255 bytes).
+<C:/Users/joque/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmex10.pfb><C:/Users/joque/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi12.pfb><C:/Users/joque/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi8.pfb><C:/Users/joque/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Users/joque/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr8.pfb><C:/Users/joque/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Users/joque/AppData/Local/Programs/MiKTeX/fonts/type1/urw/courier/ucrr8a.pfb><C:/Users/joque/AppData/Local/Programs/MiKTeX/fonts/type1/urw/times/utmb8a.pfb><C:/Users/joque/AppData/Local/Programs/MiKTeX/fonts/type1/urw/times/utmbi8a.pfb><C:/Users/joque/AppData/Local/Programs/MiKTeX/fonts/type1/urw/times/utmr8a.pfb><C:/Users/joque/AppData/Local/Programs/MiKTeX/fonts/type1/urw/times/utmri8a.pfb>
+Output written on memoria_Jorge_serrano.pdf (15 pages, 324300 bytes).
 PDF statistics:
- 275 PDF objects out of 1000 (max. 8388607)
- 48 named destinations out of 1000 (max. 500000)
+ 294 PDF objects out of 1000 (max. 8388607)
+ 53 named destinations out of 1000 (max. 500000)
  230 words of extra memory for PDF output out of 10000 (max. 10000000)
 

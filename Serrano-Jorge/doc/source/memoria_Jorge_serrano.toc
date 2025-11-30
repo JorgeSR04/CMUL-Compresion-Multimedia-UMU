@@ -13,17 +13,17 @@
 \contentsline {subsubsection}{\numberline {3.3.2}Valores elegidos para CaliQ}{4}{subsubsection.3.3.2}%
 \contentsline {subsection}{\numberline {3.4}Método de evaluación}{5}{subsection.3.4}%
 \contentsline {subsubsection}{\numberline {3.4.1}Métricas de evaluación}{5}{subsubsection.3.4.1}%
-\contentsline {subsection}{\numberline {3.5}Procedimiento experimental y software}{5}{subsection.3.5}%
-\contentsline {subsubsection}{\numberline {3.5.1}Versión de MATLAB}{5}{subsubsection.3.5.1}%
-\contentsline {subsubsection}{\numberline {3.5.2}Software Desarrollado}{5}{subsubsection.3.5.2}%
-\contentsline {subsection}{\numberline {3.6}Obtención de Imágenes experimentales}{6}{subsection.3.6}%
-\contentsline {subsection}{\numberline {3.7}Justificación de la métrica de clasificación}{7}{subsection.3.7}%
-\contentsline {section}{\numberline {4}Resultados experimentales}{8}{section.4}%
-\contentsline {subsection}{\numberline {4.1}Análisis cuantitativo}{8}{subsection.4.1}%
-\contentsline {subsection}{\numberline {4.2}Análisis cualitativo}{8}{subsection.4.2}%
-\contentsline {subsection}{\numberline {4.3}Discusión comparativa}{8}{subsection.4.3}%
-\contentsline {subsection}{\numberline {4.4}Comparación con compresor JPEG}{8}{subsection.4.4}%
-\contentsline {subsection}{\numberline {4.5}Codificación zonal}{8}{subsection.4.5}%
-\contentsline {subsection}{\numberline {4.6}Codificación por umbral N-mayores}{8}{subsection.4.6}%
-\contentsline {section}{\numberline {5}Conclusiones}{9}{section.5}%
-\contentsline {section}{\numberline {A}Anexo}{10}{appendix.Alph1}%
+\contentsline {subsection}{\numberline {3.5}Procedimiento experimental y software}{6}{subsection.3.5}%
+\contentsline {subsubsection}{\numberline {3.5.1}Versión de MATLAB}{7}{subsubsection.3.5.1}%
+\contentsline {subsubsection}{\numberline {3.5.2}Software Desarrollado}{7}{subsubsection.3.5.2}%
+\contentsline {subsection}{\numberline {3.6}Obtención de Imágenes experimentales}{7}{subsection.3.6}%
+\contentsline {subsection}{\numberline {3.7}Justificación de la métrica de clasificación}{8}{subsection.3.7}%
+\contentsline {section}{\numberline {4}Resultados experimentales}{9}{section.4}%
+\contentsline {subsection}{\numberline {4.1}Análisis cuantitativo}{9}{subsection.4.1}%
+\contentsline {subsection}{\numberline {4.2}Análisis cualitativo}{9}{subsection.4.2}%
+\contentsline {subsection}{\numberline {4.3}Discusión comparativa}{9}{subsection.4.3}%
+\contentsline {subsection}{\numberline {4.4}Comparación con compresor JPEG}{9}{subsection.4.4}%
+\contentsline {subsection}{\numberline {4.5}Codificación zonal}{9}{subsection.4.5}%
+\contentsline {subsection}{\numberline {4.6}Codificación por umbral N-mayores}{9}{subsection.4.6}%
+\contentsline {section}{\numberline {5}Conclusiones}{10}{section.5}%
+\contentsline {section}{\numberline {A}Anexo}{11}{appendix.Alph1}%
