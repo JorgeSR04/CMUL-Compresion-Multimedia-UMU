@@ -1,4 +1,4 @@
-    function generarGraficas(resultados)
+function generarGraficas(resultados)
 
     % Carpeta para organizar salidas
     output_dir = 'Graficas';
@@ -9,17 +9,21 @@
     for i = 1:length(resultados)
         figure('Name', resultados(i).nombre);
 
-        % GrÃ¡fica SemilogarÃ­tmica: Eje Y = log(MSE), Eje X = RC (%)
+        % Gráfica Semilogarítmica: Eje Y = log(MSE), Eje X = RC (%)
         semilogy(resultados(i).dflt.RC, resultados(i).dflt.MSE, '-bo', 'LineWidth', 2, 'MarkerFaceColor', 'b');
         hold on;
         semilogy(resultados(i).cust.RC, resultados(i).cust.MSE, '-rx', 'LineWidth', 2, 'MarkerFaceColor', 'r');
 
         grid on;
         title(['Curvas R-D para: ' resultados(i).nombre]);
-        xlabel('RelaciÃ³n de CompresiÃ³n (RC %)');
-        ylabel('Error CuadrÃ¡tico Medio (MSE) [Escala Log]');
+        
+        % Corrección de acentos en las etiquetas
+        xlabel('Relación de Compresión (RC %)');
+        ylabel('Error Cuadrático Medio (MSE) [Escala Log]');
+        
         legend('Huffman Default', 'Huffman Custom', 'Location', 'best');
 
-        % Guardar la grÃfica automÃticamente
+        % Guardar la gráfica automáticamente
         saveas(gcf, fullfile(output_dir, ['Grafica_' resultados(i).nombre '.png']));
     end
+end

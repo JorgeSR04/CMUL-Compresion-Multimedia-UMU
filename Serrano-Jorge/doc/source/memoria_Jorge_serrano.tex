@@ -6,12 +6,20 @@
 
 % --- PAQUETES DE FORMATO Y DISEÑO ---
 \usepackage{graphicx} % Para incluir imágenes
+\usepackage{bmpsize}    
+\usepackage{caption} % Necesario para el comando \captionof
 \usepackage{geometry} % Para márgenes
 \usepackage{times}    % Fuente Times New Roman
 \usepackage{fancyhdr} % Para encabezados y pies de página
 \usepackage{hyperref} % Para enlaces y marcadores en el PDF
 \usepackage{url}      % Para formatear URLs correctamente
 \usepackage{amsmath} % Imprescindible para entornos de ecuaciones como 'equation'
+\usepackage{csvsimple} % Para las tablas csv
+\usepackage[table]{xcolor} % Para colorear tablas
+\usepackage{booktabs}      % Para líneas horizontales elegantes
+
+
+\newcommand{\imgpath}{../../source} 
 
 % --- CONFIGURACIÓN DE PÁGINA ---
 \setlength{\parskip}{0.3cm} % Espacio entre párrafos
@@ -128,6 +136,8 @@ Para el desarrollo de esta práctica se han implementado dos compresores de imag
 \subsubsection{Transformada Discreta del Coseno (DCT)}
 El primer paso consiste en dividir la imagen en bloques de $8 \times 8$ píxeles. A cada bloque se le aplica la \textbf{Transformada Discreta del Coseno} (DCT). La DCT tiene como objetivo \textbf{decorrelacionar} y \textbf{compactar la energía} de los datos, transformando los valores espaciales en \textbf{coeficientes de frecuencia}. La mayor parte de la información visual significativa (las bajas frecuencias) se concentra en los coeficientes DC y las primeras componentes AC, mientras que los coeficientes de alta frecuencia (que representan detalles finos o ruido) tienden a aproximarse a cero. Este fenómeno es crucial para el siguiente paso de eliminación de datos.
 
+// Que son los componenetes AC y los DC
+
 \subsubsection{Cuantificación y el Factor CaliQ (Introducción de Pérdida)}
 La cuantificación es el paso donde se introduce la pérdida de información y se logra la compresión principal.
 
@@ -141,13 +151,15 @@ La operación de cuantificación se define como:
 \text{Coeficiente Cuantificado} = \text{round}\left( \frac{\text{Coeficiente DCT}}{\text{Valor de Tabla ITU T.81} \times \text{CaliQ}} \right)
 \end{equation}
 
-Un valor de \textbf{CaliQ más alto} implica un divisor mayor. Esto resulta en que una mayor cantidad de coeficientes de frecuencia, especialmente aquellos que contienen poca energía, se \textbf{redondeen a cero} (proceso de truncamiento). Este paso busca \textbf{maximizar la anulación de coeficientes}, lo que reduce significativamente la cantidad de datos a codificar. Cuanto mayor sea CaliQ, mayor debe ser la \textbf{magnitud} de un coeficiente original para que no sea anulado.
+Un valor de \textbf{CaliQ más alto} implica un divisor mayor. Esto resulta en que una mayor cantidad de coeficientes de frecuencia, especialmente aquellos que contienen poca energía, se \textbf{redondeen a cero} (proceso de truncamiento). Este paso busca \textbf{maximizar la anulación de coeficientes}, lo que reduce significativamente la cantidad de datos a codificar. Cuanto mayor sea CaliQ, mayor debe ser la \textbf{magnitud} (consideramos que los coeficientes con mayor magnitud son los que transportan mayor información) de un coeficiente original para que no sea anulado.
 
 Como la cuantificación introduce pérdidas, la calidad visual de la imagen resultante será inversamente proporcional al factor $\text{CaliQ}$ utilizado. La calidad se medirá mediante métricas objetivas como los \textbf{bits medios por píxel (BPP)} y el \textbf{Error Cuadrático Medio (MSE)}, las cuales se detallarán posteriormente.
 
 \subsubsection{Codificación de Entropía (Algoritmo Huffman)}
 Finalmente, los coeficientes cuantificados se codifican utilizando el algoritmo de \textbf{Huffman}. Este es un método de codificación de longitud variable que optimiza la compresión asignando códigos binarios más cortos a los valores (palabras) que ocurren con mayor frecuencia y códigos más largos a los menos frecuentes. La eficiencia de este paso depende de los coeficientes cuantificados.
 
+\textbf{Nota:} Definimos la Información Lateral como el conjunto de datos auxiliares que, si bien no pertenecen intrínsecamente a la imagen original, son generados durante la ejecución completa del proceso (por ejemplo, durante la codificación, compresión o transmisión) y son necesarios para el correcto funcionamiento. 
+ 
 \subsubsection{Diferenciación de Compresores}
 
 La diferencia fundamental entre los dos compresores reside en la implementación y el uso de las tablas del algoritmo de Huffman:
@@ -259,52 +271,82 @@ Para garantizar la uniformidad y eficiencia del experimento, se implementó un s
     \end{itemize}
 \end{itemize}
 
+
+
+% ----------------------------------------------------------------------------------------------
+%-----------------------------IMAGENES----------------------------------------------------------
 \subsection{Obtención de Imágenes experimentales}
 
-A continuación presentamos las imágenes seleccionadas y justificamos el motivo por el que consideramos interesante cada una:
+A continuación presentamos las imágenes seleccionadas y justificamos el motivo por el que consideramos interesante cada una. Las imagenes han sido seleccionadas para exponer las debilidades del compresor y ver como actua en casos dificiles como los siguientes:
+Cada una de las imagenes seleccionadas para este estudio básico tienen medidas 512 x 512 pixeles.
 
-\begin{itemize}
-    \item \textbf{franjas.bmp}: Degradados matemáticos ideales para detectar artefactos de cuantización. Permite medir \textit{banding} y \textit{blockiness} en transiciones controladas.
-    \begin{center}
-        % \includegraphics[width=0.6\textwidth]{franjas.bmp}
-        % [Imagen: franjas.bmp]
-    \end{center}
+\subsubsection*{franjas}
+Esta imagen ha sido seleccionada por dos motivos principales. El primero es analizar cómo se comporta el compresor en las fronteras entre colores, buscando observar la aparición del artefacto de anillo en las transiciones bruscas. El segundo motivo es que la baja cantidad de colores favorece al compresor en la fase de codificación, permitiendo comprobar cuánto puede optimizar en un escenario así.
 
-    \item \textbf{lenna.bmp}: Contiene piel suave, texturas finas y bordes. Adecuada para evaluar distribución del error en escenas mixtas, equilibrando detalle y suavidad.
-    \begin{center}
-        % \includegraphics[width=0.6\textwidth]{lenna.bmp}
-        % [Imagen: lenna.bmp]
-    \end{center}
+En cuanto a los resultados, esperamos una compresión muy eficiente debido a la simplicidad cromática de la imagen, aunque es probable que el resultado visual sea menos favorable en las zonas con cambios de franja, donde los artefactos pueden hacerse más visibles.
+\begin{center}
+    \includegraphics[width=0.3\textwidth]{./Images/franjas.png}
+    \captionof{figure}{Franjas: Degradados para detección de artefactos.}
+\end{center}
+\vspace{0.5cm}
 
-    \item \textbf{fresas.bmp}: Textura repetitiva de pequeño tamaño y color dominante saturado. Útil para estudiar manejo de microdetalles y redundancia espacial sin perder estructura repetitiva.
-    \begin{center}
-        % \includegraphics[width=0.6\textwidth]{fresas.bmp}
-        % [Imagen: fresas.bmp]
-    \end{center}
+\subsubsection*{Lenna}
+Esta imagen es una de las más conocidas y empleadas en el ámbito de la compresión de imágenes. Su amplio uso se debe a que se ha convertido en un estándar de referencia en investigación y pruebas desde hace décadas, apareciendo en multitud de artículos, estudios y comparativas. Al estar tan extendida, era natural incluirla en este trabajo.
 
-    \item \textbf{ave\_cactus.bmp}: Fondo plano con bordes de alto contraste y detalles finos. Permite medir \textit{ringing} en bordes, \textit{banding} en el cielo y pérdida de detalle en las espinas.
-    \begin{center}
-        % \includegraphics[width=0.6\textwidth]{ave_cactus.bmp}
-        % [Imagen: ave_cactus.bmp]
-    \end{center}
+La imagen es interesante pues combina zonas con mucha textura —como esl sombrero y el cabello— con transiciones suaves de color en la piel y un fondo relativamente uniforme. Esta mezcla de características la hace especialmente útil para analizar distintos efectos de la compresión en un mismo caso. Además, se parece bastante a fotografías habituales del día a día, lo que la convierte en un ejemplo práctico y representativo.
 
-    \item \textbf{grietas.bmp}: Líneas duras, diagonales y grietas irregulares. Adecuada para evaluar \textit{aliasing}, deformación geométrica y artefactos de bloque en alto contraste.
-    \begin{center}
-        % \includegraphics[width=0.6\textwidth]{rocas_grietas.bmp}
-        % [Imagen: rocas_grietas.bmp]
-    \end{center}
+De este tipo de imagen esperamos un rendimiento medio por parte del compresor. No es una escena simple, pero tampoco un caso extremo. Su variedad de detalles, texturas y zonas lisas la convierte en un buen escenario para evaluar tanto la calidad visual obtenida como la eficiencia del método de compresión.
+\begin{center}
+    \includegraphics[width=0.3\textwidth]{./Images/lenna.png}
+    \captionof{figure}{Lenna: Escena mixta con piel y texturas.}
+\end{center}
+\vspace{0.5cm}
 
-    \item \textbf{brassica.bmp}: Dominada por gradientes amplios de baja frecuencia. Facilita detectar posterización y \textit{banding} en transiciones de luminancia suaves.
-    \begin{center}
-        % \includegraphics[width=0.6\textwidth]{colinas_suaves.bmp}
-        % [Imagen: colinas_suaves.bmp]
-    \end{center}
-    \item \textbf{colinas.bmp}: Dominada por gradientes amplios de baja frecuencia. Facilita detectar posterización y \textit{banding} en transiciones de luminancia suaves.
-    \begin{center}
-        % \includegraphics[width=0.6\textwidth]{colinas_suaves.bmp}
-        % [Imagen: colinas_suaves.bmp]
-    \end{center}
-\end{itemize}
+\subsubsection*{Fresas}
+Textura repetitiva de pequeño tamaño y color dominante saturado. Útil para estudiar manejo de microdetalles como son las semillas y redundancia espacial sin perder estructura repetitiva.
+
+En este caso esperamos que el compresor obtenga una buena tasa de compresión gracias a la repetición constante del patrón, pero también es probable que aparezca pérdida de detalle fino en las texturas pequeñas, y que las  tonalidades de las fresas tiendan a aumentar su parecido, especialmente después de la cuantificación. La saturación del color debería conservarse relativamente bien, pero los bloques uniformes podrían mostrar artefactos si el nivel de compresión es alto.
+\begin{center}
+    \includegraphics[width=0.3\textwidth]{./Images/fresas.png}
+    \captionof{figure}{Fresas: Textura repetitiva y alta saturación.}
+\end{center}
+\vspace{0.5cm}
+
+\subsubsection*{Cactus}
+He seleccionado esta imagen porque el fondo es plano con bordes de alto contraste entre luz y sombras, y detalles finos como las pinchas del captus. Permite medir \textit{ringing} en bordes , \textit{banding} en el cielo y pérdida de detalle en las espinas.
+
+Queremos comprobar como maneja el compresor las trasiciones abruptas entre el cielo y las espinas asimismo si la compresion es alta las plumas del pajaro se podrian difuminar por ultimo si el compresor maneja mal el cielo podrian apaerecer bandas.
+\begin{center}
+    \includegraphics[width=0.3\textwidth]{./Images/cactus.png}
+    \captionof{figure}{Ave y Cactus: Alto contraste y detalles finos.}
+\end{center}
+\vspace{0.5cm}
+
+\subsubsection*{Grietas}
+Líneas duras, diagonales y grietas irregulares. Adecuada para evaluar \textit{aliasing}, deformación geométrica y artefactos de bloque en alto contraste.
+\begin{center}
+    \includegraphics[width=0.3\textwidth]{./Images/grietas.png} 
+    \captionof{figure}{Grietas: Líneas duras y diagonales.}
+\end{center}
+\vspace{0.5cm}
+
+\subsubsection*{Brassica}
+Está imagen me resulta  muy interesante pues está llena de bordes irregulares bien definidos y una gran cantidad de detalle1s finos, transiciones severas de colores 
+
+El objetivo es comprobar si al comprimir la imagen se suavizaran los bordes o crearan artefactos de tipo anillo perdiendo nitidez, evaluaremos como se distribuyen los errores en areas complejas.
+\begin{center}
+    \includegraphics[width=0.3\textwidth]{./Images/brassica.png}
+    \captionof{figure}{Brassica: Gradientes amplios de baja frecuencia.}
+\end{center}
+\vspace{0.5cm}
+
+\subsubsection*{Colinas}
+Esta imagen me parece interesante por su cielo claro ya que presenta gradientes sutiles (transciones de colores muy lentas) queremos detectar si el compresor creara bandas o bloques de colores solidos en vez de continuar con las transciones suaves de colores Facilita detectar posterización y \textit{banding} en transiciones de luminancia suaves.
+\begin{center}
+    \includegraphics[width=0.3\textwidth]{./Images/colinas.png}
+    \captionof{figure}{Colinas: Transiciones de luminancia suaves.}
+\end{center}
+\vspace{0.5cm}
 
 Para el estudio experimental, se realizó un filtrado previo sobre un banco de imágenes estándar, calculando su varianza como métrica de complejidad espacial. Se descartaron imágenes redundantes para seleccionar un subconjunto representativo clasificado en tres niveles:
 
@@ -323,12 +365,237 @@ Para cuantificar esta complejidad, se ha priorizado el uso de la \textbf{varianz
  
 % --- RESULTADOS ---
 \section{Resultados experimentales}
+En esta sección analizamos los resultados obtenidos en los experimentos realizados. En primer lugar, abordamos el estudio cualitativo, cuyo objetivo es evaluar el grado de similitud percibido entre la imagen original y la comprimida, siguiendo los criterios definidos en la metodología 3.6.
 
+A continuación, presentamos el análisis cuantitativo, basado en las métricas descritas en la sección 3.4.1 Para cada imagen y para ambos compresores, calculamos el Ratio de Compresión (RC), el Signal-to-Noise Ratio (SNR) y el Error Cuadrático Medio (MSE). Estas medidas proporcionan una valoración objetiva del rendimiento de los compresores y permiten establecer comparaciones claras entre ellos.
+
+Por último, conviene remarcar que el análisis cualitativo sigue siendo esencial, ya que al final somos las personas quienes observamos las imágenes y juzgamos su calidad visual. No obstante, también es importante valorar los resultados desde una perspectiva teórica y cuantitativa, dado que el análisis cualitativo, aunque se intente aplicar con criterios uniformes, siempre está sujeto a un sesgo humano inherente. Ambos enfoques, por tanto, se complementan y ofrecen una visión más completa del comportamiento de los compresores.
 \subsection{Análisis cuantitativo}
-% Contenido pendiente...
-
+Para mostrar los resultados, hemos seleccionado las imágenes generadas por el compresor con factores CaliQ 50, 100 y 200. En caso de que se considere necesario o resulte interesante, se podrán incluir resultados adicionales para factores de CaliQ más altos, como 400, 800 o 1600. Consideramos que los factores elegidos ofrecen una representación amplia y suficiente, que permite cumplir con los objetivos de este estudio de manera completa.
 \subsection{Análisis cualitativo}
 % Contenido pendiente...
+
+\subsubsection*{franjas}
+
+\begin{center}
+    \includegraphics[width=0.3\textwidth]{./Images/franjas.png}
+    \captionof{figure}{Franjas: Degradados para detección de artefactos.}
+\end{center}
+\vspace{0.5cm}
+
+\begin{center}
+    \includegraphics[width=0.3\textwidth]{../../source/Custom/franjas_Q100_Custom.png}
+    \hfill
+    \includegraphics[width=0.3\textwidth]{../../source/Custom/franjas_Q200_Custom.png}
+    \hfill
+    \includegraphics[width=0.3\textwidth]{../../source/Custom/franjas_Q400_Custom.png}
+    \captionof{figure}{Comparativa visual con distintos factores de calidad (Q).}
+\end{center}
+\vspace{0.5cm}
+
+\begin{center}
+    \includegraphics[width=0.8\textwidth]{../../source/Graficas/Grafica_franjas.png}
+    \captionof{figure}{Franjas: MSE vs RC (\%) en Escala Semilogarítmica.}
+\end{center}
+\vspace{0.5cm}
+
+\begin{table}[h]
+\centering
+\csvautotabular{../../source/Results/franjas.csv}
+\caption{Resultados franjas}
+\label{tab:franjas}
+\end{table}
+\vspace{0.5cm}
+
+
+
+\subsubsection*{Lenna}
+\begin{center}
+    \includegraphics[width=0.3\textwidth]{./Images/lenna.png}
+    \captionof{figure}{Lenna: Escena mixta con piel y texturas.}
+\end{center}
+\vspace{0.5cm}
+
+\begin{center}
+    \includegraphics[width=0.3\textwidth]{../../source/Custom/Lenna_Q100_Custom.png}
+    \hfill
+    \includegraphics[width=0.3\textwidth]{../../source/Custom/Lenna_Q200_Custom.png}
+    \hfill
+    \includegraphics[width=0.3\textwidth]{../../source/Custom/Lenna_Q400_Custom.png}
+    \captionof{figure}{Comparativa visual con distintos factores de calidad (Q).}
+\end{center}
+\vspace{0.5cm}
+
+\begin{center}
+    \includegraphics[width=1\textwidth]{../../source/Graficas/Grafica_lenna.png}
+    \captionof{figure}{lenna: MSE vs RC (\%) en Escala Semilogarítmica.}
+\end{center}
+\vspace{0.5cm}
+
+\begin{table}[h]
+\centering
+\csvautotabular{../../source/Results/lenna.csv}
+\caption{Resultados lenna}
+\label{tab:lenna}
+\end{table}
+\vspace{0.5cm}
+
+
+
+\subsubsection*{Fresas}
+\begin{center}
+    \includegraphics[width=0.3\textwidth]{./Images/fresas.png}
+    \captionof{figure}{Fresas: Textura repetitiva y alta saturación.}
+\end{center}
+\vspace{0.5cm}
+
+\begin{center}
+    \includegraphics[width=0.3\textwidth]{../../source/Custom/fresas_Q100_Custom.png}
+    \hfill
+    \includegraphics[width=0.3\textwidth]{../../source/Custom/fresas_Q200_Custom.png}
+    \hfill
+    \includegraphics[width=0.3\textwidth]{../../source/Custom/fresas_Q400_Custom.png}
+    \captionof{figure}{Comparativa visual con distintos factores de calidad (Q).}
+\end{center}
+\vspace{0.5cm}
+
+\begin{center}
+    \includegraphics[width=1\textwidth]{../../source/Graficas/Grafica_fresas.png}
+    \captionof{figure}{fresas: MSE vs RC (\%) en Escala Semilogarítmica.}
+\end{center}
+\vspace{0.5cm}
+
+\begin{table}[h]
+\centering
+\csvautotabular{../../source/Results/fresas.csv}
+\caption{Resultados fresas}
+\label{tab:fresas}
+\end{table}
+\vspace{0.5cm}
+
+\subsubsection*{Cactus}
+\begin{center}
+    \includegraphics[width=0.3\textwidth]{./Images/cactus.png}
+    \captionof{figure}{Ave y Cactus: Alto contraste y detalles finos.}
+\end{center}
+\vspace{0.5cm}
+
+\begin{center}
+    \includegraphics[width=0.3\textwidth]{../../source/Custom/cactus_Q100_Custom.png}
+    \hfill
+    \includegraphics[width=0.3\textwidth]{../../source/Custom/cactus_Q200_Custom.png}
+    \hfill
+    \includegraphics[width=0.3\textwidth]{../../source/Custom/cactus_Q400_Custom.png}
+    \captionof{figure}{Comparativa visual con distintos factores de calidad (Q).}
+\end{center}
+\vspace{0.5cm}
+
+\begin{center}
+    \includegraphics[width=1\textwidth]{../../source/Graficas/Grafica_cactus.png}
+    \captionof{figure}{cactus: MSE vs RC (\%) en Escala Semilogarítmica.}
+\end{center}
+\vspace{0.5cm}
+
+\begin{table}[h]
+\centering
+\csvautotabular{../../source/Results/cactus.csv}
+\caption{Resultados cactus}
+\label{tab:catus}
+\end{table}
+\vspace{0.5cm}
+
+\subsubsection*{Grietas}
+\begin{center}
+    \includegraphics[width=0.3\textwidth]{./Images/grietas.png} 
+    \captionof{figure}{Grietas: Líneas duras y diagonales.}
+\end{center}
+\vspace{0.5cm}
+
+\begin{center}
+    \includegraphics[width=0.3\textwidth]{../../source/Custom/grietas_Q100_Custom.png}
+    \hfill
+    \includegraphics[width=0.3\textwidth]{../../source/Custom/grietas_Q200_Custom.png}
+    \hfill
+    \includegraphics[width=0.3\textwidth]{../../source/Custom/grietas_Q400_Custom.png}
+    \captionof{figure}{Comparativa visual con distintos factores de calidad (Q).}
+\end{center}
+\vspace{0.5cm}
+
+\begin{center}
+    \includegraphics[width=1\textwidth]{../../source/Graficas/Grafica_grietas.png}
+    \captionof{figure}{grietas: MSE vs RC (\%) en Escala Semilogarítmica.}
+\end{center}
+\vspace{0.5cm}
+
+\begin{table}[h]
+\centering
+\csvautotabular{../../source/Results/grietas.csv}
+\caption{Resultados grietas}
+\label{tab:grietas}
+\end{table}
+\vspace{0.5cm}
+
+\subsubsection*{Brassica}
+\begin{center}
+    \includegraphics[width=0.3\textwidth]{./Images/brassica.png}
+    \captionof{figure}{Brassica: Gradientes amplios de baja frecuencia.}
+\end{center}
+\vspace{0.5cm}
+
+\begin{center}
+    \includegraphics[width=0.3\textwidth]{../../source/Custom/brassica_Q100_Custom.png}
+    \hfill
+    \includegraphics[width=0.3\textwidth]{../../source/Custom/brassica_Q200_Custom.png}
+    \hfill
+    \includegraphics[width=0.3\textwidth]{../../source/Custom/brassica_Q400_Custom.png}
+    \captionof{figure}{Comparativa visual con distintos factores de calidad (Q).}
+\end{center}
+\vspace{0.5cm}
+
+\begin{center}
+    \includegraphics[width=1\textwidth]{../../source/Graficas/Grafica_brassica.png}
+    \captionof{figure}{brassica: MSE vs RC (\%) en Escala Semilogarítmica.}
+\end{center}
+\vspace{0.5cm}
+
+\begin{table}[h]
+\centering
+\csvautotabular{../../source/Results/brassica.csv}
+\caption{Resultados brassica}
+\label{tab:brassica}
+\end{table}
+\vspace{0.5cm}
+
+\subsubsection*{Colinas}
+\begin{center}
+    \includegraphics[width=0.3\textwidth]{./Images/colinas.png}
+    \captionof{figure}{Colinas: Transiciones de luminancia suaves.}
+\end{center}
+\vspace{0.5cm}
+
+\begin{center}
+    \includegraphics[width=0.3\textwidth]{../../source/Custom/colinas_Q100_Custom.png}
+    \hfill
+    \includegraphics[width=0.3\textwidth]{../../source/Custom/colinas_Q200_Custom.png}
+    \hfill
+    \includegraphics[width=0.3\textwidth]{../../source/Custom/colinas_Q400_Custom.png}
+    \captionof{figure}{Comparativa visual con distintos factores de calidad (Q).}
+\end{center}
+\vspace{0.5cm}
+
+\begin{center}
+    \includegraphics[width=1\textwidth]{../../source/Graficas/Grafica_colinas.png}
+    \captionof{figure}{colinas: MSE vs RC (\%) en Escala Semilogarítmica.}
+\end{center}
+\vspace{0.5cm}
+
+\begin{table}[h]
+\centering
+\csvautotabular{../../source/Results/colinas.csv}
+\caption{Resultados colinas}
+\label{tab:colinas}
+\end{table}
+\vspace{0.5cm}
 
 \subsection{Discusión comparativa}
 % Contenido pendiente...
