@@ -19,12 +19,14 @@
 \contentsline {subsubsection}{\numberline {3.5.2}Software Desarrollado}{8}{subsubsection.3.5.2}%
 \contentsline {subsection}{\numberline {3.6}Obtención de Imágenes experimentales}{9}{subsection.3.6}%
 \contentsline {subsubsection}{\numberline {3.6.1}Justificación de la métrica de clasificación}{14}{subsubsection.3.6.1}%
-\contentsline {section}{\numberline {4}Resultados experimentales}{14}{section.4}%
-\contentsline {subsection}{\numberline {4.1}Análisis cuantitativo}{14}{subsection.4.1}%
-\contentsline {subsection}{\numberline {4.2}Análisis cualitativo}{15}{subsection.4.2}%
-\contentsline {subsection}{\numberline {4.3}Discusión comparativa}{28}{subsection.4.3}%
-\contentsline {subsection}{\numberline {4.4}Comparación con compresor JPEG}{28}{subsection.4.4}%
-\contentsline {subsection}{\numberline {4.5}Codificación zonal}{28}{subsection.4.5}%
-\contentsline {subsection}{\numberline {4.6}Codificación por umbral N-mayores}{28}{subsection.4.6}%
-\contentsline {section}{\numberline {5}Conclusiones}{29}{section.5}%
-\contentsline {section}{\numberline {A}Anexo}{30}{appendix.Alph1}%
+\contentsline {section}{\numberline {4}Resultados experimentales}{15}{section.4}%
+\contentsline {subsection}{\numberline {4.1}Sobre el análisis cualitativo}{15}{subsection.4.1}%
+\contentsline {subsection}{\numberline {4.2}Sobre el análisis cuantitativo}{15}{subsection.4.2}%
+\contentsline {subsection}{\numberline {4.3}Análisis cualitativo y cuantitativo}{17}{subsection.4.3}%
+\contentsline {subsubsection}{\numberline {4.3.1}Conclusión lenna}{22}{subsubsection.4.3.1}%
+\contentsline {subsection}{\numberline {4.4}Discusión comparativa}{39}{subsection.4.4}%
+\contentsline {subsection}{\numberline {4.5}Comparación con compresor JPEG}{39}{subsection.4.5}%
+\contentsline {subsection}{\numberline {4.6}Codificación zonal}{39}{subsection.4.6}%
+\contentsline {subsection}{\numberline {4.7}Codificación por umbral N-mayores}{39}{subsection.4.7}%
+\contentsline {section}{\numberline {5}Conclusiones}{40}{section.5}%
+\contentsline {section}{\numberline {A}Anexo}{41}{appendix.Alph1}%

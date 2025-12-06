@@ -50,10 +50,10 @@ function generarCSV(resultados)
         % 1. Definimos cabeceras compatibles con LaTeX.
         %    Usamos doble barra \\ para que salga una simple \ en el archivo.
         %    Format: CaliQ, D_MSE, D_RC... (sin espacios extraños).
-        headers_latex = 'CaliQ,D MSE,D RC,D PSNR,D SSIM,C MSE,C RC,C PSNR,C SSIM';
+        headers_latex = 'CaliQ,MSE,Dflt RC,Cst RC,PSNR,SSIM';
         
         % 2. Matriz de datos SOLO NUMÉRICA (Sin separador NaN para que no rompa LaTeX)
-        DatosMatrizCSV = [CaliQ, D_MSE, D_RC, D_SNR, D_SSIM, C_MSE, C_RC, C_SNR, C_SSIM];
+        DatosMatrizCSV = [CaliQ, D_MSE, D_RC, C_RC, D_SNR, D_SSIM];
         
         nombre_csv = fullfile(output_Results_dir, [nombre_imagen '.csv']);
         
@@ -61,10 +61,10 @@ function generarCSV(resultados)
         fid = fopen(nombre_csv, 'w');
         fprintf(fid, '%s\n', headers_latex);
         for k = 1:length(CaliQ)
-            fprintf(fid, '%.0f,%.4f,%.2f,%.2f,%.4f,%.4f,%.2f,%.2f,%.4f\n', ...
-                CaliQ(k), ...
-                D_MSE(k), D_RC(k), D_SNR(k), D_SSIM(k), ...
-                C_MSE(k), C_RC(k), C_SNR(k), C_SSIM(k));
+         fprintf(fid, '%.0f,%.4f,%.2f,%.2f,%.4f,%.4f\n', ...
+         CaliQ(k), D_MSE(k), D_RC(k), C_RC(k), D_SNR(k), D_SSIM(k));
+
+          
         end
         fclose(fid);
         fprintf(' -> OK: %s (xlsx y csv)\n', nombre_imagen);

@@ -15,8 +15,8 @@ function datos_estudio = Tiling()
     %% 1. Configuración del Experimento
     % ------------------------------------------------
     % Configuración de archivos y rutas
-    imagenes_base = {'./Images/colinas.bmp','./Images/fresas.bmp','./Images/lenna.bmp', './Images/brassica.bmp', './Images/grietas.bmp','./Images/cactus.bmp'}; 
-    nombres_leyenda = {'Baja Var (Colinas)','Baja Var (fresas)', 'Media Var (Lenna)','Media Var (brassica)', 'Alta Var (grietas)','Alta Var (cactus)'};
+    imagenes_base = {'./Images/brassica.bmp'};%,'./Images/sailboat.bmp','./Images/pino.bmp', './Images/franjas.bmp'}; 
+    nombres_leyenda = {'Media Var (Brassica)'};%, 'Alta Var (Pino)','Alta Var (Franjas)'};
     
     % Tamaños a probar (Lado de la imagen cuadrada)
     lados_prueba = [512, 1024, 1536,2048,3072]; 
