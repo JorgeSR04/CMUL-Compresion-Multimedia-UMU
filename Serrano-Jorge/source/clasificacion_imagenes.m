@@ -6,7 +6,7 @@ clc; clear; close all;
 % Escribe aquí la ruta de tu carpeta. 
 % Ejemplos: 'C:\Users\Jorge\Escritorio\Imagenes' o './mi_carpeta'
 % Dejala como '.' si quieres usar la carpeta actual.
-ruta_imagenes = '.'; 
+ruta_imagenes = './Images'; 
 % =================================================
 
 

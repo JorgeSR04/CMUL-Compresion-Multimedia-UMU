@@ -27,3 +27,4 @@ function generarGraficas(resultados)
         saveas(gcf, fullfile(output_dir, ['Grafica_' resultados(i).nombre '.png']));
     end
 end
+

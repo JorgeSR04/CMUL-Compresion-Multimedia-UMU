@@ -133,16 +133,30 @@ Para el desarrollo de esta práctica se han implementado dos compresores de imag
 
 \subsection{Proceso de Compresión}
 
-\subsubsection{Transformada Discreta del Coseno (DCT)}
-El primer paso consiste en dividir la imagen en bloques de $8 \times 8$ píxeles. A cada bloque se le aplica la \textbf{Transformada Discreta del Coseno} (DCT). La DCT tiene como objetivo \textbf{decorrelacionar} y \textbf{compactar la energía} de los datos, transformando los valores espaciales en \textbf{coeficientes de frecuencia}. La mayor parte de la información visual significativa (las bajas frecuencias) se concentra en los coeficientes DC y las primeras componentes AC, mientras que los coeficientes de alta frecuencia (que representan detalles finos o ruido) tienden a aproximarse a cero. Este fenómeno es crucial para el siguiente paso de eliminación de datos.
+Partimos de una imagen que tiene dimensiones Filas x columnas, la unidad de medida es el pixel por lo que si una imagen tiene 400 x 589tendra x pixeles El bojetivo es transformar esos pixeles en algo que nos permita expresar la imagen de forma equivalente y aplicar algunas operaciones sobre ella.
 
-// Que son los componenetes AC y los DC
+
+
+\subsubsection{Transformada Discreta del Coseno (DCT)}
+El primer paso consiste en dividir la imagen en bloques de $8 \times 8$ píxeles. En caso de que las dimensiones de la imagen no sean múltiplo de 8, se ampliarán sus dimensiones y posteriormente se restablecerán. A cada bloque se le aplica la \textbf{Transformada Discreta del Coseno} (DCT). La DCT tiene como objetivo \textbf{decorrelacionar} y \textbf{compactar la energía} de los datos, transformando los valores espaciales en \textbf{coeficientes de frecuencia}.  
+
+La mayor parte de la información visual significativa (las bajas frecuencias) se concentra en los \textbf{coeficientes DC} y las primeras componentes \textbf{AC}. El coeficiente \textbf{DC} representa el valor promedio del bloque, mientras que los coeficientes \textbf{AC} representan las variaciones respecto al valor promedio, es decir, los detalles y texturas de la imagen. Los coeficientes de alta frecuencia (AC más alejados del DC) tienden a aproximarse a cero, ya que representan detalles finos o ruido, lo cual es crucial para el siguiente paso de eliminación de datos.  
+
+Para mejorar la eficiencia en los pasos posteriores, como la cuantificación y la codificación, se suele reordenar los coeficientes del bloque siguiendo un \textbf{orden en zigzag}. Este orden permite que los coeficientes más relevantes (DC y primeras AC) queden en las primeras posiciones, agrupando los coeficientes cercanos a cero hacia el final del bloque. Esto facilita la compresión, ya que los valores pequeños pueden ser más fácilmente codificados de manera eficiente.  
+
+% Imagen zigzag
+\begin{center}
+    \includegraphics[width=1\textwidth]{./zigzag.jpg}
+    \captionof{figure}{Reordenación en zigzag.}
+\end{center}
+\vspace{0.5cm}
+
 
 \subsubsection{Cuantificación y el Factor CaliQ (Introducción de Pérdida)}
-La cuantificación es el paso donde se introduce la pérdida de información y se logra la compresión principal.
+La cuantificación es el paso donde se introduce la pérdida de información y se logra la compresión principal. Su \textbf{finalidad} es reducir la precisión con la que se almacenan los coeficientes de la DCT, aprovechando las limitaciones del sistema visual humano. Los coeficientes de alta frecuencia (que contienen detalles finos) suelen tener menor energía y son menos perceptibles; por lo tanto, la cuantificación los descarta o los almacena con mucha menos precisión que los coeficientes de baja frecuencia (que contienen el brillo y contraste general).
 
 \begin{itemize}
-    \item Los coeficientes de frecuencia de la DCT son \textbf{divididos} por una matriz de pesos extraídos de las \textbf{Tablas de Cuantificación} recomendadas en el estándar \textbf{ITU T.81}.
+    \item Los coeficientes de frecuencia de la DCT son \textbf{divididos} por una matriz de pesos extraídos de las \textbf{Tablas de Cuantificación} recomendadas en el estándar \textbf{ITU T.81} (el estándar JPEG).
     \item Se utiliza un parámetro de escalado, denominado \textbf{CaliQ} (Calidad de Cuantificación), para \textbf{multiplicar} cada valor de la tabla ITU T.81, controlando directamente el nivel de pérdida.
 \end{itemize}
 
@@ -151,7 +165,17 @@ La operación de cuantificación se define como:
 \text{Coeficiente Cuantificado} = \text{round}\left( \frac{\text{Coeficiente DCT}}{\text{Valor de Tabla ITU T.81} \times \text{CaliQ}} \right)
 \end{equation}
 
+Al realizar la división por un número mayor a 1, muchos coeficientes (especialmente los de alta frecuencia) se redondean a cero. Esta reducción de datos crea largas secuencias de ceros que son posteriormente comprimidas de manera muy eficiente en la etapa de codificación entrópica.
+
 Un valor de \textbf{CaliQ más alto} implica un divisor mayor. Esto resulta en que una mayor cantidad de coeficientes de frecuencia, especialmente aquellos que contienen poca energía, se \textbf{redondeen a cero} (proceso de truncamiento). Este paso busca \textbf{maximizar la anulación de coeficientes}, lo que reduce significativamente la cantidad de datos a codificar. Cuanto mayor sea CaliQ, mayor debe ser la \textbf{magnitud} (consideramos que los coeficientes con mayor magnitud son los que transportan mayor información) de un coeficiente original para que no sea anulado.
+
+\paragraph{Tipos de Cuantificación}
+Existen diversos enfoques para la cuantificación. El método utilizado en este proyecto es la \textbf{cuantificación uniforme dependiente de la frecuencia}, donde cada coeficiente se trata de manera distinta según su posición. Alternativamente, otros métodos incluyen:
+
+\begin{itemize}
+    \item \textbf{Cuantificación Zonal (Codificación Zonal):} Consiste en descartar todos los coeficientes que se encuentran fuera de una zona predefinida del bloque DCT (ej. solo conservar los coeficientes de menor frecuencia). Es una simplificación estricta que es menos flexible.
+    \item \textbf{Cuantificación por Umbral (Thresholding):} Se descartan todos los coeficientes cuyo valor absoluto es inferior a un umbral predefinido. Es un método que se enfoca en la energía, independientemente de la frecuencia.
+\end{itemize}
 
 Como la cuantificación introduce pérdidas, la calidad visual de la imagen resultante será inversamente proporcional al factor $\text{CaliQ}$ utilizado. La calidad se medirá mediante métricas objetivas como los \textbf{bits medios por píxel (BPP)} y el \textbf{Error Cuadrático Medio (MSE)}, las cuales se detallarán posteriormente.
 
@@ -348,7 +372,24 @@ Esta imagen me parece interesante por su cielo claro ya que presenta gradientes 
 \end{center}
 \vspace{0.5cm}
 
-Para el estudio experimental, se realizó un filtrado previo sobre un banco de imágenes estándar, calculando su varianza como métrica de complejidad espacial. Se descartaron imágenes redundantes para seleccionar un subconjunto representativo clasificado en tres niveles:
+\subsubsection*{sailboat}
+Esta imagen me parece interesante por su cielo claro ya que presenta gradientes sutiles (transciones de colores muy lentas) queremos detectar si el compresor creara bandas o bloques de colores solidos en vez de continuar con las transciones suaves de colores Facilita detectar posterización y \textit{banding} en transiciones de luminancia suaves.
+\begin{center}
+    \includegraphics[width=0.3\textwidth]{./Images/colinas.png}
+    \captionof{figure}{Colinas: Transiciones de luminancia suaves.}
+\end{center}
+\vspace{0.5cm}
+
+\subsubsection*{uvas}
+Esta imagen me parece interesante por su cielo claro ya que presenta gradientes sutiles (transciones de colores muy lentas) queremos detectar si el compresor creara bandas o bloques de colores solidos en vez de continuar con las transciones suaves de colores Facilita detectar posterización y \textit{banding} en transiciones de luminancia suaves.
+\begin{center}
+    \includegraphics[width=0.3\textwidth]{./Images/colinas.png}
+    \captionof{figure}{Colinas: Transiciones de luminancia suaves.}
+\end{center}
+\vspace{0.5cm}
+
+
+Para el estudio experimental sobre el tiempo de ejecución, se realizó un filtrado previo sobre las imagenes seleccionadas anteriomente, calculando su varianza y entropia como métrica de complejidad. Se descartaron imágenes redundantes para seleccionar un subconjunto representativo clasificado en tres niveles:
 
 \begin{description}
     \item[Baja Complejidad (Varianza $<$ 2000):] Imágenes con predominio de zonas homogéneas (ej. \texttt{fresas.bmp}).
@@ -356,7 +397,9 @@ Para el estudio experimental, se realizó un filtrado previo sobre un banco de i
     \item[Alta Complejidad (Varianza $>$ 4000):] Imágenes con alta densidad de detalles y texturas finas que suponen un desafío para la compresión DCT (ej. \texttt{cameraman.bmp}, \texttt{tierra.bmp}).
 \end{description}
 
-\subsection{Justificación de la métrica de clasificación}
+Se ha realizado el experimento sobre dos imagenes de cada conjunto.
+
+\subsubsection{Justificación de la métrica de clasificación}
 
 Para clasificar la complejidad de las imágenes, se ha optado por realizar los cálculos sobre su versión en \textbf{escala de grises}. Esto se debe a que la información estructural de una imagen (bordes, formas y texturas) reside principalmente en su intensidad luminosa, y no en su color. Dado que el sistema visual humano es más sensible al brillo que al color, y que los algoritmos tipo JPEG priorizan la conservación de la luminancia, el análisis en escala de grises ofrece una estimación más realista de la información relevante.
 
@@ -379,16 +422,21 @@ Para mostrar los resultados, hemos seleccionado las imágenes generadas por el c
 
 \begin{center}
     \includegraphics[width=0.3\textwidth]{./Images/franjas.png}
-    \captionof{figure}{Franjas: Degradados para detección de artefactos.}
-\end{center}
-\vspace{0.5cm}
-
-\begin{center}
+    \hfill
     \includegraphics[width=0.3\textwidth]{../../source/Custom/franjas_Q100_Custom.png}
     \hfill
     \includegraphics[width=0.3\textwidth]{../../source/Custom/franjas_Q200_Custom.png}
-    \hfill
+    
+    \captionof{figure}{Calidades franjas: Original, 100, 200 respectivamente.}
+\end{center}s
+\vspace{0.5cm}
+
+\begin{center}
     \includegraphics[width=0.3\textwidth]{../../source/Custom/franjas_Q400_Custom.png}
+    \hfill
+    \includegraphics[width=0.3\textwidth]{../../source/Custom/franjas_Q800_Custom.png}
+    \hfill
+    \includegraphics[width=0.3\textwidth]{../../source/Custom/franjas_Q1600_Custom.png}
     \captionof{figure}{Comparativa visual con distintos factores de calidad (Q).}
 \end{center}
 \vspace{0.5cm}

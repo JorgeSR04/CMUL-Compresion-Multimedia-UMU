@@ -119,6 +119,7 @@ XScanrec=DecodeCustomScans(CodedY,CodedCb,CodedCr,[mamp namp],Bits,Huffval);
 Xlabrec=invscan(XScanrec);
 
 % Descuantizacion de etiquetas
+
 Xtransrec=desquantmat(Xlabrec, caliQ);
 
 % Calcula iDCT bidimensional en bloques de 8 x 8 pixeles
@@ -178,16 +179,16 @@ fprintf('Error cuadrático medio (MSE): %.6f\n', MSE);
 fprintf('Diferencia máxima absoluta: %.6f\n', dmaxdifer);
 fprintf('Error promedio absoluto: %.6f\n', mean(ddifer(:)));
 
-% Test visual
-%[m,n,p] = size(X);
-%figure('Units','pixels','Position',[100 100 n m]);
-%set(gca,'Position',[0 0 1 1]);
-%image(X);
-%set(gcf,'Name','Imagen original X');
-%figure('Units','pixels','Position',[100 100 n m]);
-%set(gca,'Position',[0 0 1 1]);
-%image(Xrec);;
-%set(gcf,'Name','Imagen reconstruida Xrec');
+%Test visual
+[m,n,p] = size(X);
+figure('Units','pixels','Position',[100 100 n m]);
+set(gca,'Position',[0 0 1 1]);
+image(X);
+set(gcf,'Name','Imagen original X');
+figure('Units','pixels','Position',[100 100 n m]);
+set(gca,'Position',[0 0 1 1]);
+image(Xrec);;
+set(gcf,'Name','Imagen reconstruida Xrec');
 
 % ----------------------------------
 % Guarda la imagen descomprimida

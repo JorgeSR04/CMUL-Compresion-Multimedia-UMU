@@ -1,29 +1,32 @@
 \babel@toc {spanish}{}\relax 
-\contentsline {figure}{\numberline {1}{\ignorespaces Franjas: Degradados para detección de artefactos.}}{8}{figure.1}%
-\contentsline {figure}{\numberline {2}{\ignorespaces Lenna: Escena mixta con piel y texturas.}}{9}{figure.2}%
-\contentsline {figure}{\numberline {3}{\ignorespaces Fresas: Textura repetitiva y alta saturación.}}{9}{figure.3}%
-\contentsline {figure}{\numberline {4}{\ignorespaces Ave y Cactus: Alto contraste y detalles finos.}}{10}{figure.4}%
-\contentsline {figure}{\numberline {5}{\ignorespaces Grietas: Líneas duras y diagonales.}}{10}{figure.5}%
-\contentsline {figure}{\numberline {6}{\ignorespaces Brassica: Gradientes amplios de baja frecuencia.}}{11}{figure.6}%
-\contentsline {figure}{\numberline {7}{\ignorespaces Colinas: Transiciones de luminancia suaves.}}{11}{figure.7}%
-\contentsline {figure}{\numberline {8}{\ignorespaces Franjas: Degradados para detección de artefactos.}}{13}{figure.8}%
-\contentsline {figure}{\numberline {9}{\ignorespaces Comparativa visual con distintos factores de calidad (Q).}}{13}{figure.9}%
-\contentsline {figure}{\numberline {10}{\ignorespaces Franjas: MSE vs RC (\%) en Escala Semilogarítmica.}}{14}{figure.10}%
-\contentsline {figure}{\numberline {11}{\ignorespaces Lenna: Escena mixta con piel y texturas.}}{14}{figure.11}%
+\contentsline {figure}{\numberline {1}{\ignorespaces Reordenación en zigzag.}}{4}{figure.1}%
+\contentsline {figure}{\numberline {2}{\ignorespaces Franjas: Degradados para detección de artefactos.}}{9}{figure.2}%
+\contentsline {figure}{\numberline {3}{\ignorespaces Lenna: Escena mixta con piel y texturas.}}{10}{figure.3}%
+\contentsline {figure}{\numberline {4}{\ignorespaces Fresas: Textura repetitiva y alta saturación.}}{10}{figure.4}%
+\contentsline {figure}{\numberline {5}{\ignorespaces Ave y Cactus: Alto contraste y detalles finos.}}{11}{figure.5}%
+\contentsline {figure}{\numberline {6}{\ignorespaces Grietas: Líneas duras y diagonales.}}{11}{figure.6}%
+\contentsline {figure}{\numberline {7}{\ignorespaces Brassica: Gradientes amplios de baja frecuencia.}}{12}{figure.7}%
+\contentsline {figure}{\numberline {8}{\ignorespaces Colinas: Transiciones de luminancia suaves.}}{12}{figure.8}%
+\contentsline {figure}{\numberline {9}{\ignorespaces Colinas: Transiciones de luminancia suaves.}}{13}{figure.9}%
+\contentsline {figure}{\numberline {10}{\ignorespaces Colinas: Transiciones de luminancia suaves.}}{13}{figure.10}%
+\contentsline {figure}{\numberline {11}{\ignorespaces Calidades franjas: Original, 100, 200 respectivamente.}}{15}{figure.11}%
 \contentsline {figure}{\numberline {12}{\ignorespaces Comparativa visual con distintos factores de calidad (Q).}}{15}{figure.12}%
-\contentsline {figure}{\numberline {13}{\ignorespaces lenna: MSE vs RC (\%) en Escala Semilogarítmica.}}{15}{figure.13}%
-\contentsline {figure}{\numberline {14}{\ignorespaces Fresas: Textura repetitiva y alta saturación.}}{16}{figure.14}%
-\contentsline {figure}{\numberline {15}{\ignorespaces Comparativa visual con distintos factores de calidad (Q).}}{16}{figure.15}%
-\contentsline {figure}{\numberline {16}{\ignorespaces fresas: MSE vs RC (\%) en Escala Semilogarítmica.}}{17}{figure.16}%
-\contentsline {figure}{\numberline {17}{\ignorespaces Ave y Cactus: Alto contraste y detalles finos.}}{18}{figure.17}%
+\contentsline {figure}{\numberline {13}{\ignorespaces Franjas: MSE vs RC (\%) en Escala Semilogarítmica.}}{16}{figure.13}%
+\contentsline {figure}{\numberline {14}{\ignorespaces Lenna: Escena mixta con piel y texturas.}}{16}{figure.14}%
+\contentsline {figure}{\numberline {15}{\ignorespaces Comparativa visual con distintos factores de calidad (Q).}}{17}{figure.15}%
+\contentsline {figure}{\numberline {16}{\ignorespaces lenna: MSE vs RC (\%) en Escala Semilogarítmica.}}{17}{figure.16}%
+\contentsline {figure}{\numberline {17}{\ignorespaces Fresas: Textura repetitiva y alta saturación.}}{18}{figure.17}%
 \contentsline {figure}{\numberline {18}{\ignorespaces Comparativa visual con distintos factores de calidad (Q).}}{18}{figure.18}%
-\contentsline {figure}{\numberline {19}{\ignorespaces cactus: MSE vs RC (\%) en Escala Semilogarítmica.}}{19}{figure.19}%
-\contentsline {figure}{\numberline {20}{\ignorespaces Grietas: Líneas duras y diagonales.}}{20}{figure.20}%
+\contentsline {figure}{\numberline {19}{\ignorespaces fresas: MSE vs RC (\%) en Escala Semilogarítmica.}}{19}{figure.19}%
+\contentsline {figure}{\numberline {20}{\ignorespaces Ave y Cactus: Alto contraste y detalles finos.}}{20}{figure.20}%
 \contentsline {figure}{\numberline {21}{\ignorespaces Comparativa visual con distintos factores de calidad (Q).}}{20}{figure.21}%
-\contentsline {figure}{\numberline {22}{\ignorespaces grietas: MSE vs RC (\%) en Escala Semilogarítmica.}}{21}{figure.22}%
-\contentsline {figure}{\numberline {23}{\ignorespaces Brassica: Gradientes amplios de baja frecuencia.}}{22}{figure.23}%
+\contentsline {figure}{\numberline {22}{\ignorespaces cactus: MSE vs RC (\%) en Escala Semilogarítmica.}}{21}{figure.22}%
+\contentsline {figure}{\numberline {23}{\ignorespaces Grietas: Líneas duras y diagonales.}}{22}{figure.23}%
 \contentsline {figure}{\numberline {24}{\ignorespaces Comparativa visual con distintos factores de calidad (Q).}}{22}{figure.24}%
-\contentsline {figure}{\numberline {25}{\ignorespaces brassica: MSE vs RC (\%) en Escala Semilogarítmica.}}{23}{figure.25}%
-\contentsline {figure}{\numberline {26}{\ignorespaces Colinas: Transiciones de luminancia suaves.}}{24}{figure.26}%
+\contentsline {figure}{\numberline {25}{\ignorespaces grietas: MSE vs RC (\%) en Escala Semilogarítmica.}}{23}{figure.25}%
+\contentsline {figure}{\numberline {26}{\ignorespaces Brassica: Gradientes amplios de baja frecuencia.}}{24}{figure.26}%
 \contentsline {figure}{\numberline {27}{\ignorespaces Comparativa visual con distintos factores de calidad (Q).}}{24}{figure.27}%
-\contentsline {figure}{\numberline {28}{\ignorespaces colinas: MSE vs RC (\%) en Escala Semilogarítmica.}}{25}{figure.28}%
+\contentsline {figure}{\numberline {28}{\ignorespaces brassica: MSE vs RC (\%) en Escala Semilogarítmica.}}{25}{figure.28}%
+\contentsline {figure}{\numberline {29}{\ignorespaces Colinas: Transiciones de luminancia suaves.}}{26}{figure.29}%
+\contentsline {figure}{\numberline {30}{\ignorespaces Comparativa visual con distintos factores de calidad (Q).}}{26}{figure.30}%
+\contentsline {figure}{\numberline {31}{\ignorespaces colinas: MSE vs RC (\%) en Escala Semilogarítmica.}}{27}{figure.31}%
