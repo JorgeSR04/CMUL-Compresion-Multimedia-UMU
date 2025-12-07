@@ -217,9 +217,47 @@ Con el objetivo de explorar dos aspectos principales: primero, identificar el pu
 \subsection{Método de evaluación}
 En este estudio se realizan dos analisis de los resultados obtenidos:
 \begin{itemize}
-    \item  \textbf{Cualitativo:} Se analiza desde un punto de vista visual, tenemos en cuenta como de notorios son los cambios introducidos por el proceso de cuantifiación. Catalogaremos los resultados objetivamente basandonos en la observación y valorando la similitud entre las imagenes reconstruidas y las originales.
+    \item  \textbf{Cualitativo:} Se analiza desde un punto de vista visual, tenemos en cuenta como de notorios son los cambios introducidos por el proceso de cuantifiación. Catalogaremos los resultados objetivamente utilizado \textbf{artefactos}, la observación y valorando la similitud entre las imagenes reconstruidas y las originales util.
     \item   \textbf{Cuantitativo:} Se analiza a nivel teorico y técnico los resultados obtenidos utilizando metricas. 
 \end{itemize}
+
+\subsubsection{Artefactos de Imagen}
+
+Un \textbf{artefacto de imagen} es cualquier falla, distorsión o imperfección visual no deseada que aparece en una imagen digital y que no estaba presente en la imagen original. Estos artefactos se original durante el proceso de cuantificación.
+
+
+\begin{itemize}
+    \item \textbf{Banding (Bandas de color / Posterización)}  
+    Aparición de escalones visibles en regiones que deberían mostrar transiciones suaves de color (cielos, sombras).  
+    Se produce por falta de resolución tonal (profundidad de color baja) o por una compresión excesiva.
+
+    \begin{center}
+    \includegraphics[width=0.4 \textwidth]{./Images/banding.png}
+    \end{center}
+
+    \item \textbf{Blocking (Bloqueo / Macroblocking)}  
+    Aparición de bloques perceptibles, normalmente de $8 \times 8$ o $16 \times 16$ píxeles.  
+    Es característico de la compresión JPEG agresiva, donde el procesamiento por bloques deja de ser imperceptible.
+
+    \begin{center}
+    \includegraphics[width=0.3 \textwidth]{./Images/bloking.jpeg}
+    \end{center}
+
+    \item \textbf{Ringing (Efecto halo / Timbre)}  
+    Presencia de halos o pequeñas oscilaciones alrededor de bordes de alto contraste.  
+    Se origina por compresión fuerte o por filtrado de \emph{sharpening} aplicado de forma excesiva.
+
+    \begin{center}
+    \includegraphics[width=0.4 \textwidth]{./Images/Ringing_artifact.png}
+    \end{center}
+
+    \item \textbf{Ruido (Noise)}  
+    Variaciones aleatorias de luminancia o color que generan una apariencia granulada. Es habitual en condiciones de poca luz o valores ISO altos.
+
+    \item \textbf{Pixelación}  
+    Los píxeles se vuelven visibles al ampliar en exceso una imagen de baja resolución, provocando una apariencia en bloques.
+\end{itemize}
+
 
 \subsubsection{Métricas de evaluación}
 
@@ -379,6 +417,7 @@ Esta imagen me parece interesante por su cielo claro ya que presenta gradientes 
 Hemos elegido esta imagen porque es la más completa: tiene zonas con muchísimo detalle (los pinos de los lados) y zonas muy limpias (el cielo y el agua). Además, el barco tiene líneas muy finas (el mástil).
 
 El objetivo es analizar si esas líneas finas del barco se mantienen nítidas o si les aparecen "fantasmas" o suciedad alrededor (artefactos). También servirá para ver si el compresor es capaz de mantener las hojas de los pinos separadas o si las convierte en una mancha verde borrosa.
+Otro objetivo es comprobar si el compresor se tiene un comportamiento imilar en casos con "dificultades similarres" como son los grandietnes o cambios de colores en tonalidades suaves.
 
 \begin{center}
     \includegraphics[width=0.3\textwidth]{./Images/sailboat.png}
@@ -473,11 +512,6 @@ Las métricas adicionales (MSE, PSNR y SSIM) complementan la caracterización de
 
 %------------------------------------------------
 \subsubsection*{Franjas} 
-El excelente rendimiento visual de esta imagen, incluso con valores de cuantificación extremos, se explica principalmente por la naturaleza matemática de la Transformada de Coseno Discreta (DCT) aplicada a zonas de color uniforme. Al dividir la imagen de 512×512 píxeles entre las 9 franjas, obtenemos un ancho aproximado de 56,88 píxeles por franja. Dado que la compresión opera en bloques de 8×8, estos bloques caen completamente dentro de un color sólido. En un bloque de color plano, la DCT es increíblemente eficiente: toda la información se concentra en un único punto (el coeficiente DC o frecuencia cero), mientras que el resto de coeficientes (AC) son cero. Como la compresión funciona eliminando o simplificando esos otros coeficientes, en este caso no hay nada que eliminar, por lo que el bloque se reconstruye perfecto o casi perfecto.
-
-Respecto a la geometría las primeras 8 franjas se redondean a 56 píxeles, se acumula un sobrante de pixeles que otorga a la última franja un ancho de 64 píxeles exactos. Al ser 64 un múltiplo de 8, esta última franja encaja perfecta en el tamaño de bloque de la DCT, evitando bloques que contengan fronteras entre dos colores (donde suelen aparecer los errores). Sin embargo, la razón por la que los dos últimos colores (gris oscuro y negro) se fusionan en la Figura 16 no es por la alineación de los píxeles, sino por la severidad de la tabla de cuantificación.
-
-La fusión de las últimas franjas ocurre porque el parámetro de calidad "caliqQ 1600" impone un paso de cuantificación tan grande que se empiezan a perder matices de color.
 
 \begin{center} 
     \includegraphics[width=0.3\textwidth]{./Images/franjas.png} 
@@ -500,14 +534,12 @@ La fusión de las últimas franjas ocurre porque el parámetro de calidad "caliq
 \end{center} 
 \vspace{0.5cm}
 
-Desde que se selecciono esta imagen se esperaba un rendimiento excelente en tamaño debido al reducido número de colores en la imagen ambos compresores obtienen una tasa excelente desde el comienzo caso el error MSE es moderado hasta calidad 800 solo vemos un MSE alto en la compresion con calidadQ 1600
+El excelente rendimiento visual de esta imagen, incluso con valores de cuantificación extremos, se explica principalmente por la naturaleza matemática de la Transformada de Coseno Discreta (DCT) aplicada a zonas de color uniforme. Al dividir la imagen de 512×512 píxeles entre las 9 franjas, obtenemos un ancho aproximado de 56,88 píxeles por franja. Dado que la compresión opera en bloques de 8×8, estos bloques caen completamente dentro de un color sólido. En un bloque de color plano, la DCT es increíblemente eficiente: toda la información se concentra en un único punto (el coeficiente DC o frecuencia cero), mientras que el resto de coeficientes (AC) son cero. Como la compresión funciona eliminando o simplificando esos otros coeficientes, en este caso no hay nada que eliminar, por lo que el bloque se reconstruye perfecto o casi perfecto.
 
-Respecto a la tasa de compresion es muy buena desde el principio y vemos que aumenta un 0.30\% desde hasta aplicar la maxmia calidad en el compresor default y muy interesanet tambien ver como soloc on aplicar eñ factor de calidad mas bajo 5 al compresor custom ya obtenemos un resultamos sobrealiente al mejor resultado del compresor default. 
+Respecto a la geometría las primeras 8 franjas se redondean a 56 píxeles, se acumula un sobrante de pixeles que otorga a la última franja un ancho de 64 píxeles exactos. Al ser 64 un múltiplo de 8, esta última franja encaja perfecta en el tamaño de bloque de la DCT, evitando bloques que contengan fronteras entre dos colores (donde suelen aparecer los errores). Sin embargo, la razón por la que los dos últimos colores (gris oscuro y negro) se fusionan en la Figura 16 no es por la alineación de los píxeles, sino por la severidad de la tabla de cuantificación.
 
-Respecto al SNR es bastante el resutlado obtenido es bastante bueno como se mecniono en la metodologia un SNR mas alto significa uqe los pixeles original se pueden disntiguir mejor a los introducidos opor el proceso de cuantififacion
+La fusión de las últimas franjas ocurre porque el parámetro de calidad "caliqQ 1600" impone un paso de cuantificación tan grande que se empiezan a perder matices de color.
 
-\subsubsection*{Conclusion franjas}
-Finalmente respecto a la hipotesis que planteamos sobre que el restulado de compresion seria excelente se ha cumplido pero lo que esperabmos sobre ver trasniciones abruptas no se ha cumplido por lo explicado anteriomente sobre que la anchura de las frajnas era multiplo de cumpliendo tamaño de bloque
 
 \begin{center}
     \includegraphics[width=0.8\textwidth]{../../source/Graficas/Grafica_franjas.png}
@@ -523,6 +555,15 @@ Finalmente respecto a la hipotesis que planteamos sobre que el restulado de comp
 \end{table}
 \vspace{0.5cm}
 
+Desde que se selecciono esta imagen se esperaba un rendimiento excelente en tamaño debido al reducido número de colores en la imagen ambos compresores obtienen una tasa excelente desde el comienzo caso el error MSE es moderado hasta calidad 800 solo vemos un MSE alto en la compresion con calidadQ 1600
+
+Respecto a la tasa de compresion es muy buena desde el principio y vemos que aumenta un 0.30\% desde hasta aplicar la maxmia calidad en el compresor default y muy interesanet tambien ver como soloc on aplicar eñ factor de calidad mas bajo 5 al compresor custom ya obtenemos un resultamos sobrealiente al mejor resultado del compresor default. 
+
+Respecto al SNR es bastante el resutlado obtenido es bastante bueno como se mecniono en la metodologia un SNR mas alto significa uqe los pixeles original se pueden disntiguir mejor a los introducidos opor el proceso de cuantififacion
+
+
+\subsubsection*{Conclusion franjas}
+Finalmente respecto a la hipotesis que planteamos sobre que el restulado de compresion seria excelente se ha cumplido pero lo que esperabmos sobre ver trasniciones abruptas no se ha cumplido por lo explicado anteriomente sobre que la anchura de las frajnas era multiplo de cumpliendo tamaño de bloque
 
 
 % ---------------------------------------------------------
@@ -781,10 +822,22 @@ A continuación se presenta una comparación visual de la imagen original frente
     \hfill 
     \includegraphics[width=0.3\textwidth]{../../source/Custom/brassica_Q800_Custom.png} 
     \hfill 
-    \includegraphics[width=0.3\textwidth]{../../source/Custom/brassica_Q1600_Custom.png} 
+    \includegraphics[width=0.3\textwidth]{./Images/zoom_brassica.jpg} 
     \captionof{figure}{Brassica: Comparativa visual con calidades: 400, 800 y 1600 (caliqQ).} 
 \end{center} 
 \vspace{0.5cm}
+ 
+A continuación se presenta una comparación visual de la imagen original frente a sus versiones procesadas con distintos valores de \texttt{caliqQ}. El objetivo es identificar el punto en el que la degradación se vuelve perceptible.
+
+\begin{itemize}
+    \item \textbf{caliqQ = 100}: La imagen mantiene su nitidez; no se perciben diferencias relevantes respecto a la original.
+    \item \textbf{caliqQ = 200}: La imagen disminuye sutilmente su nitidez pero convervando correctamente los detalles.
+    \item \textbf{caliqQ = 400}: La imagen empieza verse borrosa en las zonas con los detalles mas pequeños como es el centro de la imagen asimismo se pueden ver algo de bloking y banding en las hojas exteriores en la zona morada de la brassica los bordes han perdido su forma y definición.
+    \item \textbf{caliqQ = 800}: Se aprecia blocking y bloking y banding ent oda la imagen los bordes de las hojas mas centrales ya no son distinguible surgen algunos bloque con ruido  
+    \item \textbf{caliqQ = 1600}: Ampliamos el centro de la imagen hasta ver los bloques de $8 \times $8 pixeles; La cuantización en esta imagen es tan fuerte que prácticamente ha eliminado toda la información de alta frecuencia. En los bloques de $8 \times 8$ sólo quedan el coeficiente DC y algunos coeficientes de baja frecuencia. Al conservar tan pocos coeficientes, la imagen pierde continuidad y comienzan a hacerse visibles las propias funciones base de la DCT, en algunos bloques podriamos incluso averiguar cuales son los coeficientes restantes al cuantizar .
+
+\end{itemize}
+
 
 \begin{center}
     \includegraphics[width=1\textwidth]{../../source/Graficas/Grafica_brassica.png}
@@ -799,6 +852,18 @@ A continuación se presenta una comparación visual de la imagen original frente
 \label{tab:brassica}
 \end{table}
 \vspace{0.5cm}
+
+
+El MSE obtenido para está imagen es elevado desde el principio esto podemos a sociarlo a una alta complejida para el comppresor.
+
+Respecot a la tasa de comresion vemos que es baja para el factor de calidad 5 mas indicaciones de que esta era uma imagen cmplicada para el comrpesor  la diferencia a partir de calidq 100 entre ambos comresores es inferior al 50\% no es remarcable
+
+El SNR Era bajo desd el principio tambien obtenemos unos resultados no muy buenos.
+
+\subsubsection*{Conclusion Brassica}
+El objetivo de esta imagen era comprobar como se comportaba el comrpesor en situaciones con muchos bordes irregulares de un tamaño pequeño, hemos visto qeu estos bordes eran demasiado pequeños el compresor se comprobar bien con los factores de calidad inferiores a 200 pero como los detalles eran tan pequeños se perdian creandose bloques
+Las tres metricas utilizas nos llevan a la conclsuion de que esta es una imagen con una dificulta de compresior por encima de lo normal .
+La imagen aparrente mente contaba con no muchas tonalidades finalmente no ha sido asi.
 
 % ---------------------------------------------------------
 
@@ -825,6 +890,14 @@ A continuación se presenta una comparación visual de la imagen original frente
 \end{center} 
 \vspace{0.5cm}
 
+\begin{itemize}
+    \item \textbf{caliqQ = 100}: La imagen mantiene su nitidez; no se perciben diferencias relevantes respecto a la original.
+    \item \textbf{caliqQ = 200}: Cmienza a haber un pco de bandign en el cielo pero la imagen mantiene una nitidez excelente
+    \item \textbf{caliqQ = 400}: El bandign se incremetna en el cilo y aparece bloking en el resto de la imagen 
+    \item \textbf{caliqQ = 800}: Todos los artefactos se incrementa y se aprecia algo de ringing en los bordes de las colinas 
+    \item \textbf{caliqQ = 1600}: Encontramos interesanet que para esta calidad y la anterior los bloques de $8 \times $8 quedan reducidos a un solo color esto nos indica que lso coeficientes de lumniancia han sido anuladso todos menos el componente DC.
+\end{itemize}
+
 \begin{center}
     \includegraphics[width=1\textwidth]{../../source/Graficas/Grafica_colinas.png}
     \captionof{figure}{Colinas: MSE vs RC (\%) en Escala Semilogarítmica.}
@@ -839,9 +912,22 @@ A continuación se presenta una comparación visual de la imagen original frente
 \end{table}
 \vspace{0.5cm}
 
+
+
+Obtenemos una buena tasa de compresion desde factores de calidad bajo con una diferencia poco significativa dedsde 
+
+El MSE No es  muy elevado y tampoco se incrementa excesivametne  durante el aumento de lso factores de calidad
+
+El SNR Tambien nos da una buen nivel de distorsion
+
+\subsubsection*{Conclusion para colinas}
+
+Esta imagen era ideal para ver comos se comportaba el compresor con gradiente suaves y cambios de tonalidades el resutlado obtenido ha sido el esperado
+Obtenemos un buen nivel de compresion y distorision 
+
+
 % ---------------------------------------------------------
-
-
+ 
 \subsubsection*{sailboat}
 
 \begin{center} 
@@ -865,6 +951,15 @@ A continuación se presenta una comparación visual de la imagen original frente
 \end{center} 
 \vspace{0.5cm}
 
+\begin{itemize}
+    \item \textbf{caliqQ = 100}: La imagen mantiene su nitidez; no se perciben diferencias relevantes respecto a la original.
+    \item \textbf{caliqQ = 200}: Cmienza a haber un pco de bandign en el cielo pero la imagen mantiene una nitidez excelente
+    \item \textbf{caliqQ = 400}: El bandign se incremetna en el cilo y aparece bloking en el resto de la imagen 
+    \item \textbf{caliqQ = 800}: Todos los artefactos se incrementa y se aprecia algo de ringing en los bordes de las colinas 
+    \item \textbf{caliqQ = 1600}: Encontramos interesanet que para esta calidad y la anterior los bloques de $8 \times $8 quedan reducidos a un solo color esto nos indica que lso coeficientes de lumniancia han sido anuladso todos menos el componente DC.
+\end{itemize}
+
+
 \begin{center}
     \includegraphics[width=1\textwidth]{../../source/Graficas/Grafica_sailboat.png}
     \captionof{figure}{sailboat: MSE vs RC (\%) en Escala Semilogarítmica.}
@@ -879,6 +974,10 @@ A continuación se presenta una comparación visual de la imagen original frente
 \end{table}
 \vspace{0.5cm}
 
+\subsubsection*{Conclusion sailboat}
+
+El objetivo de esta imagen era similar a la anterior ver como se comprueba el compboresor con cambios de colore a dferencia de al anterior sta imagen contaba con mass detalles finos 
+Ademas queriamos ver si se comporbtaba de manera similar a la imagen anterior hemos visto que es cierto que el banding y el bloking se empiezan a ver con las mismsas factores de calidad en esta imagen son mas evidentes pues cuentan con un nivel de detalle superior.
 % ---------------------------------------------------------
 
 \subsubsection*{uvas}
@@ -904,6 +1003,14 @@ A continuación se presenta una comparación visual de la imagen original frente
 \end{center} 
 \vspace{0.5cm}
 
+\begin{itemize}
+    \item \textbf{caliqQ = 100}: La imagen mantiene su nitidez; no se perciben diferencias relevantes respecto a la original.
+    \item \textbf{caliqQ = 200}: Cmienza a haber un pco de bandign en el cielo pero la imagen mantiene una nitidez excelente
+    \item \textbf{caliqQ = 400}: El bandign se incremetna en el cilo y aparece bloking en el resto de la imagen 
+    \item \textbf{caliqQ = 800}: Todos los artefactos se incrementa y se aprecia algo de ringing en los bordes de las colinas 
+    \item \textbf{caliqQ = 1600}: Encontramos interesanet que para esta calidad y la anterior los bloques de $8 \times $8 quedan reducidos a un solo color esto nos indica que lso coeficientes de lumniancia han sido anuladso todos menos el componente DC.
+\end{itemize}
+
 \begin{center}
     \includegraphics[width=1\textwidth]{../../source/Graficas/Grafica_uvas.png}
     \captionof{figure}{uvas: MSE vs RC (\%) en Escala Semilogarítmica.}
@@ -917,6 +1024,18 @@ A continuación se presenta una comparación visual de la imagen original frente
 \label{tab:uvas}
 \end{table}
 \vspace{0.5cm}
+
+Hemos obtneido unos niveles de distorison buenos similares a los vistos en colinas 
+La tasa de compresion en este caso es exceletne esto se debe al numero reducido y la uniformidad de los colores como era esperables
+La diferencia obtenida con ambos compresor es no es significativa tmapoco 
+
+Las medidas de rudio son buenas  como se ha ido viendo con anterioridad
+
+
+\subsubsection*{Conclusion uvas}
+Esta imagen fue seleccionada por sus formas esfericas con el objetivo dde ver en que nivel de compresion los objetos comenzaban a aplanarse las conclusionesobtenidas han sido buenas porque no he hemos tneido esa sencion hasta el factor de calidad mas alto el compresor maneja batante vien la trasnsicion entre formas 
+
+
 
 %
 
@@ -943,6 +1062,8 @@ A continuación se presenta una comparación visual de la imagen original frente
 \end{center} 
 \vspace{0.5cm}
 
+Esta imagen es un caso especial pues está en blanco y negro el comportamiento del compresor es exatamente el mismo
+
 \begin{center}
     \includegraphics[width=1\textwidth]{../../source/Graficas/Grafica_pino.png}
     \captionof{figure}{pino: MSE vs RC (\%) en Escala Semilogarítmica.}
@@ -966,6 +1087,43 @@ A continuación se presenta una comparación visual de la imagen original frente
 
 \subsection{Comparación con compresor JPEG}
 % Contenido pendiente...
+
+\subsection{Estudio sobre los efectos de la varianza}
+
+\subsubsection*{Introduccion}
+El Obejtivo de este analisis era comprobar si la varianza de la iamgen afectava al tiempo de compresion de una imagen ademas de estudiar los resultados obtenidso en relación a las dimensioens de la imagen 
+\begin{center}
+    \includegraphics[width=0.8\textwidth]{./Images/colinas9x9.png}
+\end{center}
+\vspace{0.5cm}
+
+
+Para poder hacer esto posible era necesario tener imagenes de diferente tamaño pero obteniendo un nivel de varianza igual en cada dimension Por ejemplo: Si la varianza de una iamgen 512x512 era de 4000 su varianza para dimensiones 1024x1024 deberia ser 4000 constante. Para poder ahcer esto sin volverme loco aplcamos una tecnica de Tiling es decir concatenamos la misma image tantas veces como sea necesario para obtener las dimensiones deseadas gracias a esto y tener matlab disponible en mi ordenar se ha hecho un experimento sobra todas las imagenes para ver cual es coste en tiempo de cada imagen con sus versiones extendidas para las siguietnes dimensioens
+\[
+{512, 1024, 1536, 2048, 3072}
+\]
+
+\subsubsection{Resultados obtenidos}
+Presentamos los resultados obtenidos
+
+\begin{center}
+    \includegraphics[width=0.8\textwidth]{../../source/Tiling_Results/Combinado_Todos.png}
+\end{center}
+\vspace{0.5cm}
+
+\begin{center}
+    \includegraphics[width=0.8\textwidth]{../../source/Tiling_Results/Baja_Varianza.png}
+\end{center}
+\vspace{0.5cm}
+\begin{center}
+    \includegraphics[width=0.8\textwidth]{../../source/Tiling_Results/Media_Varianza.png}
+\end{center}
+\vspace{0.5cm}
+
+\begin{center}
+    \includegraphics[width=0.8\textwidth]{../../source/Tiling_Results/Alta_Varianza.png}
+\end{center}
+\vspace{0.5cm}
 
 \subsection{Codificación zonal}
 % Contenido pendiente...
@@ -995,6 +1153,8 @@ A continuación se presenta una comparación visual de la imagen original frente
     \bibitem{wiki_artefactos} Wikipedia, ``Artefactos de anillo''. Disponible en: \url{https://es.wikipedia.org/wiki/Artefactos_de_anillo}
     
     \bibitem{sciencedirect_blocking} ScienceDirect, ``Blocking Artifact''. Disponible en: \url{https://www.sciencedirect.com/topics/computer-science/blocking-artifact}
+
+    \bibitem{citekey} \url {https://www.oliviergibaru.org/courses/img/DCT_2D.png}
 
 \end{thebibliography}
 

@@ -19,7 +19,7 @@ function datos_estudio = Tiling()
     nombres_leyenda = {'Media Var (Brassica)'};%, 'Alta Var (Pino)','Alta Var (Franjas)'};
     
     % Tamaños a probar (Lado de la imagen cuadrada)
-    lados_prueba = [512, 1024, 1536,2048,3072]; 
+    lados_prueba = [1536]; 
     
     % Parámetros de compresión
     caliQ = 100;
@@ -85,7 +85,7 @@ function datos_estudio = Tiling()
                 
                 % Limpieza inmediata del archivo comprimido generado (.huc)
                 nombre_huc = strrep(nombre_temp, '.bmp', '.huc');
-                if exist(nombre_huc, 'file'), delete(nombre_huc); end
+                %if exist(nombre_huc, 'file'), delete(nombre_huc); end
             end
             
             t_medio = t_acumulado / nTest;
