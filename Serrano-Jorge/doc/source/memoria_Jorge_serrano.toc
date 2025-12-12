@@ -1,0 +1,37 @@
+\babel@toc {spanish}{}\relax 
+\contentsline {section}{\numberline {1}Resumen}{1}{section.1}%
+\contentsline {section}{\numberline {2}Introducción}{2}{section.2}%
+\contentsline {section}{\numberline {3}Metodología}{3}{section.3}%
+\contentsline {subsection}{\numberline {3.1}Compresores Desarrollados y Principios de Compresión \textit {Lossy}}{3}{subsection.3.1}%
+\contentsline {subsection}{\numberline {3.2}Proceso de Compresión}{3}{subsection.3.2}%
+\contentsline {subsubsection}{\numberline {3.2.1}Conversión del espacio de color}{3}{subsubsection.3.2.1}%
+\contentsline {subsubsection}{\numberline {3.2.2}Transformada Discreta del Coseno (DCT)}{3}{subsubsection.3.2.2}%
+\contentsline {subsubsection}{\numberline {3.2.3}Cuantificación y el Factor CaliQ (Introducción de Pérdida)}{5}{subsubsection.3.2.3}%
+\contentsline {paragraph}{Tipos de Cuantificación}{6}{section*.3}%
+\contentsline {subsubsection}{\numberline {3.2.4}Codificación Entrópica (Algoritmo Huffman)}{6}{subsubsection.3.2.4}%
+\contentsline {subsubsection}{\numberline {3.2.5}Diferenciación de Compresores}{7}{subsubsection.3.2.5}%
+\contentsline {subsubsection}{\numberline {3.2.6}Proceso Inverso (Reconstrucción)}{7}{subsubsection.3.2.6}%
+\contentsline {subsection}{\numberline {3.3}Datos de entrada}{7}{subsection.3.3}%
+\contentsline {subsubsection}{\numberline {3.3.1}Formato de los datos}{7}{subsubsection.3.3.1}%
+\contentsline {subsubsection}{\numberline {3.3.2}Valores elegidos para CaliQ}{7}{subsubsection.3.3.2}%
+\contentsline {subsection}{\numberline {3.4}Método de evaluación}{8}{subsection.3.4}%
+\contentsline {subsubsection}{\numberline {3.4.1}Artefactos de Imagen}{8}{subsubsection.3.4.1}%
+\contentsline {subsubsection}{\numberline {3.4.2}Métricas de evaluación}{9}{subsubsection.3.4.2}%
+\contentsline {subsection}{\numberline {3.5}Procedimiento experimental y software}{11}{subsection.3.5}%
+\contentsline {subsubsection}{\numberline {3.5.1}Versión de MATLAB}{11}{subsubsection.3.5.1}%
+\contentsline {subsubsection}{\numberline {3.5.2}Software Desarrollado}{11}{subsubsection.3.5.2}%
+\contentsline {subsection}{\numberline {3.6}Obtención de Imágenes experimentales}{11}{subsection.3.6}%
+\contentsline {subsubsection}{\numberline {3.6.1}Justificación de la métrica de clasificación}{17}{subsubsection.3.6.1}%
+\contentsline {section}{\numberline {4}Resultados experimentales}{18}{section.4}%
+\contentsline {subsection}{\numberline {4.1}Sobre el análisis cualitativo}{18}{subsection.4.1}%
+\contentsline {subsection}{\numberline {4.2}Sobre el análisis cuantitativo}{18}{subsection.4.2}%
+\contentsline {subsection}{\numberline {4.3}Análisis cualitativo y cuantitativo}{20}{subsection.4.3}%
+\contentsline {subsubsection}{\numberline {4.3.1}Conclusión lenna}{25}{subsubsection.4.3.1}%
+\contentsline {subsection}{\numberline {4.4}Discusión comparativa}{42}{subsection.4.4}%
+\contentsline {subsection}{\numberline {4.5}Comparación con compresor JPEG}{42}{subsection.4.5}%
+\contentsline {subsection}{\numberline {4.6}Estudio sobre los efectos de la varianza}{42}{subsection.4.6}%
+\contentsline {subsubsection}{\numberline {4.6.1}Resultados obtenidos}{43}{subsubsection.4.6.1}%
+\contentsline {subsection}{\numberline {4.7}Codificación zonal}{45}{subsection.4.7}%
+\contentsline {subsection}{\numberline {4.8}Codificación por umbral N-mayores}{45}{subsection.4.8}%
+\contentsline {section}{\numberline {5}Conclusiones}{46}{section.5}%
+\contentsline {section}{\numberline {A}Anexo}{47}{appendix.Alph1}%

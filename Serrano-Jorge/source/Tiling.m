@@ -15,18 +15,18 @@ function datos_estudio = Tiling()
     %% 1. Configuración del Experimento
     % ------------------------------------------------
     % Configuración de archivos y rutas
-    imagenes_base = {'./Images/brassica.bmp'};%,'./Images/sailboat.bmp','./Images/pino.bmp', './Images/franjas.bmp'}; 
-    nombres_leyenda = {'Media Var (Brassica)'};%, 'Alta Var (Pino)','Alta Var (Franjas)'};
+    imagenes_base = {'./Images/fresas.bmp','./Images/brassica.bmp','./Images/pino.bmp','./Images/grietas.bmp'};%,'./Images/sailboat.bmp','./Images/pino.bmp', './Images/franjas.bmp'}; 
+    nombres_leyenda = {'Baja Var (Fresas)','Media Var (Brassica)', 'Alta Var (Pino)','Alta Var (Grietas)'};
     
     % Tamaños a probar (Lado de la imagen cuadrada)
-    lados_prueba = [1536]; 
+    lados_prueba = [512,1024,1536,2048]; 
     
     % Parámetros de compresión
     caliQ = 100;
-    nTest = 2; % Número de repeticiones para promediar el tiempo
+    nTest = 1; % Número de repeticiones para promediar el tiempo
 
     % Directorio para logs o temporales (opcional)
-    output_dir = 'Tiling_Results';
+    output_dir = 'Mosaicos';
     if ~exist(output_dir, 'dir'), mkdir(output_dir); end
 
     %% 2. Inicialización de la Estructura de Salida
@@ -54,7 +54,7 @@ function datos_estudio = Tiling()
         
         img_base = imread(nombre_archivo);
         fprintf('--> Procesando serie: %s \n', nombres_leyenda{k});
-        
+        [~, nombre_solo, ext] = fileparts(nombre_archivo);
         for j = 1:length(lados_prueba) 
             L = lados_prueba(j);
             
@@ -67,7 +67,9 @@ function datos_estudio = Tiling()
             end
             
             % Guardar temporal para el compresor
-            nombre_temp = fullfile(output_dir, 'temp_time_test.bmp');
+            
+            nombre_temp = fullfile(output_dir, sprintf('%s_%d.bmp',nombre_solo , L));
+
             imwrite(img_test, nombre_temp);
             
             % --- B. Medición de Tiempo (Promediado) ---
@@ -79,20 +81,21 @@ function datos_estudio = Tiling()
                 
                 % Llamada al compresor (silenciando salida si es posible)
                 % Nota: Asegúrate de que jcom_custom está en el path
-                [~] = jcom_custom(nombre_temp, caliQ); 
+                %[~] = jcom_custom(nombre_temp, caliQ); 
                 
-                t_acumulado = t_acumulado + toc(t_inicio);
+                
+                %t_acumulado = t_acumulado + toc(t_inicio);
                 
                 % Limpieza inmediata del archivo comprimido generado (.huc)
-                nombre_huc = strrep(nombre_temp, '.bmp', '.huc');
+                %nombre_huc = strrep(nombre_temp, '.bmp', '.huc');
                 %if exist(nombre_huc, 'file'), delete(nombre_huc); end
             end
             
-            t_medio = t_acumulado / nTest;
-            matriz_tiempos(k, j) = t_medio;
+            %t_medio = t_acumulado / nTest;
+            %matriz_tiempos(k, j) = t_medio;
             
-            fprintf('    |-- Tamaño %dx%d: %.4f seg (Promedio de %d runs)\n', ...
-                    L, L, t_medio, nTest);
+            %fprintf('    |-- Tamaño %dx%d: %.4f seg (Promedio de %d runs)\n', ...
+            %        L, L, t_medio, nTest);
         end
         
         % Limpieza del archivo temporal de imagen

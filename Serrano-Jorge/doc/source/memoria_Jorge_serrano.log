@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (MiKTeX 24.4) (preloaded format=pdflatex 2025.2.8)  7 DEC 2025 14:12
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (MiKTeX 24.4) (preloaded format=pdflatex 2025.2.8)  8 DEC 2025 22:22
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -475,7 +475,7 @@ Package hyperref Info: Link coloring OFF on input line 52.
 \@outlinefile=\write4
 \openout4 = `memoria_Jorge_serrano.out'.
 
-<escudo_um.png, id=135, 772.8875pt x 749.80125pt>
+<escudo_um.png, id=143, 772.8875pt x 749.80125pt>
 File: escudo_um.png Graphic file (type png)
 <use escudo_um.png>
 Package pdftex.def Info: escudo_um.png  used on input line 59.
@@ -496,7 +496,7 @@ LaTeX Info: Redefining \% on input line 1.
 pdfTeX warning (ext4): destination with the same identifier (name{page.1}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.32 ...inal, 100 y 200 (caliqQ).}}{32}{figure.31}
+l.32 ... Escala Semilogarítmica.}}{33}{figure.31}
                                                   % [1])
 \tf@lof=\write5
 \openout5 = `memoria_Jorge_serrano.lof'.
@@ -527,43 +527,886 @@ pdfTeX warning (ext4): destination with the same identifier (name{page.2}) has b
                    \relax 
 l.127 \newpage
                [2]
-<./zigzag.jpg, id=283, 1027.84pt x 417.56pt>
-File: ./zigzag.jpg Graphic file (type jpg)
-<use ./zigzag.jpg>
-Package pdftex.def Info: ./zigzag.jpg  used on input line 149.
-(pdftex.def)             Requested size: 455.24411pt x 184.9439pt.
-
-
-Package caption Warning: The option `hypcap=true' will be ignored for this
-(caption)                particular \caption on input line 150.
-See the caption package documentation for explanation.
-
+<./Images/YCbCr.jpg, id=295, 797.22844pt x 481.8pt>
+File: ./Images/YCbCr.jpg Graphic file (type jpg)
+<use ./Images/YCbCr.jpg>
+Package pdftex.def Info: ./Images/YCbCr.jpg  used on input line 143.
+(pdftex.def)             Requested size: 318.66948pt x 192.58424pt.
 
 
 
 pdfTeX warning (ext4): destination with the same identifier (name{page.3}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.150 ...ptionof{figure}{Reordenación en zigzag.}
-                                                   [3]
+l.149 A
+        cada bloque se le aplica la \textbf{Transformada Discreta del Coseno... [3 <./Images/YCbCr.jpg>]
+<./Images/DCT_2D.png, id=303, 670.75594pt x 669.2503pt>
+File: ./Images/DCT_2D.png Graphic file (type png)
+<use ./Images/DCT_2D.png>
+Package pdftex.def Info: ./Images/DCT_2D.png  used on input line 158.
+(pdftex.def)             Requested size: 227.62206pt x 227.10298pt.
 
-[4 <./zigzag.jpg>]
 
-[5]
-<./Images/banding.png, id=302, 419.5675pt x 304.13625pt>
-File: ./Images/banding.png Graphic file (type png)
-<use ./Images/banding.png>
-Package pdftex.def Info: ./Images/banding.png  used on input line 235.
-(pdftex.def)             Requested size: 182.09486pt x 131.99654pt.
+Package caption Warning: The option `hypcap=true' will be ignored for this
+(caption)                particular \caption on input line 159.
+See the caption package documentation for explanation.
 
+
+
+[4 <./Images/DCT_2D.png>]
+<./zigzag.jpg, id=308, 1027.84pt x 417.56pt>
+File: ./zigzag.jpg Graphic file (type jpg)
+<use ./zigzag.jpg>
+Package pdftex.def Info: ./zigzag.jpg  used on input line 167.
+(pdftex.def)             Requested size: 455.24411pt x 184.9439pt.
+
+
+Package caption Warning: The option `hypcap=true' will be ignored for this
+(caption)                particular \caption on input line 168.
+See the caption package documentation for explanation.
+
+
+
+[5 <./zigzag.jpg>]
 
 [6]
-<./Images/bloking.jpeg, id=308, 222.8325pt x 227.85126pt>
+
+[7]
+<./Images/banding.png, id=325, 419.5675pt x 304.13625pt>
+File: ./Images/banding.png Graphic file (type png)
+<use ./Images/banding.png>
+Package pdftex.def Info: ./Images/banding.png  used on input line 269.
+(pdftex.def)             Requested size: 182.09486pt x 131.99654pt.
+<./Images/bloking.jpeg, id=326, 222.8325pt x 227.85126pt>
 File: ./Images/bloking.jpeg Graphic file (type jpg)
 <use ./Images/bloking.jpeg>
-Package pdftex.def Info: ./Images/bloking.jpeg  used on input line 243.
+Package pdftex.def Info: ./Images/bloking.jpeg  used on input line 277.
 (pdftex.def)             Requested size: 136.57462pt x 139.64963pt.
-<./Images/Ringing_artifact.png, id=309, 240.9pt x 180.675pt>
+
+
+[8 <./Images/banding.png (PNG copy)>]
+<./Images/Ringing_artifact.png, id=331, 240.9pt x 180.675pt>
 File: ./Images/Ringing_artifact.png Graphic file (type png)
 <use ./Images/Ringing_artifact.png>
-Package
+Package pdftex.def Info: ./Images/Ringing_artifact.png  used on input line 285.
+(pdftex.def)             Requested size: 182.09486pt x 136.57556pt.
+
+
+[9 <./Images/bloking.jpeg> <./Images/Ringing_artifact.png>]
+
+[10]
+LaTeX Font Info:    Trying to load font information for TS1+ptm on input line 365.
+ (C:\Users\joque\AppData\Local\Programs\MiKTeX\tex/latex/psnfss\ts1ptm.fd
+File: ts1ptm.fd 2001/06/04 font definitions for TS1/ptm.
+)
+
+[11]
+<./Images/franjas.png, id=351, 1480.0896pt x 1480.0896pt>
+File: ./Images/franjas.png Graphic file (type png)
+<use ./Images/franjas.png>
+Package pdftex.def Info: ./Images/franjas.png  used on input line 384.
+(pdftex.def)             Requested size: 136.57462pt x 136.56738pt.
+
+
+Package caption Warning: The option `hypcap=true' will be ignored for this
+(caption)                particular \caption on input line 385.
+See the caption package documentation for explanation.
+
+<./Images/lenna.png, id=352, 513.92pt x 513.92pt>
+File: ./Images/lenna.png Graphic file (type png)
+<use ./Images/lenna.png>
+Package pdftex.def Info: ./Images/lenna.png  used on input line 396.
+(pdftex.def)             Requested size: 136.57462pt x 136.57239pt.
+
+Package caption Warning: The option `hypcap=true' will be ignored for this
+(caption)                particular \caption on input line 397.
+See the caption package documentation for explanation.
+
+
+
+[12 <./Images/franjas.png>]
+<./Images/fresas.png, id=360, 192.72pt x 192.72pt>
+File: ./Images/fresas.png Graphic file (type png)
+<use ./Images/fresas.png>
+Package pdftex.def Info: ./Images/fresas.png  used on input line 406.
+(pdftex.def)             Requested size: 136.57462pt x 136.57336pt.
+
+
+Package caption Warning: The option `hypcap=true' will be ignored for this
+(caption)                particular \caption on input line 407.
+See the caption package documentation for explanation.
+
+<./Images/cactus.png, id=361, 513.92pt x 513.92pt>
+File: ./Images/cactus.png Graphic file (type png)
+<use ./Images/cactus.png>
+Package pdftex.def Info: ./Images/cactus.png  used on input line 416.
+(pdftex.def)             Requested size: 136.57462pt x 136.57239pt.
+
+Package caption Warning: The option `hypcap=true' will be ignored for this
+(caption)                particular \caption on input line 417.
+See the caption package documentation for explanation.
+
+
+
+[13 <./Images/lenna.png> <./Images/fresas.png>]
+<./Images/grietas.png, id=369, 123.3408pt x 123.3408pt>
+File: ./Images/grietas.png Graphic file (type png)
+<use ./Images/grietas.png>
+Package pdftex.def Info: ./Images/grietas.png  used on input line 426.
+(pdftex.def)             Requested size: 136.57462pt x 136.58806pt.
+
+
+Package caption Warning: The option `hypcap=true' will be ignored for this
+(caption)                particular \caption on input line 427.
+See the caption package documentation for explanation.
+
+<./Images/brassica.png, id=370, 123.3408pt x 123.3408pt>
+File: ./Images/brassica.png Graphic file (type png)
+<use ./Images/brassica.png>
+Package pdftex.def Info: ./Images/brassica.png  used on input line 436.
+(pdftex.def)             Requested size: 136.57462pt x 136.58806pt.
+
+Package caption Warning: The option `hypcap=true' will be ignored for this
+(caption)                particular \caption on input line 437.
+See the caption package documentation for explanation.
+
+
+
+[14 <./Images/cactus.png> <./Images/grietas.png>]
+<./Images/colinas.png, id=377, 123.3408pt x 123.3408pt>
+File: ./Images/colinas.png Graphic file (type png)
+<use ./Images/colinas.png>
+Package pdftex.def Info: ./Images/colinas.png  used on input line 444.
+(pdftex.def)             Requested size: 136.57462pt x 136.58806pt.
+
+
+Package caption Warning: The option `hypcap=true' will be ignored for this
+(caption)                particular \caption on input line 445.
+See the caption package documentation for explanation.
+
+<./Images/sailboat.png, id=378, 513.92pt x 513.92pt>
+File: ./Images/sailboat.png Graphic file (type png)
+<use ./Images/sailboat.png>
+Package pdftex.def Info: ./Images/sailboat.png  used on input line 457.
+(pdftex.def)             Requested size: 136.57462pt x 136.57239pt.
+
+Package caption Warning: The option `hypcap=true' will be ignored for this
+(caption)                particular \caption on input line 458.
+See the caption package documentation for explanation.
+
+
+
+[15 <./Images/brassica.png> <./Images/colinas.png>]
+<./Images/uvas.png, id=386, 123.3408pt x 123.3408pt>
+File: ./Images/uvas.png Graphic file (type png)
+<use ./Images/uvas.png>
+Package pdftex.def Info: ./Images/uvas.png  used on input line 466.
+(pdftex.def)             Requested size: 136.57462pt x 136.58806pt.
+
+
+Package caption Warning: The option `hypcap=true' will be ignored for this
+(caption)                particular \caption on input line 467.
+See the caption package documentation for explanation.
+
+<./Images/pino.png, id=387, 385.44pt x 385.44pt>
+File: ./Images/pino.png Graphic file (type png)
+<use ./Images/pino.png>
+Package pdftex.def Info: ./Images/pino.png  used on input line 477.
+(pdftex.def)             Requested size: 136.57462pt x 136.57043pt.
+
+Package caption Warning: The option `hypcap=true' will be ignored for this
+(caption)                particular \caption on input line 478.
+See the caption package documentation for explanation.
+
+
+
+[16 <./Images/sailboat.png> <./Images/uvas.png>]
+Overfull \hbox (1.47704pt too wide) in paragraph at lines 487--488
+\OT1/ptm/m/n/12 que su-po-nen un des-af[]^^Po pa-ra la com-pre-si[]on DCT (ej. \OT1/pcr/m/n/12 cameraman.bmp\OT1/ptm/m/n/12 , \OT1/pcr/m/n/12 tierra.bmp\OT1/ptm/m/n/12 ). 
+ []
+
+
+
+[17 <./Images/pino.png>]
+<../../source/Graficas/Grafica_sailboat.png, id=398, 421.575pt x 316.0608pt>
+File: ../../source/Graficas/Grafica_sailboat.png Graphic file (type png)
+<use ../../source/Graficas/Grafica_sailboat.png>
+Package pdftex.def Info: ../../source/Graficas/Grafica_sailboat.png  used on input line 512.
+(pdftex.def)             Requested size: 364.19667pt x 273.04642pt.
+
+
+Package caption Warning: The option `hypcap=true' will be ignored for this
+(caption)                particular \caption on input line 513.
+See the caption package documentation for explanation.
+
+
+
+[18]
+
+[19 <../../source/Graficas/Grafica_sailboat.png (PNG copy)>]
+File: ./Images/franjas.png Graphic file (type png)
+<use ./Images/franjas.png>
+Package pdftex.def Info: ./Images/franjas.png  used on input line 551.
+(pdftex.def)             Requested size: 136.57462pt x 136.56738pt.
+<../../source/Custom/franjas_Q100_Custom.png, id=408, 513.92pt x 513.92pt>
+File: ../../source/Custom/franjas_Q100_Custom.png Graphic file (type png)
+<use ../../source/Custom/franjas_Q100_Custom.png>
+Package pdftex.def Info: ../../source/Custom/franjas_Q100_Custom.png  used on input line 553.
+(pdftex.def)             Requested size: 136.57462pt x 136.57239pt.
+<../../source/Custom/franjas_Q200_Custom.png, id=409, 513.92pt x 513.92pt>
+File: ../../source/Custom/franjas_Q200_Custom.png Graphic file (type png)
+<use ../../source/Custom/franjas_Q200_Custom.png>
+Package pdftex.def Info: ../../source/Custom/franjas_Q200_Custom.png  used on input line 555.
+(pdftex.def)             Requested size: 136.57462pt x 136.57239pt.
+
+
+Package caption Warning: The option `hypcap=true' will be ignored for this
+(caption)                particular \caption on input line 557.
+See the caption package documentation for explanation.
+
+<../../source/Custom/franjas_Q400_Custom.png, id=410, 513.92pt x 513.92pt>
+File: ../../source/Custom/franjas_Q400_Custom.png Graphic file (type png)
+<use ../../source/Custom/franjas_Q400_Custom.png>
+Package pdftex.def Info: ../../source/Custom/franjas_Q400_Custom.png  used on input line 562.
+(pdftex.def)             Requested size: 136.57462pt x 136.57239pt.
+<../../source/Custom/franjas_Q800_Custom.png, id=411, 513.92pt x 513.92pt>
+File: ../../source/Custom/franjas_Q800_Custom.png Graphic file (type png)
+<use ../../source/Custom/franjas_Q800_Custom.png>
+Package pdftex.def Info: ../../source/Custom/franjas_Q800_Custom.png  used on input line 564.
+(pdftex.def)             Requested size: 136.57462pt x 136.57239pt.
+<../../source/Custom/franjas_Q1600_Custom.png, id=412, 513.92pt x 513.92pt>
+File: ../../source/Custom/franjas_Q1600_Custom.png Graphic file (type png)
+<use ../../source/Custom/franjas_Q1600_Custom.png>
+Package pdftex.def Info: ../../source/Custom/franjas_Q1600_Custom.png  used on input line 566.
+(pdftex.def)             Requested size: 136.57462pt x 136.57239pt.
+
+Package caption Warning: The option `hypcap=true' will be ignored for this
+(caption)                particular \caption on input line 567.
+See the caption package documentation for explanation.
+
+
+
+[20 <../../source/Custom/franjas_Q100_Custom.png> <../../source/Custom/franjas_Q200_Custom.png> <../../source/Custom/franjas_Q400_Custom.png> <../../source/Custom/franjas_Q800_Custom.png> <../../source/Custom/franjas_Q1600_Custom.png>]
+<../../source/Graficas/Grafica_franjas.png, id=423, 421.575pt x 316.0608pt>
+File: ../../source/Graficas/Grafica_franjas.png Graphic file (type png)
+<use ../../source/Graficas/Grafica_franjas.png>
+Package pdftex.def Info: ../../source/Graficas/Grafica_franjas.png  used on input line 579.
+(pdftex.def)             Requested size: 364.19667pt x 273.04642pt.
+
+
+Package caption Warning: The option `hypcap=true' will be ignored for this
+(caption)                particular \caption on input line 580.
+See the caption package documentation for explanation.
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+
+
+[21 <../../source/Graficas/Grafica_franjas.png (PNG copy)>]
+File: ./Images/lenna.png Graphic file (type png)
+<use ./Images/lenna.png>
+Package pdftex.def Info: ./Images/lenna.png  used on input line 608.
+(pdftex.def)             Requested size: 136.57462pt x 136.57239pt.
+<../../source/Custom/Lenna_Q100_Custom.png, id=429, 513.92pt x 513.92pt>
+File: ../../source/Custom/Lenna_Q100_Custom.png Graphic file (type png)
+<use ../../source/Custom/Lenna_Q100_Custom.png>
+Package pdftex.def Info: ../../source/Custom/Lenna_Q100_Custom.png  used on input line 610.
+(pdftex.def)             Requested size: 136.57462pt x 136.57239pt.
+<../../source/Custom/Lenna_Q200_Custom.png, id=430, 513.92pt x 513.92pt>
+File: ../../source/Custom/Lenna_Q200_Custom.png Graphic file (type png)
+<use ../../source/Custom/Lenna_Q200_Custom.png>
+Package pdftex.def Info: ../../source/Custom/Lenna_Q200_Custom.png  used on input line 612.
+(pdftex.def)             Requested size: 136.57462pt x 136.57239pt.
+
+
+Package caption Warning: The option `hypcap=true' will be ignored for this
+(caption)                particular \caption on input line 614.
+See the caption package documentation for explanation.
+
+<../../source/Custom/Lenna_Q400_Custom.png, id=431, 513.92pt x 513.92pt>
+File: ../../source/Custom/Lenna_Q400_Custom.png Graphic file (type png)
+<use ../../source/Custom/Lenna_Q400_Custom.png>
+Package pdftex.def Info: ../../source/Custom/Lenna_Q400_Custom.png  used on input line 619.
+(pdftex.def)             Requested size: 136.57462pt x 136.57239pt.
+<../../source/Custom/Lenna_Q800_Custom.png, id=432, 513.92pt x 513.92pt>
+File: ../../source/Custom/Lenna_Q800_Custom.png Graphic file (type png)
+<use ../../source/Custom/Lenna_Q800_Custom.png>
+Package pdftex.def Info: ../../source/Custom/Lenna_Q800_Custom.png  used on input line 621.
+(pdftex.def)             Requested size: 136.57462pt x 136.57239pt.
+<../../source/Custom/Lenna_Q1600_Custom.png, id=433, 513.92pt x 513.92pt>
+File: ../../source/Custom/Lenna_Q1600_Custom.png Graphic file (type png)
+<use ../../source/Custom/Lenna_Q1600_Custom.png>
+Package pdftex.def Info: ../../source/Custom/Lenna_Q1600_Custom.png  used on input line 623.
+(pdftex.def)             Requested size: 136.57462pt x 136.57239pt.
+
+Package caption Warning: The option `hypcap=true' will be ignored for this
+(caption)                particular \caption on input line 624.
+See the caption package documentation for explanation.
+
+
+
+[22 <../../source/Custom/Lenna_Q100_Custom.png> <../../source/Custom/Lenna_Q200_Custom.png>]
+<../../source/Graficas/Grafica_lenna.png, id=441, 421.575pt x 316.0608pt>
+File: ../../source/Graficas/Grafica_lenna.png Graphic file (type png)
+<use ../../source/Graficas/Grafica_lenna.png>
+Package pdftex.def Info: ../../source/Graficas/Grafica_lenna.png  used on input line 643.
+(pdftex.def)             Requested size: 455.24411pt x 341.31165pt.
+
+
+Package caption Warning: The option `hypcap=true' will be ignored for this
+(caption)                particular \caption on input line 644.
+See the caption package documentation for explanation.
+
+
+
+[23 <../../source/Custom/Lenna_Q400_Custom.png> <../../source/Custom/Lenna_Q800_Custom.png> <../../source/Custom/Lenna_Q1600_Custom.png>]
+
+[24 <../../source/Graficas/Grafica_lenna.png (PNG copy)>]
+File: ./Images/fresas.png Graphic file (type png)
+<use ./Images/fresas.png>
+Package pdftex.def Info: ./Images/fresas.png  used on input line 673.
+(pdftex.def)             Requested size: 136.57462pt x 136.57336pt.
+<../../source/Custom/fresas_Q100_Custom.png, id=452, 256.96pt x 256.96pt>
+File: ../../source/Custom/fresas_Q100_Custom.png Graphic file (type png)
+<use ../../source/Custom/fresas_Q100_Custom.png>
+Package pdftex.def Info: ../../source/Custom/fresas_Q100_Custom.png  used on input line 675.
+(pdftex.def)             Requested size: 136.57462pt x 136.57631pt.
+<../../source/Custom/fresas_Q200_Custom.png, id=453, 256.96pt x 256.96pt>
+File: ../../source/Custom/fresas_Q200_Custom.png Graphic file (type png)
+<use ../../source/Custom/fresas_Q200_Custom.png>
+Package pdftex.def Info: ../../source/Custom/fresas_Q200_Custom.png  used on input line 677.
+(pdftex.def)             Requested size: 136.57462pt x 136.57631pt.
+
+
+Package caption Warning: The option `hypcap=true' will be ignored for this
+(caption)                particular \caption on input line 679.
+See the caption package documentation for explanation.
+
+<../../source/Custom/fresas_Q400_Custom.png, id=454, 256.96pt x 256.96pt>
+File: ../../source/Custom/fresas_Q400_Custom.png Graphic file (type png)
+<use ../../source/Custom/fresas_Q400_Custom.png>
+Package pdftex.def Info: ../../source/Custom/fresas_Q400_Custom.png  used on input line 684.
+(pdftex.def)             Requested size: 136.57462pt x 136.57631pt.
+<../../source/Custom/fresas_Q800_Custom.png, id=455, 256.96pt x 256.96pt>
+File: ../../source/Custom/fresas_Q800_Custom.png Graphic file (type png)
+<use ../../source/Custom/fresas_Q800_Custom.png>
+Package pdftex.def Info: ../../source/Custom/fresas_Q800_Custom.png  used on input line 686.
+(pdftex.def)             Requested size: 136.57462pt x 136.57631pt.
+<../../source/Custom/fresas_Q1600_Custom.png, id=456, 256.96pt x 256.96pt>
+File: ../../source/Custom/fresas_Q1600_Custom.png Graphic file (type png)
+<use ../../source/Custom/fresas_Q1600_Custom.png>
+Package pdftex.def Info: ../../source/Custom/fresas_Q1600_Custom.png  used on input line 688.
+(pdftex.def)             Requested size: 136.57462pt x 136.57631pt.
+
+Package caption Warning: The option `hypcap=true' will be ignored for this
+(caption)                particular \caption on input line 689.
+See the caption package documentation for explanation.
+
+
+
+[25 <../../source/Custom/fresas_Q100_Custom.png> <../../source/Custom/fresas_Q200_Custom.png> <../../source/Custom/fresas_Q400_Custom.png> <../../source/Custom/fresas_Q800_Custom.png> <../../source/Custom/fresas_Q1600_Custom.png>]
+<../../source/Graficas/Grafica_fresas.png, id=462, 421.575pt x 316.0608pt>
+File: ../../source/Graficas/Grafica_fresas.png Graphic file (type png)
+<use ../../source/Graficas/Grafica_fresas.png>
+Package pdftex.def Info: ../../source/Graficas/Grafica_fresas.png  used on input line 707.
+(pdftex.def)             Requested size: 455.24411pt x 341.31165pt.
+
+
+Package caption Warning: The option `hypcap=true' will be ignored for this
+(caption)                particular \caption on input line 708.
+See the caption package documentation for explanation.
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+File: ./Images/cactus.png Graphic file (type png)
+<use ./Images/cactus.png>
+Package pdftex.def Info: ./Images/cactus.png  used on input line 725.
+(pdftex.def)             Requested size: 136.57462pt x 136.57239pt.
+<../../source/Custom/cactus_Q100_Custom.png, id=463, 513.92pt x 513.92pt>
+File: ../../source/Custom/cactus_Q100_Custom.png Graphic file (type png)
+<use ../../source/Custom/cactus_Q100_Custom.png>
+Package pdftex.def Info: ../../source/Custom/cactus_Q100_Custom.png  used on input line 727.
+(pdftex.def)             Requested size: 136.57462pt x 136.57239pt.
+<../../source/Custom/cactus_Q200_Custom.png, id=464, 513.92pt x 513.92pt>
+File: ../../source/Custom/cactus_Q200_Custom.png Graphic file (type png)
+<use ../../source/Custom/cactus_Q200_Custom.png>
+Package pdftex.def Info: ../../source/Custom/cactus_Q200_Custom.png  used on input line 729.
+(pdftex.def)             Requested size: 136.57462pt x 136.57239pt.
+
+Package caption Warning: The option `hypcap=true' will be ignored for this
+(caption)                particular \caption on input line 731.
+See the caption package documentation for explanation.
+
+
+
+[26 <../../source/Graficas/Grafica_fresas.png (PNG copy)>]
+<../../source/Custom/cactus_Q400_Custom.png, id=470, 513.92pt x 513.92pt>
+File: ../../source/Custom/cactus_Q400_Custom.png Graphic file (type png)
+<use ../../source/Custom/cactus_Q400_Custom.png>
+Package pdftex.def Info: ../../source/Custom/cactus_Q400_Custom.png  used on input line 736.
+(pdftex.def)             Requested size: 136.57462pt x 136.57239pt.
+<../../source/Custom/cactus_Q800_Custom.png, id=471, 513.92pt x 513.92pt>
+File: ../../source/Custom/cactus_Q800_Custom.png Graphic file (type png)
+<use ../../source/Custom/cactus_Q800_Custom.png>
+Package pdftex.def Info: ../../source/Custom/cactus_Q800_Custom.png  used on input line 738.
+(pdftex.def)             Requested size: 136.57462pt x 136.57239pt.
+<../../source/Custom/cactus_Q1600_Custom.png, id=472, 513.92pt x 513.92pt>
+File: ../../source/Custom/cactus_Q1600_Custom.png Graphic file (type png)
+<use ../../source/Custom/cactus_Q1600_Custom.png>
+Package pdftex.def Info: ../../source/Custom/cactus_Q1600_Custom.png  used on input line 740.
+(pdftex.def)             Requested size: 136.57462pt x 136.57239pt.
+
+
+Package caption Warning: The option `hypcap=true' will be ignored for this
+(caption)                particular \caption on input line 741.
+See the caption package documentation for explanation.
+
+
+
+[27 <../../source/Custom/cactus_Q100_Custom.png> <../../source/Custom/cactus_Q200_Custom.png> <../../source/Custom/cactus_Q400_Custom.png> <../../source/Custom/cactus_Q800_Custom.png> <../../source/Custom/cactus_Q1600_Custom.png>]
+<../../source/Graficas/Grafica_cactus.png, id=481, 421.575pt x 316.0608pt>
+File: ../../source/Graficas/Grafica_cactus.png Graphic file (type png)
+<use ../../source/Graficas/Grafica_cactus.png>
+Package pdftex.def Info: ../../source/Graficas/Grafica_cactus.png  used on input line 760.
+(pdftex.def)             Requested size: 455.24411pt x 341.31165pt.
+
+
+Package caption Warning: The option `hypcap=true' will be ignored for this
+(caption)                particular \caption on input line 761.
+See the caption package documentation for explanation.
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+
+
+[28 <../../source/Graficas/Grafica_cactus.png (PNG copy)>]
+File: ./Images/grietas.png Graphic file (type png)
+<use ./Images/grietas.png>
+Package pdftex.def Info: ./Images/grietas.png  used on input line 792.
+(pdftex.def)             Requested size: 136.57462pt x 136.58806pt.
+<../../source/Custom/grietas_Q100_Custom.png, id=487, 513.92pt x 513.92pt>
+File: ../../source/Custom/grietas_Q100_Custom.png Graphic file (type png)
+<use ../../source/Custom/grietas_Q100_Custom.png>
+Package pdftex.def Info: ../../source/Custom/grietas_Q100_Custom.png  used on input line 794.
+(pdftex.def)             Requested size: 136.57462pt x 136.57239pt.
+<../../source/Custom/grietas_Q200_Custom.png, id=488, 513.92pt x 513.92pt>
+File: ../../source/Custom/grietas_Q200_Custom.png Graphic file (type png)
+<use ../../source/Custom/grietas_Q200_Custom.png>
+Package pdftex.def Info: ../../source/Custom/grietas_Q200_Custom.png  used on input line 796.
+(pdftex.def)             Requested size: 136.57462pt x 136.57239pt.
+
+
+Package caption Warning: The option `hypcap=true' will be ignored for this
+(caption)                particular \caption on input line 798.
+See the caption package documentation for explanation.
+
+
+
+[29]
+<../../source/Custom/grietas_Q400_Custom.png, id=495, 513.92pt x 513.92pt>
+File: ../../source/Custom/grietas_Q400_Custom.png Graphic file (type png)
+<use ../../source/Custom/grietas_Q400_Custom.png>
+Package pdftex.def Info: ../../source/Custom/grietas_Q400_Custom.png  used on input line 803.
+(pdftex.def)             Requested size: 136.57462pt x 136.57239pt.
+<../../source/Custom/grietas_Q800_Custom.png, id=496, 513.92pt x 513.92pt>
+File: ../../source/Custom/grietas_Q800_Custom.png Graphic file (type png)
+<use ../../source/Custom/grietas_Q800_Custom.png>
+Package pdftex.def Info: ../../source/Custom/grietas_Q800_Custom.png  used on input line 805.
+(pdftex.def)             Requested size: 136.57462pt x 136.57239pt.
+<../../source/Custom/grietas_Q1600_Custom.png, id=497, 513.92pt x 513.92pt>
+File: ../../source/Custom/grietas_Q1600_Custom.png Graphic file (type png)
+<use ../../source/Custom/grietas_Q1600_Custom.png>
+Package pdftex.def Info: ../../source/Custom/grietas_Q1600_Custom.png  used on input line 807.
+(pdftex.def)             Requested size: 136.57462pt x 136.57239pt.
+
+
+Package caption Warning: The option `hypcap=true' will be ignored for this
+(caption)                particular \caption on input line 808.
+See the caption package documentation for explanation.
+
+
+
+[30 <../../source/Custom/grietas_Q100_Custom.png> <../../source/Custom/grietas_Q200_Custom.png> <../../source/Custom/grietas_Q400_Custom.png> <../../source/Custom/grietas_Q800_Custom.png> <../../source/Custom/grietas_Q1600_Custom.png>]
+<../../source/Graficas/Grafica_grietas.png, id=504, 421.575pt x 316.0608pt>
+File: ../../source/Graficas/Grafica_grietas.png Graphic file (type png)
+<use ../../source/Graficas/Grafica_grietas.png>
+Package pdftex.def Info: ../../source/Graficas/Grafica_grietas.png  used on input line 826.
+(pdftex.def)             Requested size: 455.24411pt x 341.31165pt.
+
+
+Package caption Warning: The option `hypcap=true' will be ignored for this
+(caption)                particular \caption on input line 827.
+See the caption package documentation for explanation.
+
+File: ./Images/brassica.png Graphic file (type png)
+<use ./Images/brassica.png>
+Package pdftex.def Info: ./Images/brassica.png  used on input line 844.
+(pdftex.def)             Requested size: 136.57462pt x 136.58806pt.
+<../../source/Custom/brassica_Q100_Custom.png, id=505, 513.92pt x 513.92pt>
+File: ../../source/Custom/brassica_Q100_Custom.png Graphic file (type png)
+<use ../../source/Custom/brassica_Q100_Custom.png>
+Package pdftex.def Info: ../../source/Custom/brassica_Q100_Custom.png  used on input line 846.
+(pdftex.def)             Requested size: 136.57462pt x 136.57239pt.
+<../../source/Custom/brassica_Q200_Custom.png, id=506, 513.92pt x 513.92pt>
+File: ../../source/Custom/brassica_Q200_Custom.png Graphic file (type png)
+<use ../../source/Custom/brassica_Q200_Custom.png>
+Package pdftex.def Info: ../../source/Custom/brassica_Q200_Custom.png  used on input line 848.
+(pdftex.def)             Requested size: 136.57462pt x 136.57239pt.
+
+Package caption Warning: The option `hypcap=true' will be ignored for this
+(caption)                particular \caption on input line 850.
+See the caption package documentation for explanation.
+
+
+
+[31 <../../source/Graficas/Grafica_grietas.png (PNG copy)>]
+<../../source/Custom/brassica_Q400_Custom.png, id=512, 513.92pt x 513.92pt>
+File: ../../source/Custom/brassica_Q400_Custom.png Graphic file (type png)
+<use ../../source/Custom/brassica_Q400_Custom.png>
+Package pdftex.def Info: ../../source/Custom/brassica_Q400_Custom.png  used on input line 855.
+(pdftex.def)             Requested size: 136.57462pt x 136.57239pt.
+<../../source/Custom/brassica_Q800_Custom.png, id=513, 513.92pt x 513.92pt>
+File: ../../source/Custom/brassica_Q800_Custom.png Graphic file (type png)
+<use ../../source/Custom/brassica_Q800_Custom.png>
+Package pdftex.def Info: ../../source/Custom/brassica_Q800_Custom.png  used on input line 857.
+(pdftex.def)             Requested size: 136.57462pt x 136.57239pt.
+<./Images/zoom_brassica.jpg, id=514, 478.03593pt x 481.04718pt>
+File: ./Images/zoom_brassica.jpg Graphic file (type jpg)
+<use ./Images/zoom_brassica.jpg>
+Package pdftex.def Info: ./Images/zoom_brassica.jpg  used on input line 859.
+(pdftex.def)             Requested size: 136.57462pt x 137.43018pt.
+
+
+Package caption Warning: The option `hypcap=true' will be ignored for this
+(caption)                particular \caption on input line 860.
+See the caption package documentation for explanation.
+
+
+
+[32 <../../source/Custom/brassica_Q100_Custom.png> <../../source/Custom/brassica_Q200_Custom.png> <../../source/Custom/brassica_Q400_Custom.png> <../../source/Custom/brassica_Q800_Custom.png> <./Images/zoom_brassica.jpg>]
+<../../source/Graficas/Grafica_brassica.png, id=520, 421.575pt x 316.0608pt>
+File: ../../source/Graficas/Grafica_brassica.png Graphic file (type png)
+<use ../../source/Graficas/Grafica_brassica.png>
+Package pdftex.def Info: ../../source/Graficas/Grafica_brassica.png  used on input line 877.
+(pdftex.def)             Requested size: 455.24411pt x 341.31165pt.
+
+
+Package caption Warning: The option `hypcap=true' will be ignored for this
+(caption)                particular \caption on input line 878.
+See the caption package documentation for explanation.
+
+
+
+[33 <../../source/Graficas/Grafica_brassica.png (PNG copy)>]
+File: ./Images/colinas.png Graphic file (type png)
+<use ./Images/colinas.png>
+Package pdftex.def Info: ./Images/colinas.png  used on input line 907.
+(pdftex.def)             Requested size: 136.57462pt x 136.58806pt.
+<../../source/Custom/colinas_Q100_Custom.png, id=527, 513.92pt x 513.92pt>
+File: ../../source/Custom/colinas_Q100_Custom.png Graphic file (type png)
+<use ../../source/Custom/colinas_Q100_Custom.png>
+Package pdftex.def Info: ../../source/Custom/colinas_Q100_Custom.png  used on input line 909.
+(pdftex.def)             Requested size: 136.57462pt x 136.57239pt.
+<../../source/Custom/colinas_Q200_Custom.png, id=528, 513.92pt x 513.92pt>
+File: ../../source/Custom/colinas_Q200_Custom.png Graphic file (type png)
+<use ../../source/Custom/colinas_Q200_Custom.png>
+Package pdftex.def Info: ../../source/Custom/colinas_Q200_Custom.png  used on input line 911.
+(pdftex.def)             Requested size: 136.57462pt x 136.57239pt.
+
+
+Package caption Warning: The option `hypcap=true' will be ignored for this
+(caption)                particular \caption on input line 913.
+See the caption package documentation for explanation.
+
+<../../source/Custom/colinas_Q400_Custom.png, id=529, 513.92pt x 513.92pt>
+File: ../../source/Custom/colinas_Q400_Custom.png Graphic file (type png)
+<use ../../source/Custom/colinas_Q400_Custom.png>
+Package pdftex.def Info: ../../source/Custom/colinas_Q400_Custom.png  used on input line 918.
+(pdftex.def)             Requested size: 136.57462pt x 136.57239pt.
+<../../source/Custom/colinas_Q800_Custom.png, id=530, 513.92pt x 513.92pt>
+File: ../../source/Custom/colinas_Q800_Custom.png Graphic file (type png)
+<use ../../source/Custom/colinas_Q800_Custom.png>
+Package pdftex.def Info: ../../source/Custom/colinas_Q800_Custom.png  used on input line 920.
+(pdftex.def)             Requested size: 136.57462pt x 136.57239pt.
+<../../source/Custom/colinas_Q1600_Custom.png, id=531, 513.92pt x 513.92pt>
+File: ../../source/Custom/colinas_Q1600_Custom.png Graphic file (type png)
+<use ../../source/Custom/colinas_Q1600_Custom.png>
+Package pdftex.def Info: ../../source/Custom/colinas_Q1600_Custom.png  used on input line 922.
+(pdftex.def)             Requested size: 136.57462pt x 136.57239pt.
+
+Package caption Warning: The option `hypcap=true' will be ignored for this
+(caption)                particular \caption on input line 923.
+See the caption package documentation for explanation.
+
+
+
+[34 <../../source/Custom/colinas_Q100_Custom.png> <../../source/Custom/colinas_Q200_Custom.png> <../../source/Custom/colinas_Q400_Custom.png> <../../source/Custom/colinas_Q800_Custom.png> <../../source/Custom/colinas_Q1600_Custom.png>]
+<../../source/Graficas/Grafica_colinas.png, id=538, 421.575pt x 316.0608pt>
+File: ../../source/Graficas/Grafica_colinas.png Graphic file (type png)
+<use ../../source/Graficas/Grafica_colinas.png>
+Package pdftex.def Info: ../../source/Graficas/Grafica_colinas.png  used on input line 936.
+(pdftex.def)             Requested size: 455.24411pt x 341.31165pt.
+
+
+Package caption Warning: The option `hypcap=true' will be ignored for this
+(caption)                particular \caption on input line 937.
+See the caption package documentation for explanation.
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+
+
+[35 <../../source/Graficas/Grafica_colinas.png (PNG copy)>]
+File: ./Images/sailboat.png Graphic file (type png)
+<use ./Images/sailboat.png>
+Package pdftex.def Info: ./Images/sailboat.png  used on input line 968.
+(pdftex.def)             Requested size: 136.57462pt x 136.57239pt.
+<../../source/Custom/sailboat_Q100_Custom.png, id=543, 513.92pt x 513.92pt>
+File: ../../source/Custom/sailboat_Q100_Custom.png Graphic file (type png)
+<use ../../source/Custom/sailboat_Q100_Custom.png>
+Package pdftex.def Info: ../../source/Custom/sailboat_Q100_Custom.png  used on input line 970.
+(pdftex.def)             Requested size: 136.57462pt x 136.57239pt.
+<../../source/Custom/sailboat_Q200_Custom.png, id=544, 513.92pt x 513.92pt>
+File: ../../source/Custom/sailboat_Q200_Custom.png Graphic file (type png)
+<use ../../source/Custom/sailboat_Q200_Custom.png>
+Package pdftex.def Info: ../../source/Custom/sailboat_Q200_Custom.png  used on input line 972.
+(pdftex.def)             Requested size: 136.57462pt x 136.57239pt.
+
+
+Package caption Warning: The option `hypcap=true' will be ignored for this
+(caption)                particular \caption on input line 974.
+See the caption package documentation for explanation.
+
+<../../source/Custom/sailboat_Q400_Custom.png, id=545, 513.92pt x 513.92pt>
+File: ../../source/Custom/sailboat_Q400_Custom.png Graphic file (type png)
+<use ../../source/Custom/sailboat_Q400_Custom.png>
+Package pdftex.def Info: ../../source/Custom/sailboat_Q400_Custom.png  used on input line 979.
+(pdftex.def)             Requested size: 136.57462pt x 136.57239pt.
+<../../source/Custom/sailboat_Q800_Custom.png, id=546, 513.92pt x 513.92pt>
+File: ../../source/Custom/sailboat_Q800_Custom.png Graphic file (type png)
+<use ../../source/Custom/sailboat_Q800_Custom.png>
+Package pdftex.def Info: ../../source/Custom/sailboat_Q800_Custom.png  used on input line 981.
+(pdftex.def)             Requested size: 136.57462pt x 136.57239pt.
+<../../source/Custom/sailboat_Q1600_Custom.png, id=547, 513.92pt x 513.92pt>
+File: ../../source/Custom/sailboat_Q1600_Custom.png Graphic file (type png)
+<use ../../source/Custom/sailboat_Q1600_Custom.png>
+Package pdftex.def Info: ../../source/Custom/sailboat_Q1600_Custom.png  used on input line 983.
+(pdftex.def)             Requested size: 136.57462pt x 136.57239pt.
+
+Package caption Warning: The option `hypcap=true' will be ignored for this
+(caption)                particular \caption on input line 984.
+See the caption package documentation for explanation.
+
+
+
+[36 <../../source/Custom/sailboat_Q100_Custom.png> <../../source/Custom/sailboat_Q200_Custom.png> <../../source/Custom/sailboat_Q400_Custom.png> <../../source/Custom/sailboat_Q800_Custom.png> <../../source/Custom/sailboat_Q1600_Custom.png>]
+File: ../../source/Graficas/Grafica_sailboat.png Graphic file (type png)
+<use ../../source/Graficas/Grafica_sailboat.png>
+Package pdftex.def Info: ../../source/Graficas/Grafica_sailboat.png  used on input line 998.
+(pdftex.def)             Requested size: 455.24411pt x 341.31165pt.
+
+
+Package caption Warning: The option `hypcap=true' will be ignored for this
+(caption)                particular \caption on input line 999.
+See the caption package documentation for explanation.
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+
+
+[37]
+File: ./Images/uvas.png Graphic file (type png)
+<use ./Images/uvas.png>
+Package pdftex.def Info: ./Images/uvas.png  used on input line 1020.
+(pdftex.def)             Requested size: 136.57462pt x 136.58806pt.
+<../../source/Custom/uvas_Q100_Custom.png, id=560, 513.92pt x 513.92pt>
+File: ../../source/Custom/uvas_Q100_Custom.png Graphic file (type png)
+<use ../../source/Custom/uvas_Q100_Custom.png>
+Package pdftex.def Info: ../../source/Custom/uvas_Q100_Custom.png  used on input line 1022.
+(pdftex.def)             Requested size: 136.57462pt x 136.57239pt.
+<../../source/Custom/uvas_Q200_Custom.png, id=561, 513.92pt x 513.92pt>
+File: ../../source/Custom/uvas_Q200_Custom.png Graphic file (type png)
+<use ../../source/Custom/uvas_Q200_Custom.png>
+Package pdftex.def Info: ../../source/Custom/uvas_Q200_Custom.png  used on input line 1024.
+(pdftex.def)             Requested size: 136.57462pt x 136.57239pt.
+
+
+Package caption Warning: The option `hypcap=true' will be ignored for this
+(caption)                particular \caption on input line 1026.
+See the caption package documentation for explanation.
+
+<../../source/Custom/uvas_Q400_Custom.png, id=562, 513.92pt x 513.92pt>
+File: ../../source/Custom/uvas_Q400_Custom.png Graphic file (type png)
+<use ../../source/Custom/uvas_Q400_Custom.png>
+Package pdftex.def Info: ../../source/Custom/uvas_Q400_Custom.png  used on input line 1031.
+(pdftex.def)             Requested size: 136.57462pt x 136.57239pt.
+<../../source/Custom/uvas_Q800_Custom.png, id=563, 513.92pt x 513.92pt>
+File: ../../source/Custom/uvas_Q800_Custom.png Graphic file (type png)
+<use ../../source/Custom/uvas_Q800_Custom.png>
+Package pdftex.def Info: ../../source/Custom/uvas_Q800_Custom.png  used on input line 1033.
+(pdftex.def)             Requested size: 136.57462pt x 136.57239pt.
+<../../source/Custom/uvas_Q1600_Custom.png, id=564, 513.92pt x 513.92pt>
+File: ../../source/Custom/uvas_Q1600_Custom.png Graphic file (type png)
+<use ../../source/Custom/uvas_Q1600_Custom.png>
+Package pdftex.def Info: ../../source/Custom/uvas_Q1600_Custom.png  used on input line 1035.
+(pdftex.def)             Requested size: 136.57462pt x 136.57239pt.
+
+Package caption Warning: The option `hypcap=true' will be ignored for this
+(caption)                particular \caption on input line 1036.
+See the caption package documentation for explanation.
+
+
+
+[38 <../../source/Custom/uvas_Q100_Custom.png> <../../source/Custom/uvas_Q200_Custom.png> <../../source/Custom/uvas_Q400_Custom.png> <../../source/Custom/uvas_Q800_Custom.png> <../../source/Custom/uvas_Q1600_Custom.png>]
+<../../source/Graficas/Grafica_uvas.png, id=571, 421.575pt x 316.0608pt>
+File: ../../source/Graficas/Grafica_uvas.png Graphic file (type png)
+<use ../../source/Graficas/Grafica_uvas.png>
+Package pdftex.def Info: ../../source/Graficas/Grafica_uvas.png  used on input line 1049.
+(pdftex.def)             Requested size: 455.24411pt x 341.31165pt.
+
+
+Package caption Warning: The option `hypcap=true' will be ignored for this
+(caption)                particular \caption on input line 1050.
+See the caption package documentation for explanation.
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+
+
+[39 <../../source/Graficas/Grafica_uvas.png (PNG copy)>]
+File: ./Images/pino.png Graphic file (type png)
+<use ./Images/pino.png>
+Package pdftex.def Info: ./Images/pino.png  used on input line 1079.
+(pdftex.def)             Requested size: 136.57462pt x 136.57043pt.
+<../../source/Custom/pino_Q100_Custom.png, id=577, 513.92pt x 513.92pt>
+File: ../../source/Custom/pino_Q100_Custom.png Graphic file (type png)
+<use ../../source/Custom/pino_Q100_Custom.png>
+Package pdftex.def Info: ../../source/Custom/pino_Q100_Custom.png  used on input line 1081.
+(pdftex.def)             Requested size: 136.57462pt x 136.57239pt.
+<../../source/Custom/pino_Q200_Custom.png, id=578, 513.92pt x 513.92pt>
+File: ../../source/Custom/pino_Q200_Custom.png Graphic file (type png)
+<use ../../source/Custom/pino_Q200_Custom.png>
+Package pdftex.def Info: ../../source/Custom/pino_Q200_Custom.png  used on input line 1083.
+(pdftex.def)             Requested size: 136.57462pt x 136.57239pt.
+
+
+Package caption Warning: The option `hypcap=true' will be ignored for this
+(caption)                particular \caption on input line 1085.
+See the caption package documentation for explanation.
+
+<../../source/Custom/pino_Q400_Custom.png, id=579, 513.92pt x 513.92pt>
+File: ../../source/Custom/pino_Q400_Custom.png Graphic file (type png)
+<use ../../source/Custom/pino_Q400_Custom.png>
+Package pdftex.def Info: ../../source/Custom/pino_Q400_Custom.png  used on input line 1090.
+(pdftex.def)             Requested size: 136.57462pt x 136.57239pt.
+<../../source/Custom/pino_Q800_Custom.png, id=580, 513.92pt x 513.92pt>
+File: ../../source/Custom/pino_Q800_Custom.png Graphic file (type png)
+<use ../../source/Custom/pino_Q800_Custom.png>
+Package pdftex.def Info: ../../source/Custom/pino_Q800_Custom.png  used on input line 1092.
+(pdftex.def)             Requested size: 136.57462pt x 136.57239pt.
+<../../source/Custom/pino_Q1600_Custom.png, id=581, 513.92pt x 513.92pt>
+File: ../../source/Custom/pino_Q1600_Custom.png Graphic file (type png)
+<use ../../source/Custom/pino_Q1600_Custom.png>
+Package pdftex.def Info: ../../source/Custom/pino_Q1600_Custom.png  used on input line 1094.
+(pdftex.def)             Requested size: 136.57462pt x 136.57239pt.
+
+Package caption Warning: The option `hypcap=true' will be ignored for this
+(caption)                particular \caption on input line 1095.
+See the caption package documentation for explanation.
+
+
+
+[40 <../../source/Custom/pino_Q100_Custom.png> <../../source/Custom/pino_Q200_Custom.png> <../../source/Custom/pino_Q400_Custom.png> <../../source/Custom/pino_Q800_Custom.png> <../../source/Custom/pino_Q1600_Custom.png>]
+<../../source/Graficas/Grafica_pino.png, id=589, 421.575pt x 316.0608pt>
+File: ../../source/Graficas/Grafica_pino.png Graphic file (type png)
+<use ../../source/Graficas/Grafica_pino.png>
+Package pdftex.def Info: ../../source/Graficas/Grafica_pino.png  used on input line 1102.
+(pdftex.def)             Requested size: 455.24411pt x 341.31165pt.
+
+
+Package caption Warning: The option `hypcap=true' will be ignored for this
+(caption)                particular \caption on input line 1103.
+See the caption package documentation for explanation.
+
+
+
+[41 <../../source/Graficas/Grafica_pino.png (PNG copy)>]
+<./Images/colinas9x9.png, id=595, 1156.32pt x 1156.32pt>
+File: ./Images/colinas9x9.png Graphic file (type png)
+<use ./Images/colinas9x9.png>
+Package pdftex.def Info: ./Images/colinas9x9.png  used on input line 1130.
+(pdftex.def)             Requested size: 364.19667pt x 364.1898pt.
+
+
+[42 <./Images/colinas9x9.png>]
+<../../source/Tiling_Results/Combinado_Todos.png, id=602, 602.25pt x 451.9284pt>
+File: ../../source/Tiling_Results/Combinado_Todos.png Graphic file (type png)
+<use ../../source/Tiling_Results/Combinado_Todos.png>
+Package pdftex.def Info: ../../source/Tiling_Results/Combinado_Todos.png  used on input line 1149.
+(pdftex.def)             Requested size: 364.19667pt x 273.30374pt.
+
+
+[43 <../../source/Tiling_Results/Combinado_Todos.png (PNG copy)>]
+<../../source/Tiling_Results/Baja_Varianza.png, id=607, 602.25pt x 451.9284pt>
+File: ../../source/Tiling_Results/Baja_Varianza.png Graphic file (type png)
+<use ../../source/Tiling_Results/Baja_Varianza.png>
+Package pdftex.def Info: ../../source/Tiling_Results/Baja_Varianza.png  used on input line 1163.
+(pdftex.def)             Requested size: 295.90588pt x 222.05368pt.
+<../../source/Tiling_Results/Media_Varianza.png, id=608, 602.25pt x 451.9284pt>
+File: ../../source/Tiling_Results/Media_Varianza.png Graphic file (type png)
+<use ../../source/Tiling_Results/Media_Varianza.png>
+Package pdftex.def Info: ../../source/Tiling_Results/Media_Varianza.png  used on input line 1164.
+(pdftex.def)             Requested size: 295.90588pt x 222.05368pt.
+<../../source/Tiling_Results/Alta_Varianza.png, id=609, 602.25pt x 451.9284pt>
+File: ../../source/Tiling_Results/Alta_Varianza.png Graphic file (type png)
+<use ../../source/Tiling_Results/Alta_Varianza.png>
+Package pdftex.def Info: ../../source/Tiling_Results/Alta_Varianza.png  used on input line 1165.
+(pdftex.def)             Requested size: 295.90588pt x 222.05368pt.
+
+
+[44
+
+ <../../source/Tiling_Results/Baja_Varianza.png (PNG copy)> <../../source/Tiling_Results/Media_Varianza.png (PNG copy)> <../../source/Tiling_Results/Alta_Varianza.png (PNG copy)>]
+
+[45]
+
+[46]
+
+[47]
+
+[48] (memoria_Jorge_serrano.aux
+LaTeX Info: Redefining \. on input line 11.
+LaTeX Info: Redefining \% on input line 11.
+)
+ ***********
+LaTeX2e <2024-11-01> patch level 2
+L3 programming layer <2025-01-18>
+ ***********
+
+
+LaTeX Warning: There were multiply-defined labels.
+
+Package rerunfilecheck Info: File `memoria_Jorge_serrano.out' has not changed.
+(rerunfilecheck)             Checksum: 22BFB0E21B8B575558123DA0F41B8B21;7123.
+ ) 
+Here is how much of TeX's memory you used:
+ 15843 strings out of 473530
+ 284149 string characters out of 5714795
+ 678058 words of memory out of 5000000
+ 38643 multiletter control sequences out of 15000+600000
+ 585818 words of font info for 81 fonts, out of 8000000 for 9000
+ 1141 hyphenation exceptions out of 8191
+ 75i,13n,79p,965b,787s stack positions out of 10000i,1000n,20000p,200000b,200000s
+<C:/Users/joque/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmex10.pfb><C:/Users/joque/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi12.pfb><C:/Users/joque/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi8.pfb><C:/Users/joque/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Users/joque/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr8.pfb><C:/Users/joque/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Users/joque/AppData/Local/Programs/MiKTeX/fonts/type1/urw/courier/ucrr8a.pfb><C:/Users/joque/AppData/Local/Programs/MiKTeX/fonts/type1/urw/times/utmb8a.pfb><C:/Users/joque/AppData/Local/Programs/MiKTeX/fonts/type1/urw/times/utmbi8a.pfb><C:/Users/joque/AppData/Local/Programs/MiKTeX/fonts/type1/urw/times/utmr8a.pfb><C:/Users/joque/AppData/Local/Programs/MiKTeX/fonts/type1/urw/times/utmri8a.pfb>
+Output written on memoria_Jorge_serrano.pdf (52 pages, 20488771 bytes).
+PDF statistics:
+ 732 PDF objects out of 1000 (max. 8388607)
+ 185 named destinations out of 1000 (max. 500000)
+ 691 words of extra memory for PDF output out of 10000 (max. 10000000)
+

@@ -135,12 +135,30 @@ Para el desarrollo de esta práctica se han implementado dos compresores de imag
 
 Partimos de una imagen que tiene dimensiones Filas x columnas, la unidad de medida es el pixel por lo que si una imagen tiene 400 x 589tendra x pixeles El bojetivo es transformar esos pixeles en algo que nos permita expresar la imagen de forma equivalente y aplicar algunas operaciones sobre ella.
 
+\subsubsection{Conversión del espacio de color}
+Existen distintas formas de representar los colores y los píxeles de una imagen, entre ellas las tablas indexadas, el espacio RGB, el espacio YCbCr, entre otros. Sin embargo, dado que el ojo humano es más sensible a los cambios de \textbf{luminancia} que a los de \textbf{crominancia}, se aplica una conversión desde RGB al espacio \textbf{YCbCr}. Este espacio separa la información de brillo (Y) de la información de color (Cb y Cr), lo que permite optimizar el proceso de compresión ajustándolo mejor a la forma en que el ser humano percibe los colores.
 
+
+\begin{center}
+    \includegraphics[width=0.7\textwidth]{./Images/YCbCr.jpg}
+\end{center}
 
 \subsubsection{Transformada Discreta del Coseno (DCT)}
-El primer paso consiste en dividir la imagen en bloques de $8 \times 8$ píxeles. En caso de que las dimensiones de la imagen no sean múltiplo de 8, se ampliarán sus dimensiones y posteriormente se restablecerán. A cada bloque se le aplica la \textbf{Transformada Discreta del Coseno} (DCT). La DCT tiene como objetivo \textbf{decorrelacionar} y \textbf{compactar la energía} de los datos, transformando los valores espaciales en \textbf{coeficientes de frecuencia}.  
+Una vez obtenida la imagen en el espacio YCbCr, el primer paso consiste en dividirla en bloques de $8 \times 8$ píxeles. Si las dimensiones de la imagen no son múltiplo de 8, se amplían duplicando las últimas filas o columnas para completar el bloque, y posteriormente se restauran al finalizar la compresión.
+
+A cada bloque se le aplica la \textbf{Transformada Discreta del Coseno} (DCT). Su función principal es \textbf{decorrelacionar} y \textbf{concentrar la energía} de los datos.  
+En términos sencillos, \textbf{decorrelacionar} significa separar o “desmezclar” la información que está distribuida de forma redundante en los píxeles, convirtiendo el bloque en un conjunto de valores más independientes entre sí. Por otro lado, \textbf{compactar la energía} implica reorganizar la información del bloque de manera que la mayor parte de los detalles importantes se acumulen en unos pocos coeficientes (las bajas frecuencias), mientras que los coeficientes restantes contienen cambios menores o poco relevantes visualmente.  
+
+La aplicación de la DCT permite expresar cada bloque de $8 \times 8$ píxeles como una \textbf{combinación lineal de 64 patrones básicos}, conocidos como \textit{bases de frecuencia}. Cada uno de estos patrones corresponde a un coeficiente de la DCT, que indica cuánto contribuye ese patrón al bloque original. En otras palabras, cualquier bloque de imagen puede reconstruirse sumando estos 64 patrones, cada uno escalado por su coeficiente correspondiente. Este es precisamente el motivo por el que aplicamos la transformada:
 
 La mayor parte de la información visual significativa (las bajas frecuencias) se concentra en los \textbf{coeficientes DC} y las primeras componentes \textbf{AC}. El coeficiente \textbf{DC} representa el valor promedio del bloque, mientras que los coeficientes \textbf{AC} representan las variaciones respecto al valor promedio, es decir, los detalles y texturas de la imagen. Los coeficientes de alta frecuencia (AC más alejados del DC) tienden a aproximarse a cero, ya que representan detalles finos o ruido, lo cual es crucial para el siguiente paso de eliminación de datos.  
+
+% Imagen zigzag
+\begin{center}
+    \includegraphics[width=0.5\textwidth]{./Images/DCT_2D.png}
+    \captionof{figure}{Imagenes base.}
+\end{center}
+\vspace{0.5cm}
 
 Para mejorar la eficiencia en los pasos posteriores, como la cuantificación y la codificación, se suele reordenar los coeficientes del bloque siguiendo un \textbf{orden en zigzag}. Este orden permite que los coeficientes más relevantes (DC y primeras AC) queden en las primeras posiciones, agrupando los coeficientes cercanos a cero hacia el final del bloque. Esto facilita la compresión, ya que los valores pequeños pueden ser más fácilmente codificados de manera eficiente.  
 
@@ -153,7 +171,7 @@ Para mejorar la eficiencia en los pasos posteriores, como la cuantificación y l
 
 
 \subsubsection{Cuantificación y el Factor CaliQ (Introducción de Pérdida)}
-La cuantificación es el paso donde se introduce la pérdida de información y se logra la compresión principal. Su \textbf{finalidad} es reducir la precisión con la que se almacenan los coeficientes de la DCT, aprovechando las limitaciones del sistema visual humano. Los coeficientes de alta frecuencia (que contienen detalles finos) suelen tener menor energía y son menos perceptibles; por lo tanto, la cuantificación los descarta o los almacena con mucha menos precisión que los coeficientes de baja frecuencia (que contienen el brillo y contraste general).
+La cuantificación es el paso donde se introduce la pérdida de información y se logra la compresión principal. Su \textbf{finalidad} es reducir la precisión con la que se almacenan los coeficientes de la DCT, aprovechando las limitaciones del sistema visual humano. Los coeficientes de alta frecuencia (que contienen detalles finos) suelen tener menor impacto y son menos perceptibles; por lo tanto, la cuantificación los descarta o los almacena con mucha menos precisión que los coeficientes de baja frecuencia (que contienen el brillo y contraste general).
 
 \begin{itemize}
     \item Los coeficientes de frecuencia de la DCT son \textbf{divididos} por una matriz de pesos extraídos de las \textbf{Tablas de Cuantificación} recomendadas en el estándar \textbf{ITU T.81} (el estándar JPEG).
@@ -179,8 +197,19 @@ Existen diversos enfoques para la cuantificación. El método utilizado en este 
 
 Como la cuantificación introduce pérdidas, la calidad visual de la imagen resultante será inversamente proporcional al factor $\text{CaliQ}$ utilizado. La calidad se medirá mediante métricas objetivas como los \textbf{bits medios por píxel (BPP)} y el \textbf{Error Cuadrático Medio (MSE)}, las cuales se detallarán posteriormente.
 
-\subsubsection{Codificación de Entropía (Algoritmo Huffman)}
+\subsubsection{Codificación Entrópica (Algoritmo Huffman)}
 Finalmente, los coeficientes cuantificados se codifican utilizando el algoritmo de \textbf{Huffman}. Este es un método de codificación de longitud variable que optimiza la compresión asignando códigos binarios más cortos a los valores (palabras) que ocurren con mayor frecuencia y códigos más largos a los menos frecuentes. La eficiencia de este paso depende de los coeficientes cuantificados.
+
+En el contexto de la compresión con Huffman, una \textbf{tabla Huffman} permite codificar símbolos de manera eficiente asignando códigos de longitud variable según la frecuencia de aparición de cada símbolo. Esta tabla se organiza usando varias estructuras clave:
+
+\begin{itemize}
+    \item \textbf{MINCODE:} Contiene el valor numérico más pequeño de los códigos para cada longitud de bits $L$. Sirve para determinar el rango mínimo de códigos de esa longitud.
+    
+    \item \textbf{MAXCODE:} Contiene el valor numérico más grande de los códigos para cada longitud $L$. Si un código leído es menor o igual a este valor, significa que se ha leído completamente un código válido.
+    
+    \item \textbf{VALPTR:} Es un índice o puntero que indica dónde comienza la lista de símbolos correspondientes a esa longitud de código dentro de la tabla de símbolos (HUFFVAL). Permite localizar rápidamente qué símbolo corresponde a un código leído.
+\end{itemize}
+
 
 \textbf{Nota:} Definimos la Información Lateral como el conjunto de datos auxiliares que, si bien no pertenecen intrínsecamente a la imagen original, son generados durante la ejecución completa del proceso (por ejemplo, durante la codificación, compresión o transmisión) y son necesarios para el correcto funcionamiento. 
  
@@ -195,6 +224,11 @@ La diferencia fundamental entre los dos compresores reside en la implementación
     \item \textbf{Compresor Custom:}
     Este compresor calcula tablas Huffman específicas para cada imagen. Analiza la frecuencia real de aparición de cada coeficiente cuantificado y genera un conjunto de códigos que están óptimamente ajustados a esa distribución de datos particular. Por lo tanto, se espera que este compresor logre resultados mejores o simlares de compresión que el compresor \textit{Default} para un mismo factor $\text{CaliQ}$.
 \end{itemize}
+
+\subsubsection{Proceso Inverso (Reconstrucción)}
+
+La reconstrucción de la imagen comprimida consiste en aplicar los pasos inversos del proceso de compresión, intentando recuperar la mayor similitud posible con la imagen original. Primero, se realiza la \textbf{decodificación Huffman} para recuperar los coeficientes cuantificados de cada bloque. Luego, se aplica la \textbf{descuantificación}, multiplicando cada coeficiente por los valores de la tabla de cuantificación y el factor $\text{CaliQ}$ correspondiente. Posteriormente, se ejecuta la \textbf{Transformada Discreta del Coseno inversa (IDCT)} sobre cada bloque, reconstruyendo los valores de píxeles aproximados en el espacio YCbCr. Finalmente, se realiza la \textbf{conversión inversa a RGB} para obtener la imagen final en su formato original, lista para visualización. 
+
 
 \subsection{Datos de entrada}
 \subsubsection{Formato de los datos}
@@ -1104,26 +1138,37 @@ Para poder hacer esto posible era necesario tener imagenes de diferente tamaño 
 \]
 
 \subsubsection{Resultados obtenidos}
-Presentamos los resultados obtenidos
+El gráfico muestra el Tiempo de Compresión (en segundos) en función del Tamaño de la Imagen (en píxeles, $N \times N$) para diez imágenes de prueba, agrupadas según su nivel de Varianza (Baja, Media y Alta) bajo una Calidad $Q=100$.
+
+Una observación relevante es que la \textbf{varianza no ha resultado ser un indicador fiable del tiempo de compresión}. Aunque cabría esperar que las imágenes con mayor varianza presentaran tiempos más elevados, los resultados muestran varias contradicciones claras. Por ejemplo, la imagen \textit{Franjas}, clasificada con \textbf{alta varianza}, ha sido consistentemente una de las que menos tiempo ha tardado en comprimirse. En contraste, \textit{Brassica}, cuya varianza no era especialmente alta, ha resultado ser la imagen que más tiempo ha requerido, destacándose con una diferencia notable frente al resto.
+
+
+
 
 \begin{center}
     \includegraphics[width=0.8\textwidth]{../../source/Tiling_Results/Combinado_Todos.png}
 \end{center}
 \vspace{0.5cm}
 
-\begin{center}
-    \includegraphics[width=0.8\textwidth]{../../source/Tiling_Results/Baja_Varianza.png}
-\end{center}
-\vspace{0.5cm}
-\begin{center}
-    \includegraphics[width=0.8\textwidth]{../../source/Tiling_Results/Media_Varianza.png}
-\end{center}
-\vspace{0.5cm}
+\begin{itemize}
+    \item \textbf{Tendencia Principal (Crecimiento Acelerado):}  
+    La gráfica muestra claramente que el tamaño de la imagen es el factor dominante en el tiempo de compresión. El comportamiento no es lineal, sino \textbf{acelerado}, evidenciando un crecimiento que se aproxima a lo exponencial. A partir de un umbral cercano a los \textbf{2048×2048 píxeles} se aprecia un punto de inflexión donde el incremento del tiempo se vuelve mucho más pronunciado.
 
+    \item \textbf{Eficiencia en Tamaños Pequeños:}  
+    El tiempo requerido para comprimir imágenes de baja resolución varía muy poco; la diferencia entre \textbf{512×512} y \textbf{1024×1024} es mínima. Esto indica que el algoritmo mantiene una alta eficiencia en tamaños pequeños, con un coste computacional reducido y estable en esta región.
+\end{itemize}
+
+\clearpage
 \begin{center}
-    \includegraphics[width=0.8\textwidth]{../../source/Tiling_Results/Alta_Varianza.png}
+    \includegraphics[width=0.65\textwidth]{../../source/Tiling_Results/Baja_Varianza.png}
+    \includegraphics[width=0.65\textwidth]{../../source/Tiling_Results/Media_Varianza.png}
+    \includegraphics[width=0.65\textwidth]{../../source/Tiling_Results/Alta_Varianza.png}
 \end{center}
-\vspace{0.5cm}
+
+
+\subsubsection*{Conclusión sobre el estudio de la varianza}
+Estos resultados evidencian que la varianza, considerada de forma aislada, no es un predictor sólido del coste computacional de la compresión. El comportamiento individual de cada imagen y la distribución específica de sus patrones de píxeles tienen un impacto mucho más determinante que la mera magnitud de la varianza global.
+
 
 \subsection{Codificación zonal}
 % Contenido pendiente...

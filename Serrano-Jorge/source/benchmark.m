@@ -24,10 +24,10 @@ end
 lista_imagenes = {archivos_imagen.name};
 
 % Factores de calidad a probar
-lista_caliQ = [5, 25, 50, 100, 200, 400, 800, 1600];
+lista_caliQ = [100]; %[5, 25, 50, 100, 200, 400, 800, 1600];
 
 % ¿Qué calidades queremos GUARDAR físicamente para la entrega?
-calidades_a_guardar = [5, 25, 50, 100, 200, 400, 800, 1600];
+calidades_a_guardar =[100]; %[5, 25, 50, 100, 200, 400, 800, 1600];
 
 disp('=== INICIANDO BATERÍA DE PRUEBAS CON MÉTRICAS AVANZADAS ===');
 
@@ -38,11 +38,11 @@ resultados = struct();
 % 2. BUCLE PRINCIPAL
 % -------------------------------------------------------------------------
 % Carpetas para organizar salidas
-output_custom_dir = "./Custom";
+output_custom_dir = "./Zonal/Custom";
 if ~exist(output_custom_dir, 'dir'), mkdir(output_custom_dir); end
-output_default_dir = "./Default";
+output_default_dir = "./Zonal/Default";
 if ~exist(output_default_dir, 'dir'), mkdir(output_default_dir); end
-output_Results_dir = "./Results";
+output_Results_dir = "./Zonal/Results";
 if ~exist(output_Results_dir, 'dir'), mkdir(output_Results_dir); end
 
 for i = 1:length(lista_imagenes)

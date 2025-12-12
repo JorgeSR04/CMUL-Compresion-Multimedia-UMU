@@ -1,0 +1,44 @@
+\babel@toc {spanish}{}\relax 
+\contentsline {figure}{\numberline {1}{\ignorespaces Imagenes base.}}{4}{figure.1}%
+\contentsline {figure}{\numberline {2}{\ignorespaces Reordenación en zigzag.}}{5}{figure.2}%
+\contentsline {figure}{\numberline {3}{\ignorespaces Franjas: Degradados para detección de artefactos.}}{12}{figure.3}%
+\contentsline {figure}{\numberline {4}{\ignorespaces Lenna: Escena mixta con piel y texturas.}}{13}{figure.4}%
+\contentsline {figure}{\numberline {5}{\ignorespaces Fresas: Textura repetitiva y alta saturación.}}{13}{figure.5}%
+\contentsline {figure}{\numberline {6}{\ignorespaces Ave y Cactus: Alto contraste y detalles finos.}}{14}{figure.6}%
+\contentsline {figure}{\numberline {7}{\ignorespaces Grietas: Líneas duras y diagonales.}}{14}{figure.7}%
+\contentsline {figure}{\numberline {8}{\ignorespaces Brassica: Gradientes amplios de baja frecuencia.}}{15}{figure.8}%
+\contentsline {figure}{\numberline {9}{\ignorespaces Colinas: Transiciones de luminancia suaves.}}{15}{figure.9}%
+\contentsline {figure}{\numberline {10}{\ignorespaces Colinas: Transiciones de luminancia suaves.}}{16}{figure.10}%
+\contentsline {figure}{\numberline {11}{\ignorespaces Colinas: Transiciones de luminancia suaves.}}{16}{figure.11}%
+\contentsline {figure}{\numberline {12}{\ignorespaces Colinas: Transiciones de luminancia suaves.}}{17}{figure.12}%
+\contentsline {figure}{\numberline {13}{\ignorespaces Ejemplo: MSE vs RC (\%) en Escala Semilogarítmica.}}{19}{figure.13}%
+\contentsline {figure}{\numberline {14}{\ignorespaces Franjas: Comparativa visual con calidades: original, 100 y 200 (caliqQ).}}{20}{figure.14}%
+\contentsline {figure}{\numberline {15}{\ignorespaces Franjas: Comparativa visual con calidades: 400, 800 y 1600 (caliqQ).}}{20}{figure.15}%
+\contentsline {figure}{\numberline {16}{\ignorespaces Franjas: MSE vs RC (\%) en Escala Semilogarítmica.}}{21}{figure.16}%
+\contentsline {figure}{\numberline {17}{\ignorespaces Lenna: Comparativa visual con calidades: original, 100 y 200 (caliqQ).}}{22}{figure.17}%
+\contentsline {figure}{\numberline {18}{\ignorespaces Lenna: Comparativa visual con calidades: 400, 800 y 1600 (caliqQ).}}{23}{figure.18}%
+\contentsline {figure}{\numberline {19}{\ignorespaces Lenna: MSE vs RC (\%) en Escala Semilogarítmica.}}{24}{figure.19}%
+\contentsline {figure}{\numberline {20}{\ignorespaces Fresas: Comparativa visual con calidades: original, 100 y 200 (caliqQ).}}{25}{figure.20}%
+\contentsline {figure}{\numberline {21}{\ignorespaces Fresas: Comparativa visual con calidades: 400, 800 y 1600 (caliqQ).}}{25}{figure.21}%
+\contentsline {figure}{\numberline {22}{\ignorespaces Fresas: MSE vs RC (\%) en Escala Semilogarítmica.}}{26}{figure.22}%
+\contentsline {figure}{\numberline {23}{\ignorespaces Cactus: Comparativa visual con calidades: original, 100 y 200 (caliqQ).}}{27}{figure.23}%
+\contentsline {figure}{\numberline {24}{\ignorespaces Cactus: Comparativa visual con calidades: 400, 800 y 1600 (caliqQ).}}{27}{figure.24}%
+\contentsline {figure}{\numberline {25}{\ignorespaces Cactus: MSE vs RC (\%) en Escala Semilogarítmica.}}{28}{figure.25}%
+\contentsline {figure}{\numberline {26}{\ignorespaces Grietas: Comparativa visual con calidades: original, 100 y 200 (caliqQ).}}{30}{figure.26}%
+\contentsline {figure}{\numberline {27}{\ignorespaces Grietas: Comparativa visual con calidades: 400, 800 y 1600 (caliqQ).}}{30}{figure.27}%
+\contentsline {figure}{\numberline {28}{\ignorespaces Grietas: MSE vs RC (\%) en Escala Semilogarítmica.}}{31}{figure.28}%
+\contentsline {figure}{\numberline {29}{\ignorespaces Brassica: Comparativa visual con calidades: original, 100 y 200 (caliqQ).}}{32}{figure.29}%
+\contentsline {figure}{\numberline {30}{\ignorespaces Brassica: Comparativa visual con calidades: 400, 800 y 1600 (caliqQ).}}{32}{figure.30}%
+\contentsline {figure}{\numberline {31}{\ignorespaces Brassica: MSE vs RC (\%) en Escala Semilogarítmica.}}{33}{figure.31}%
+\contentsline {figure}{\numberline {32}{\ignorespaces Colinas: Comparativa visual con calidades: original, 100 y 200 (caliqQ).}}{34}{figure.32}%
+\contentsline {figure}{\numberline {33}{\ignorespaces Colinas: Comparativa visual con calidades: 400, 800 y 1600 (caliqQ).}}{34}{figure.33}%
+\contentsline {figure}{\numberline {34}{\ignorespaces Colinas: MSE vs RC (\%) en Escala Semilogarítmica.}}{35}{figure.34}%
+\contentsline {figure}{\numberline {35}{\ignorespaces sailboat: Comparativa visual con calidades: original, 100 y 200 (caliqQ).}}{36}{figure.35}%
+\contentsline {figure}{\numberline {36}{\ignorespaces sailboat: Comparativa visual con calidades: 400, 800 y 1600 (caliqQ).}}{36}{figure.36}%
+\contentsline {figure}{\numberline {37}{\ignorespaces sailboat: MSE vs RC (\%) en Escala Semilogarítmica.}}{37}{figure.37}%
+\contentsline {figure}{\numberline {38}{\ignorespaces uvas: Comparativa visual con calidades: original, 100 y 200 (caliqQ).}}{38}{figure.38}%
+\contentsline {figure}{\numberline {39}{\ignorespaces uvas: Comparativa visual con calidades: 400, 800 y 1600 (caliqQ).}}{38}{figure.39}%
+\contentsline {figure}{\numberline {40}{\ignorespaces uvas: MSE vs RC (\%) en Escala Semilogarítmica.}}{39}{figure.40}%
+\contentsline {figure}{\numberline {41}{\ignorespaces pino: Comparativa visual con calidades: original, 100 y 200 (caliqQ).}}{40}{figure.41}%
+\contentsline {figure}{\numberline {42}{\ignorespaces pino: Comparativa visual con calidades: 400, 800 y 1600 (caliqQ).}}{40}{figure.42}%
+\contentsline {figure}{\numberline {43}{\ignorespaces pino: MSE vs RC (\%) en Escala Semilogarítmica.}}{41}{figure.43}%
