@@ -39,7 +39,10 @@ lenx = m * n * 3;
 Xtrans = imdct(Xamp);
 
 % Cuantizacion de coeficientes
-Xlab=quantmat(Xtrans, caliQ);
+%Xlab=quantmat(Xtrans, caliQ);
+%Xlab = quantmat_zonal(Xtrans);
+Xlab = quantmat_n_largest(Xtrans);
+
 
 % Genera un scan por cada componente de color
 %  Cada scan es una matriz mamp x namp

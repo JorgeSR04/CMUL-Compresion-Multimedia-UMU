@@ -1,7 +1,7 @@
 function generarGraficas(resultados)
 
     % Carpeta para organizar salidas
-    output_dir = 'Graficas';
+    output_dir = '/Mayores/Graficas';
     if ~exist(output_dir, 'dir'), mkdir(output_dir); end
     
     disp('=== Graficando ===');
