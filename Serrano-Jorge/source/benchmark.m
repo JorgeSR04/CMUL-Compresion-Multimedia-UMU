@@ -24,10 +24,10 @@ end
 lista_imagenes = {archivos_imagen.name};
 
 % Factores de calidad a probar
-lista_caliQ = ["luminancia"]; %[5, 25, 50, 100, 200, 400, 800, 1600];
+lista_caliQ = [20]; %[5, 25, 50, 100, 200, 400, 800, 1600];
 
 % ¿Qué calidades queremos GUARDAR físicamente para la entrega?
-calidades_a_guardar =["luminancia"]; %[5, 25, 50, 100, 200, 400, 800, 1600];
+calidades_a_guardar =[20]; %[5, 25, 50, 100, 200, 400, 800, 1600];
 
 disp('=== INICIANDO BATERÍA DE PRUEBAS CON MÉTRICAS AVANZADAS ===');
 
@@ -38,11 +38,11 @@ resultados = struct();
 % 2. BUCLE PRINCIPAL
 % -------------------------------------------------------------------------
 % Carpetas para organizar salidas
-output_custom_dir = "./Mayores/Custom";
+output_custom_dir = "./Zonal/Custom";
 if ~exist(output_custom_dir, 'dir'), mkdir(output_custom_dir); end
-output_default_dir = "./Mayores/Default";
+output_default_dir = "./Zonal/Default";
 if ~exist(output_default_dir, 'dir'), mkdir(output_default_dir); end
-output_Results_dir = "./Mayores/Results";
+output_Results_dir = "./Zonal/Results";
 if ~exist(output_Results_dir, 'dir'), mkdir(output_Results_dir); end
 
 for i = 1:length(lista_imagenes)
@@ -62,7 +62,7 @@ for i = 1:length(lista_imagenes)
     vec_MSE_cust = []; vec_RC_cust = []; vec_PSNR_cust = []; vec_SSIM_cust = [];
 
     for Q = lista_caliQ
-        fprintf('  > Calidad Q=%3d... ', Q);
+        %fprintf('  > Calidad Q=%3d... ', Q);
 
         % =========================================================
         % PARTE A: DEFAULT (jcom_dflt / jdes_dflt)
@@ -151,7 +151,7 @@ end
 
 
 
-generarGraficas(resultados);
-generarCSV(resultados);
+%generarGraficas(resultados);
+%generarCSV(resultados);
 
 disp('=== PROCESO COMPLETADO ===');

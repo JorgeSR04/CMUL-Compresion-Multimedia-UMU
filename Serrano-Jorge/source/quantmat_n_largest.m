@@ -1,4 +1,4 @@
-function Xlab = quantmat_n_largest(Xtrans)
+function Xlab = quantmat_n_largest(Xtrans, caliQ)
 
     % Dada una matriz transformada Xtrans, aplica codificación por UMBRAL (N-Mayores).
     % A diferencia de la Zonal, esta función procesa CADA BLOQUE individualmente,
@@ -23,8 +23,8 @@ function Xlab = quantmat_n_largest(Xtrans)
     % -------------------------------------------------------------------------
     % PARÁMETROS N (Coeficientes a mantener)
     % -------------------------------------------------------------------------
-    NumKeep_Y = 15;  % Luminancia: Guardamos los 20 más fuertes de cada bloque
-    NumKeep_C = 0;  % Crominancia: Guardamos los 10 más fuertes
+    NumKeep_Y = 7;  % Luminancia: Guardamos los 20 más fuertes de cada bloque
+    NumKeep_C = 5;  % Crominancia: Guardamos los 10 más fuertes
     
     % -------------------------------------------------------------------------
     % 1. PROCESAMIENTO LUMINANCIA (Y)

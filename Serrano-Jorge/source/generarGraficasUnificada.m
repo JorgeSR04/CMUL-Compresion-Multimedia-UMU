@@ -1,7 +1,7 @@
 function generarGraficasUnificada(resultados)
 
     % Carpeta para organizar salidas
-    output_dir = './Mayores/Graficas';
+    output_dir = './Zonal/Graficas';
     if ~exist(output_dir, 'dir'), mkdir(output_dir); end
     
     disp('=== Graficando (Unificado con Esquema Único de Línea) ===');

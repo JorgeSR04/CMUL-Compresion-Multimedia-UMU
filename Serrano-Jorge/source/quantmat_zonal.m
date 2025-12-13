@@ -23,7 +23,7 @@ function Xlab = quantmat_zonal(Xtrans)
     % -------------------------------------------------------------------------
     % Cantidad de coeficientes a mantener (incluyendo el DC)
     NumKeep_Y = 20;  % Luminancia: mantenemos más detalle (ej. 20 de 64)
-    NumKeep_C = 10;  % Crominancia: más agresivo (ej. 10 de 64)
+    NumKeep_C = 5;  % Crominancia: más agresivo (ej. 10 de 64)
     
     % -------------------------------------------------------------------------
     % 1. PROCESAMIENTO DE LUMINANCIA (Y)
