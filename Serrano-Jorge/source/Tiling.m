@@ -19,7 +19,7 @@ function datos_estudio = Tiling()
     nombres_leyenda = {'Baja Var (Fresas)','Media Var (Brassica)', 'Alta Var (Pino)','Alta Var (Grietas)'};
     
     % Tamaños a probar (Lado de la imagen cuadrada)
-    lados_prueba = [512,1024,1536,2048]; 
+    lados_prueba = [512,1024,1536,2048,3076]; 
     
     % Parámetros de compresión
     caliQ = 100;
@@ -81,21 +81,21 @@ function datos_estudio = Tiling()
                 
                 % Llamada al compresor (silenciando salida si es posible)
                 % Nota: Asegúrate de que jcom_custom está en el path
-                %[~] = jcom_custom(nombre_temp, caliQ); 
+                [~] = jcom_custom(nombre_temp, caliQ); 
                 
                 
-                %t_acumulado = t_acumulado + toc(t_inicio);
+                t_acumulado = t_acumulado + toc(t_inicio);
                 
                 % Limpieza inmediata del archivo comprimido generado (.huc)
-                %nombre_huc = strrep(nombre_temp, '.bmp', '.huc');
-                %if exist(nombre_huc, 'file'), delete(nombre_huc); end
+                nombre_huc = strrep(nombre_temp, '.bmp', '.huc');
+                if exist(nombre_huc, 'file'), delete(nombre_huc); end
             end
             
-            %t_medio = t_acumulado / nTest;
-            %matriz_tiempos(k, j) = t_medio;
+            t_medio = t_acumulado / nTest;
+            matriz_tiempos(k, j) = t_medio;
             
-            %fprintf('    |-- Tamaño %dx%d: %.4f seg (Promedio de %d runs)\n', ...
-            %        L, L, t_medio, nTest);
+            fprintf('    |-- Tamaño %dx%d: %.4f seg (Promedio de %d runs)\n', ...
+                    L, L, t_medio, nTest);
         end
         
         % Limpieza del archivo temporal de imagen
