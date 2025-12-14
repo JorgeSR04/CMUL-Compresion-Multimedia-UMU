@@ -92,7 +92,7 @@
     % PROFESOR Y FECHA
     Profesor: Nespoli, Pantaleone \\
     \vspace{1cm}
-    12 de diciembre de 2025
+    14 de diciembre de 2025
     
 \end{titlepage}
 
@@ -144,7 +144,7 @@ Existen distintas formas de representar los colores y los píxeles de una imagen
 \end{center}
 
 \subsubsection{Transformada Discreta del Coseno (DCT)}
-Una vez obtenida la imagen en el espacio YCbCr, el primer paso consiste en dividirla en bloques de $8 \times 8$ píxeles. Si las dimensiones de la imagen no son múltiplo de 8, se amplían duplicando las últimas filas o columnas para completar el bloque, y posteriormente se restauran al finalizar la compresión.
+Una vez obtenida la imagen en el espacio YCbCr, el primer paso consiste en dividirla en bloques de $8 \times 8$ píxeles. Si las dimensiones de la imagen no son múltiplo de $8$, se amplían duplicando las últimas filas o columnas para completar el bloque, y posteriormente se restauran al finalizar la compresión.
 
 A cada bloque se le aplica la \textbf{Transformada Discreta del Coseno} (DCT). Su función principal es \textbf{decorrelacionar} y concentrar la energía de los datos. 
 
@@ -184,12 +184,12 @@ La operación de cuantificación se define como:
 \text{Coeficiente Cuantificado} = \text{round}\left( \frac{\text{Coeficiente DCT}}{\text{Valor de Tabla ITU T.81} \times \text{CaliQ}} \right)
 \end{equation}
 
-Al realizar la división por un número mayor a 1, muchos coeficientes (especialmente los de alta frecuencia) se redondean a cero. Esta reducción de datos crea largas secuencias de ceros que son posteriormente comprimidas de manera muy eficiente en la etapa de codificación entrópica.
+Al realizar la división, muchos coeficientes (especialmente los de alta frecuencia) se redondean a cero. Esta reducción de datos crea largas secuencias de ceros que son posteriormente comprimidas de manera muy eficiente en la etapa de codificación entrópica.
 
 Un valor de \textbf{CaliQ más alto} implica un divisor mayor. Esto resulta en que una mayor cantidad de coeficientes de frecuencia, especialmente aquellos que contienen poca energía, se \textbf{redondeen a cero} (proceso de truncamiento). Este paso busca \textbf{maximizar la anulación de coeficientes}, lo que reduce significativamente la cantidad de datos a codificar. Cuanto mayor sea CaliQ, mayor debe ser la \textbf{magnitud} (consideramos que los coeficientes con mayor magnitud son los que transportan mayor información) de un coeficiente original para que no sea anulado.
 
 \paragraph{Tipos de Cuantificación}
-Existen diversos enfoques para la cuantificación. El método utilizado en este proyecto es la \textbf{cuantificación uniforme dependiente de la frecuencia}, donde cada coeficiente se trata de manera distinta según su posición. Alternativamente, otros métodos incluyen:
+Existen diversos enfoques para la cuantificación. El método principal utilizado en este proyecto es la \textbf{cuantificación uniforme} dependiente de la frecuencia, donde cada coeficiente se trata de manera distinta según su posición. Alternativamente, estudiaremos otros métodos como:
 
 \begin{itemize}
     \item \textbf{Cuantificación Zonal (Codificación Zonal):} Consiste en descartar todos los coeficientes que se encuentran fuera de una zona predefinida del bloque DCT (ej. solo conservar los coeficientes de menor frecuencia). Es una simplificación estricta que es menos flexible.
@@ -228,12 +228,12 @@ La diferencia fundamental entre los dos compresores reside en la implementación
 
 \subsubsection{Proceso Inverso (Reconstrucción)}
 
-La reconstrucción de la imagen comprimida consiste en aplicar los pasos inversos del proceso de compresión, intentando recuperar la mayor similitud posible con la imagen original. Primero, se realiza la \textbf{decodificación Huffman} para recuperar los coeficientes cuantificados de cada bloque. Luego, se aplica la \textbf{descuantificación}, multiplicando cada coeficiente por los valores de la tabla de cuantificación y el factor $\text{CaliQ}$ correspondiente. Posteriormente, se ejecuta la \textbf{Transformada Discreta del Coseno inversa (IDCT)} sobre cada bloque, reconstruyendo los valores de píxeles aproximados en el espacio YCbCr. Finalmente, se realiza la \textbf{conversión inversa a RGB} para obtener la imagen final en su formato original, lista para visualización. 
+La reconstrucción de la imagen comprimida consiste en aplicar los pasos inversos del proceso de compresión, intentando recuperar la mayor similitud posible con la imagen original. Primero, se realiza la \textbf{decodificación Huffman} para recuperar los coeficientes cuantificados de cada bloque. Luego, se aplica la \textbf{descuantificación}, multiplicando cada coeficiente por los valores de la tabla de cuantificación y el factor $\text{CaliQ}$ correspondiente. Posteriormente, se ejecuta la \textbf{Transformada Discreta del Coseno inversa (IDCT)} sobre cada bloque, reconstruyendo los valores de píxeles aproximados en el espacio YCbCr. Finalmente, se realiza la \textbf{conversión inversa a RGB} para obtener la imagen final en su formato original.
 
 
 \subsection{Datos de entrada}
 \subsubsection{Formato de los datos}
-Los datos de entrada para el análisis experimental han sido imágenes Truecolor con formato BMP , otros formatos con compresión sin pedidas también podrían ser validos. En caso de que se usen formato con perdidas las métricas utilizas y datos obtenidos no tendrían interés experimental.
+Los datos de entrada para el análisis experimental han sido imágenes Truecolor con formato BMP, otros formatos con compresión sin pedidas también podrían ser validos. En caso de que se usen formato con perdidas las métricas utilizas y datos obtenidos no tendrían interés experimental.
 
 \subsubsection{Valores elegidos para CaliQ}
 Respecto a los factores elegidos, utilizamos los siguientes valores:
@@ -266,6 +266,7 @@ Un \textbf{artefacto de imagen} es cualquier falla, distorsión o imperfección 
 
     \begin{center}
     \includegraphics[width=0.4 \textwidth]{./Images/banding.png}
+    \captionof{figure}{Ejemplo visual del artefacto Banding.}
     \end{center}
 
     \item \textbf{Blocking (Bloqueo / Macroblocking)}  
@@ -274,6 +275,7 @@ Un \textbf{artefacto de imagen} es cualquier falla, distorsión o imperfección 
 
     \begin{center}
     \includegraphics[width=0.3 \textwidth]{./Images/bloking.jpeg}
+    \captionof{figure}{Ejemplo visual del artefacto Blocking.}
     \end{center}
 
     \item \textbf{Ringing (Efecto halo / Timbre)}  
@@ -282,6 +284,16 @@ Un \textbf{artefacto de imagen} es cualquier falla, distorsión o imperfección 
 
     \begin{center}
     \includegraphics[width=0.4 \textwidth]{./Images/Ringing_artifact.png}
+    \captionof{figure}{Ejemplo visual del artefacto Ringing.}
+    \end{center}
+
+    \item El \textbf{Aliasing} es un efecto que aparece cuando una imagen se representa con una resolución insuficiente. 
+    Esto provoca artefactos visuales como bordes dentados o patrones falsos, ya que los detalles finos no se
+    capturan correctamente.
+
+        \begin{center}
+    \includegraphics[width=0.4 \textwidth]{./Images/artifact.jpg}
+    \captionof{figure}{Ejemplo visual del artefacto Aliasing.}
     \end{center}
 
     \item \textbf{Ruido (Noise)}  
@@ -304,9 +316,10 @@ Un \textbf{artefacto de imagen} es cualquier falla, distorsión o imperfección 
 \begin{itemize}
     \item[$N$] \textbf{Número Total de Coeficientes} (o píxeles) evaluados en la imagen o en el bloque.
     \item[$\sum_{i=1}^{N}$] \textbf{Sumatoria}. Indica la suma de los errores al cuadrado para todos los coeficientes desde $i=1$ hasta $N$.
-    \item[$x_{i}$] \textbf{Coeficiente DCT Original} en la posición $i$.
+    \item[$x_{i}$] \textbf{Coeficiente Original} en la posición $i$.
     \item[$Q(x_{i})$] \textbf{Coeficiente Cuantificado} en la posición $i$ (el valor que introduce la pérdida).
 \end{itemize}
+\vspace{0.5cm}
 
 \textbf{Tasa de Compresión (RC \%)} indica qué porcentaje del tamaño original del fichero se ha reducido (eliminado) después de la compresión.
 
@@ -319,21 +332,19 @@ Un \textbf{artefacto de imagen} es cualquier falla, distorsión o imperfección 
     \item[$T_{i}$] \textbf{Tamaño de la Fuente Inicial} (o tamaño del archivo original).
     \item[$T_{o}$] \textbf{Tamaño del Archivo Comprimido} (o tamaño de salida).
 \end{itemize}
+\vspace{0.5cm}
 
+$\text{SNR}(dB)$ \textbf{Relación Señal a Ruido} (\textit{Signal-to-Noise Ratio}). Métrica que compara el nivel de potencia de la señal con el nivel del ruido de fondo, expresada en decibelios (dB).
 
 \begin{equation}
 \text{SNR}(dB) = 10 \cdot \log_{10} \frac{\sigma_{s}^{2}}{\sigma_{q}^{2}} = 20 \cdot \log_{10} \frac{\sigma_{s}}{\sigma_{q}}
 \end{equation}
 
 \begin{itemize}
-    \item[$\text{SNR}(dB)$] \textbf{Relación Señal a Ruido} (\textit{Signal-to-Noise Ratio}). Métrica que compara el nivel de potencia de la señal con el nivel del ruido de fondo, expresada en decibelios (dB).
     \item[$\sigma_{s}^{2}$] \textbf{Varianza de la Señal} (Potencia de la Señal). Representa la potencia de la señal original o de los coeficientes DCT.
     \item[$\sigma_{q}^{2}$] \textbf{Varianza del Ruido de Cuantificación} (Potencia del Ruido). Representa la potencia del error o distorsión introducida por el proceso de cuantificación.
-    \item[$\log_{10}$] \textbf{Logaritmo en Base 10}.
 \end{itemize}
-
-
-\textbf{Nota:} Los cálculos de las métricas mencionadas anteriormente se realizan sobre la imagen en formato Truecolor.
+\vspace{0.5cm}
 
 % \begin{equation}
 % \text{SSIM}(x, y) = [l(x, y)]^{\alpha} \cdot [c(x, y)]^{\beta} \cdot [s(x, y)]^{\gamma}
@@ -358,25 +369,31 @@ Para garantizar la uniformidad y eficiencia del experimento, se implementó un s
 \begin{itemize}
     \item \textbf{Flujo:} El sistema recorre automáticamente el conjunto de imágenes seleccionadas y aplica la totalidad de los factores de calidad ($Q$) definidos. Esta metodología responde a la pregunta de cómo se obtuvieron los datos necesarios para trazar las curvas de rendimiento.
     
-    \item \textbf{Obtención:} En cada iteración (Imagen $\times$ Factor $Q$), el marco ejecuta las funciones de descompresión y recopila las métricas clave: Relación de Compresión (RC), Error Cuadrático Medio (MSE), SNR y SSIM.
+    \item \textbf{Obtención:} En cada iteración (Imagen $\times$ Factor $CaliQ$), el marco ejecuta las funciones de descompresión y recopila las métricas clave: Relación de Compresión (RC), Error Cuadrático Medio (MSE) y SNR.
     
     \item \textbf{Gestión de datos:} Una vez completada la batería de pruebas, el software organiza los datos en una estructura unificada y emplea funciones específicas para:
     \begin{itemize}
-        \item \textbf{Generar Gráficas:} Generar los gráficos de rendimiento, como las curvas de RC versus SSIM.
+        \item \textbf{Generar Gráficas:} Generar los gráficos de rendimiento, como las curvas de RC versus MSE.
         \item \textbf{Generar Tablas:} Crear tablas de resultados en formatos \texttt{.xlsx} o \texttt{.csv}, con una organización limpia y jerárquica adecuada para el informe.
     \end{itemize}
+\end{itemize}
+
+Posteriormente, se desarrolló un script adicional orientado a la ampliación del tamaño de las imágenes, utilizando el método de \textit{tiling}, con el objetivo de permitir el procesamiento eficiente de imágenes de mayor resolución. El funcionamiento detallado de este método se describe en el apartado correspondiente.
+
+Asimismo, se implementaron dos versiones alternativas del proceso de cuantificación, para un estudio en mayor profundidad:
+\begin{itemize}
+    \item \textbf{Cuantificación zonal:} Dado un número de coeficientes, define una única máscara para los coeficientes de mayor varianza en toda la imagen.
+    \item \textbf{Cuantificación basada en coeficientes mayores:} Dado un número de coeficientes, para cada bloque conserva los de mayor energía.
 \end{itemize}
 
 
 
 % ----------------------------------------------------------------------------------------------
-%-----------------------------IMAGENES----------------------------------------------------------
+%-----------------------------imágenes----------------------------------------------------------
 \subsection{Obtención de Imágenes experimentales}
+A continuación se presentan las imágenes seleccionadas y se justifica el motivo por el cual se considera relevante cada una. Estas imágenes han sido escogidas con el objetivo de evidenciar las debilidades del compresor y analizar su comportamiento en escenarios complejos, como los que se describen a continuación.
 
-A continuación presentamos las imágenes seleccionadas y justificamos el motivo por el que consideramos interesante cada una. Las imágenes han sido seleccionadas para exponer las debilidades del compresor y ver como actua en casos dificiles como los siguientes:
-Cada una de las imagenes seleccionadas para este estudio básico tienen medidas 512 x 512 pixeles.
-
-\subsubsection*{franjas}
+\subsubsection*{Franjas}
 Esta imagen ha sido seleccionada por dos motivos principales. El primero es analizar cómo se comporta el compresor en las fronteras entre colores, buscando observar la aparición del artefacto de anillo en las transiciones bruscas. El segundo motivo es que la baja cantidad de colores favorece al compresor en la fase de codificación, permitiendo comprobar cuánto puede optimizar en un escenario así.
 
 En cuanto a los resultados, esperamos una compresión muy eficiente debido a la simplicidad cromática de la imagen, aunque es probable que el resultado visual sea menos favorable en las zonas con cambios de franja, donde los artefactos pueden hacerse más visibles.
@@ -400,7 +417,7 @@ De este tipo de imagen esperamos un rendimiento medio por parte del compresor. N
 \vspace{0.5cm}
 
 \subsubsection*{Fresas}
-Textura repetitiva de pequeño tamaño y color dominante saturado. Útil para estudiar manejo de microdetalles como son las semillas y redundancia espacial sin perder estructura repetitiva.
+Textura repetitiva de pequeño tamaño y color dominante saturado. Es útil para estudiar el manejo de microdetalles como son las semillas y la redundancia espacial sin perder estructura repetitiva.
 
 En este caso esperamos que el compresor obtenga una buena tasa de compresión gracias a la repetición constante del patrón, pero también es probable que aparezca pérdida de detalle fino en las texturas pequeñas, y que las  tonalidades de las fresas tiendan a aumentar su parecido, especialmente después de la cuantificación. La saturación del color debería conservarse relativamente bien, pero los bloques uniformes podrían mostrar artefactos si el nivel de compresión es alto.
 \begin{center}
@@ -415,14 +432,15 @@ He seleccionado esta imagen porque combina un fondo plano con bordes de alto con
 Queremos comprobar cómo maneja el compresor las transiciones abruptas entre el cielo y las espinas; asimismo, con una compresión alta, las plumas del pájaro podrían difuminarse y, si el compresor trata mal el cielo, podrían aparecer bandas.
 \begin{center}
     \includegraphics[width=0.3\textwidth]{./Images/cactus.png}
-    \captionof{figure}{Ave y Cactus: Alto contraste y detalles finos.}
+    \captionof{figure}{Cactus: Alto contraste y detalles finos.}
 \end{center}
 \vspace{0.5cm}
 
 \subsubsection*{Grietas}
-Líneas duras, diagonales y grietas irregulares. Adecuada para evaluar \textit{aliasing}, deformación geométrica y artefactos de bloque en alto contraste.
+Líneas duras, diagonales y grietas irregulares hacen que esta imagen sea adecuada para evaluar fenómenos como el \textit{aliasing}, la deformación geométrica y la aparición de artefactos de bloque en zonas de alto contraste.
 
-Comprobar si la compresión introduce artefactos de "ringing" o ecos fantasma alrededor de las líneas oscuras de las grietas debido a la eliminación de altas frecuencias, y si se preserva la nitidez del patrón de cuarteado sin que las líneas finas se vean borrosas o se fusionen con el fondo
+Se analiza si la compresión introduce artefactos de \textit{ringing} o
+artefactos alrededor de las líneas oscuras de las grietas, consecuencia de la eliminación de altas frecuencias, así como si se preserva la nitidez del patrón de cuarteado sin que las líneas finas se vuelvan borrosas o se fusionen con el fondo.
 \begin{center}
     \includegraphics[width=0.3\textwidth]{./Images/grietas.png} 
     \captionof{figure}{Grietas: Líneas duras y diagonales.}
@@ -431,6 +449,7 @@ Comprobar si la compresión introduce artefactos de "ringing" o ecos fantasma al
 
 \subsubsection*{Brassica}
 Esta imagen resulta muy interesante pues está llena de bordes irregulares bien definidos, una gran cantidad de detalles finos y transiciones severas de colores.
+
 El objetivo es comprobar si al comprimir la imagen se suavizarán los bordes o se crearán artefactos de tipo anillo (ringing) perdiendo nitidez; evaluaremos cómo se distribuyen los errores en áreas complejas.
 \begin{center}
     \includegraphics[width=0.3\textwidth]{./Images/brassica.png}
@@ -439,7 +458,7 @@ El objetivo es comprobar si al comprimir la imagen se suavizarán los bordes o s
 \vspace{0.5cm}
 
 \subsubsection*{Colinas}
-Esta imagen es interesante por su cielo claro, ya que presenta gradientes sutiles (transiciones de colores muy lentas). Queremos detectar si el compresor creará bandas (\textit{banding}) o bloques de colores sólidos en vez de continuar con las transiciones suaves. Facilita detectar posterización.
+Esta imagen es interesante por su cielo claro, ya que presenta gradientes sutiles (transiciones de colores muy lentas). Queremos detectar si el compresor creará bandas o blocking en vez de continuar con las transiciones suaves.
 \begin{center}
     \includegraphics[width=0.3\textwidth]{./Images/colinas.png}
     \captionof{figure}{Colinas: Transiciones de luminancia suaves.}
@@ -465,8 +484,10 @@ El objetivo es ver cómo afecta la compresión a esa sensación de volumen (3D) 
 \vspace{0.5cm}
 
 \subsubsection*{Pino}
+
 Representa un caso de "textura pura". Toda la imagen está llena de detalles rugosos, grietas profundas y alto contraste.
-El objetivo es comprobar la resistencia del compresor ante altas frecuencias constantes. Queremos ver si el algoritmo mantiene la rugosidad o "se rinde" emborronando la corteza.
+El objetivo es comprobar la resistencia del compresor ante altas frecuencias constantes.
+
 \begin{center}
     \includegraphics[width=0.3\textwidth]{./Images/pino.png}
     \captionof{figure}{Pino: Textura de alta frecuencia y alto contraste.}
@@ -479,7 +500,7 @@ Para el estudio experimental sobre el tiempo de ejecución, se realizó un filtr
 \begin{description}
     \item[Baja Complejidad (Varianza $<$ 2000):] Imágenes con predominio de zonas homogéneas (ej. \texttt{Fresas}).
     \item[Media Complejidad (2000 $<$ Varianza $<$ 4000):] Imágenes de uso común con equilibrio entre texturas y bordes (ej. \texttt{Lenna}).
-    \item[Alta Complejidad (Varianza $>$ 4000):] Imágenes con alta densidad de detalles y texturas finas(ej. \texttt{}, \texttt{Cactus}).
+    \item[Alta Complejidad (Varianza $>$ 4000):] Imágenes con alta densidad de detalles y texturas finas(ej. \texttt{Cactus}).
 \end{description}
 
 
@@ -496,13 +517,26 @@ Para cuantificar esta complejidad, se ha priorizado el uso de la \textbf{varianz
 %-----------------------------------------------------------------------------------
 
 \section{Resultados experimentales}
-En esta sección analizamos los resultados obtenidos en los experimentos realizados. En primer lugar, abordamos el estudio cualitativo, cuyo objetivo es evaluar el grado de similitud percibido entre la imagen original y la comprimida, siguiendo los criterios definidos en la metodología 3.6.
+En esta sección analizamos los resultados obtenidos en los experimentos realizados. En primer lugar, abordamos el estudio cualitativo, cuyo objetivo es evaluar el grado de similitud percibido entre la imagen original y la comprimida, siguiendo los criterios definidos en la sección metodología.
 
 A continuación, presentamos el análisis cuantitativo, basado en las métricas descritas en la sección 3.4.1 Para cada imagen y para ambos compresores, calculamos el Ratio de Compresión (RC), el Signal-to-Noise Ratio (SNR) y el Error Cuadrático Medio (MSE). Estas medidas proporcionan una valoración objetiva del rendimiento de los compresores y permiten establecer comparaciones claras entre ellos.
 
 Por último, conviene remarcar que el análisis cualitativo sigue siendo esencial, ya que al final somos las personas quienes observamos las imágenes y juzgamos su calidad visual. No obstante, también es importante valorar los resultados desde una perspectiva teórica y cuantitativa, dado que el análisis cualitativo, aunque se intente aplicar con criterios uniformes, siempre está sujeto a un sesgo humano inherente. Ambos enfoques, por tanto, se complementan y ofrecen una visión más completa del comportamiento de los compresores.
 \subsection{Sobre el análisis cualitativo}
-Para el análisis visual de los resultados se han seleccionado cinco niveles de calidad generados por el compresor, considerando que presentar cinco calidades junto con la imagen original resulta más dinámico e informativo que mostrar únicamente tres. Los valores seleccionados han sido CaliQ 100, 200, 400, 800 y 1600, ya que permiten cubrir un rango amplio de degradación y facilitan una evaluación visual más completa del comportamiento del compresor.
+Para el análisis visual de los resultados se han seleccionado cinco de los niveles de calidad generados por el compresor, considerando que presentar cinco calidades junto con la imagen original resulta más dinámico e informativo que mostrar únicamente tres. Los valores seleccionados han sido CaliQ 100, 200, 400, 800 y 1600, ya que permiten cubrir un rango amplio de degradación y facilitan una evaluación visual más completa del comportamiento del compresor.
+
+Asimismo, se presenta un ejemplo de cómo se llevará a cabo la identificación sistemática de las calidades mediante comparaciones visuales entre la imagen original y sus versiones procesadas con distintos valores de \texttt{caliQ}. Este procedimiento permite determinar de manera objetiva el punto en el que la degradación se vuelve perceptible:
+
+\begin{itemize}
+    \item \textbf{caliQ = 100}
+    \item \textbf{caliQ = 200}
+    \item \textbf{caliQ = 400}
+    \item \textbf{caliQ = 800}
+    \item \textbf{caliQ = 1600}
+\end{itemize}
+
+Para cada nivel de \texttt{caliQ}, se comparará visualmente la versión comprimida con la original, evaluando la aparición de artefactos, pérdida de nitidez y suavizado de detalles finos. De esta manera, se establecerá un criterio sistemático para identificar las calidades a partir de la percepción de la degradación.
+
 
 \textbf{Nota:} se puede apreciar que el formato anunciado puede no ser respetado en caso de encontrar situaciones de mayor interés analítico para el estudio.
 \subsection{Sobre el análisis cuantitativo}
@@ -514,7 +548,7 @@ En este estudio se han establecido los siguientes rangos de referencia para la i
     \item \textbf{MSE alto}: valores superiores a dicho rango.
 \end{itemize}
 
-Estos umbrales se han definido tomando como referencia el mayor factor de calidad empleado, ya que corresponde al escenario en el que el error introducido resulta más representativo.
+Estos umbrales se han definido tomando como referencia el mayor factor de calidad empleado (1600), ya que corresponde al escenario en el que el error introducido resulta más representativo.
 
 A modo de presentación explicamos brevemente el formato en el que muestran los resultados:
 
@@ -579,11 +613,21 @@ Las métricas adicionales (MSE, PSNR) complementan la caracterización de la dis
 \end{center} 
 \vspace{0.5cm}
 
+\subsubsection*{Análisis Cualitativo de Franjas}
+
 El excelente rendimiento visual de esta imagen, incluso con valores de cuantificación extremos, se explica principalmente por la naturaleza matemática de la Transformada de Coseno Discreta (DCT) aplicada a zonas de color uniforme. Al dividir la imagen de 512×512 píxeles entre las 9 franjas, obtenemos un ancho aproximado de 56,88 píxeles por franja. Dado que la compresión opera en bloques de 8×8, estos bloques caen completamente dentro de un color sólido. En un bloque de color plano, la DCT es increíblemente eficiente: toda la información se concentra en un único punto (el coeficiente DC o frecuencia cero), mientras que el resto de coeficientes (AC) son cero. Como la compresión funciona eliminando o simplificando esos otros coeficientes, en este caso no hay nada que eliminar, por lo que el bloque se reconstruye perfecto o casi perfecto.
 
-Respecto a la geometría las primeras 8 franjas se redondean a 56 píxeles, se acumula un sobrante de pixeles que otorga a la última franja un ancho de 64 píxeles exactos. Al ser 64 un múltiplo de 8, esta última franja encaja perfecta en el tamaño de bloque de la DCT, evitando bloques que contengan fronteras entre dos colores (donde suelen aparecer los errores). Sin embargo, la razón por la que los dos últimos colores (gris oscuro y negro) se fusionan en la Figura 16 no es por la alineación de los píxeles, sino por la severidad de la tabla de cuantificación.
+Respecto a la geometría las primeras 8 franjas se redondean a 56 píxeles, se acumula un sobrante de pixeles que otorga a la última franja un ancho de 64 píxeles exactos. Al ser 64 un múltiplo de 8, esta última franja encaja perfecta en el tamaño de bloque de la DCT, evitando bloques que contengan fronteras entre dos colores (donde suelen aparecer los errores). Sin embargo, la razón por la que los dos últimos colores (gris oscuro y negro) se fusionan en la Figura anterior no es por la alineación de los píxeles, sino por la severidad de la tabla de cuantificación.
 
-La fusión de las últimas franjas ocurre porque el parámetro de calidad "caliQ 1600" impone un paso de cuantificación tan grande que se empiezan a perder matices de color.
+La fusión de las últimas franjas ocurre porque el parámetro caliQ 1600 impone un paso de cuantificación tan grande que se empiezan a perder matices de color.
+
+\subsubsection*{Análisis Cuantitativo de Franjas}
+
+Desde el momento en que se seleccionó esta imagen, se esperaba un rendimiento excelente en términos de tamaño, debido al reducido número de colores presentes. Ambos compresores obtienen una tasa de compresión muy elevada desde las primeras calidades. En cuanto al error, el MSE se mantiene extremadamente bajo, incluso al alcanzar la degradación máxima dentro de nuestro rango de valores, observándose un aumento significativo únicamente en la compresión con CaliQ 1600.
+
+Respecto a la tasa de compresión, los resultados son muy buenos desde el inicio. En el compresor \textit{default} se observa un incremento aproximado del 0,30\% al aplicar la máxima calidad. Resulta especialmente interesante comprobar que, aplicando únicamente el factor de calidad más bajo (CaliQ $5$) en el compresor \textit{custom}, ya se obtiene un resultado sobresaliente, incluso superior al mejor resultado alcanzado por el compresor \textit{default}.
+
+En cuanto al SNR, los valores obtenidos son muy buenos y consistentes con el comportamiento del MSE. Solo se observa una degradación significativa en las calidades CaliQ 800 y 1600, confirmando que, en el resto de los casos, los píxeles originales se distinguen claramente del ruido introducido por el proceso de cuantificación, lo que refleja la excelente calidad de las reconstrucciones.
 
 
 \begin{center}
@@ -599,13 +643,6 @@ La fusión de las últimas franjas ocurre porque el parámetro de calidad "caliQ
 \label{tab:franjas}
 \end{table}
 \vspace{0.5cm}
-
-Desde el momento en que se seleccionó esta imagen, se esperaba un rendimiento excelente en términos de tamaño, debido al reducido número de colores presentes. Ambos compresores obtienen una tasa de compresión muy elevada desde las primeras calidades. En cuanto al error, el MSE se mantiene en valores moderados hasta una calidad CaliQ de 800, observándose un MSE alto únicamente en la compresión con CaliQ 1600.
-
-Respecto a la tasa de compresión, los resultados son muy buenos desde el inicio. En el compresor \textit{default} se observa un incremento aproximado del 0,30\% al aplicar la máxima calidad. Resulta especialmente interesante comprobar que, aplicando únicamente el factor de calidad más bajo (CaliQ 5) en el compresor \textit{custom}, ya se obtiene un resultado sobresaliente, incluso superior al mejor resultado alcanzado por el compresor \textit{default}.
-
-En cuanto al SNR, los valores obtenidos son elevados. Tal y como se indicó en la metodología, un SNR más alto implica que los píxeles originales se distinguen mejor del ruido introducido por el proceso de cuantificación, lo que confirma la buena calidad de las reconstrucciones obtenidas.
-
 
 \subsubsection*{Conclusión franjas}
 Finalmente, respecto a la hipótesis planteada acerca de que el resultado de la compresión sería excelente, esta se ha cumplido. No obstante, la expectativa de observar transiciones abruptas entre franjas no se ha visto satisfecha. Esto se debe, como se explicó anteriormente, a que la anchura de las franjas es múltiplo del tamaño de bloque, lo que evita la aparición de discontinuidades visibles.
@@ -637,18 +674,18 @@ Finalmente, respecto a la hipótesis planteada acerca de que el resultado de la 
 \vspace{0.5cm}
 
 \subsubsection*{Análisis Cualitativo de Lenna}
-
-A continuación se presenta una comparación visual de la imagen original frente a sus versiones procesadas con distintos valores de \texttt{caliQ}. El objetivo es identificar el punto en el que la degradación se vuelve perceptible.
+La tasa de compresión obtenida en los primeros resultados no es muy alta, ya que la cuantificación aplicada no reduce significativamente el tamaño de la imagen. Sin embargo, al aplicar un factor de calidad ligeramente mayor, se logra una tasa de compresión mucho más satisfactoria, manteniendo una calidad prácticamente indistinguible de la imagen original y reduciendo su tamaño a aproximadamente una décima del original. Hasta la calidad $200$ se observa una mejora de compresión ligera pero significativa, del orden del $7\%$. Ambos compresores muestran un comportamiento muy similar en las tasas obtenidas, y los valores de SNR son consistentes con esta observación, reflejando que la calidad de las reconstrucciones se mantiene alta.
 
 \begin{itemize}
     \item \textbf{caliQ = 100}: La imagen mantiene su nitidez; no se perciben diferencias relevantes respecto a la original.
     \item \textbf{caliQ = 200}: La calidad sigue siendo prácticamente idéntica. No se observan artefactos visibles.
     \item \textbf{caliQ = 400}: Primer nivel donde aparece degradación ligera; los detalles finos comienzan a suavizarse.
-    \item \textbf{caliQ = 800}: La pérdida de calidad es clara, con aparición de pixelado y transiciones de color menos suaves.
+    \item \textbf{caliQ = 800}: La pérdida de calidad es clara, con aparición blocking y transiciones de color menos suaves.
     \item \textbf{caliQ = 1600}: Degradación severa; la imagen pierde detalle y presenta un aspecto muy borroso y cuadriculado.
 \end{itemize}
 
 
+\subsubsection*{Análisis Cuantitativo de Lenna}
 
 \begin{center}
     \includegraphics[width=1\textwidth]{../../source/Graficas/Grafica_lenna.png}
@@ -665,16 +702,11 @@ A continuación se presenta una comparación visual de la imagen original frente
 \vspace{0.5cm}
 
 
-La tasa de compresión obtenida para los primeros resultados no es muy buenas pues la cuantificación aplicada no parece reducir significamente los resultados vemos uqe aplicar  vemos que aplicando un facto de calidad ligeramente elevado obtenemos una tasa de compression mucho mejor y satisfactoria conservando una calidad indistinguible a la imagen original y reduciendo el tamaño dela imagen a una decima para de esta, hasta calidad 200 se obtiene un una mejora de compresion ligera pero conveniente de un 7\% ; Ambos compresores comparten una gran simiulutd en las tasas obtenidas.
-
-Sobre el SNR se obtienen unas medidas aceptables y nos e que mas decir.
-
-
-
 \subsubsection*{Conclusión Lenna}
-El objetivo de esta imagen era comprobar el comportamiento del compresor en una imagen cotidiana con gran variedad de tonalidades. Se concluye que la modesta ganancia de compresión (0.5\%) obtenida al incrementar el factor CaliQ de 200 a 400 no justifica la notable degradación visual percibida en la imagen
+El objetivo de esta imagen era comprobar el comportamiento del compresor en una escena cotidiana con gran variedad de tonalidades. Se concluye que la modesta ganancia de compresión ($0.5\%$) obtenida al incrementar el factor \texttt{CaliQ} de $200$ a $400$ no justifica la notable degradación visual percibida en la imagen.
 
-Respecto a los objetivos para comprobar la aparición e distintos artefactos en calidades 100 y 200 no aparecen diferencias signfiicativas pero a aprtir de de calidades 400 detectamos algunos artefactos en el pelo del sombrero y en las transciciones de colores suaves del fondo y aparicion de lboques por toda la iamgen 
+Respecto a los objetivos de evaluar la aparición de distintos artefactos, en calidades $100$ y $200$ no se observan diferencias significativas. A partir de la calidad $400$, se detectan algunos artefactos en el pelo del sombrero y en las transiciones suaves de color del fondo, así como la aparición de bloques por toda la imagen.
+
 % ---------------------------------------------------------
 
 \subsubsection*{Fresas}
@@ -702,16 +734,20 @@ Respecto a los objetivos para comprobar la aparición e distintos artefactos en 
 
 \subsubsection*{Análisis Cualitativo de Fresas}
 
-A continuación se presenta una comparación visual de la imagen original frente a sus versiones procesadas con distintos valores de \texttt{caliQ}. El objetivo es identificar el punto en el que la degradación se vuelve perceptible.
 
 \begin{itemize}
     \item \textbf{caliQ = 100}: La imagen mantiene su nitidez; no se perciben diferencias relevantes respecto a la original.
     \item \textbf{caliQ = 200}: La calidad empeora visualmente siendo perceptible pero conservando un grado aceptable algunas semillas se han suavizado.
-    \item \textbf{caliQ = 400}: Aparece degradación alta los detalles  ; .
-    \item \textbf{caliQ = 800}: La pérdida de calidad es clara, con aparición de pixelado y transiciones de color menos suaves.
-    \item \textbf{caliQ = 1600}: Degradación severa; la imagen pierde detalle y presenta un aspecto muy borroso y cuadriculado.
+    \item \textbf{caliQ = 400}: Aparece degradación alta los detalles, empieza a haber mucho blocking.
+    \item \textbf{caliQ = 800}: La pérdida de calidad es clara, con blocking extendido por toda la imagen y transiciones de color menos suaves.
+    \item \textbf{caliQ = 1600}: Degradación severa; la imagen se ha reducido a unas formas indistinguibles nada similares a la imagen original.
 \end{itemize}
 
+\subsubsection*{Análisis Cuantitativo de Fresas}
+
+La imagen corresponde a un caso de error medio según nuestras métricas. No se trata de un escenario crítico ni de gran dificultad, pero tampoco se puede considerar un ejemplo de compresión perfecta.
+
+El MSE aumenta progresivamente con el factor \texttt{CaliQ}, mientras que la RC alcanza valores altos a partir de calidades intermedias, reflejando una compresión eficiente sin degradar excesivamente la imagen. Los valores de PSNR son consistentes con esta interpretación, mostrando que la calidad se mantiene aceptable, aunque no óptima. En general, este caso permite evaluar el comportamiento del compresor en condiciones de dificultad moderada, ofreciendo referencias intermedias para comparar con casos más extremos.
 
 \begin{center}
     \includegraphics[width=1\textwidth]{../../source/Graficas/Grafica_fresas.png}
@@ -729,6 +765,12 @@ A continuación se presenta una comparación visual de la imagen original frente
 
 
 \subsubsection*{Conclusión Fresas}
+El objetivo original consistía en evaluar cómo un patrón de textura repetitiva de pequeño tamaño y color dominante saturado afectaría la compresión y 
+la preservación de microdetalles. Efectivamente, nuestro planteamiento se confirmó: la tasa de compresión obtenida ha sido buena y hemos observado una 
+situación que podría compararse o utilizarse como analogía a un caso de imagen ya borrosa, dado que la imagen inicial presentaba cierta pérdida de 
+nitidez debido a la uniformidad de la tonalidad. 
+
+También observamos un efecto más pronunciado en comparación con otros resultados, ya que las dimensiones de esta imagen eran $256 \times 256$, lo que incrementa la sensación de pérdida de calidad. Este detalle debe tenerse en cuenta al interpretar los resultados.
 
 % ---------------------------------------------------------
 
@@ -757,17 +799,24 @@ A continuación se presenta una comparación visual de la imagen original frente
 
 \subsubsection*{Análisis Cualitativo de Cactus}
 
-A continuación se presenta una comparación visual de la imagen original frente a sus versiones procesadas con distintos valores de \texttt{caliQ}. El objetivo es identificar el punto en el que la degradación se vuelve perceptible.
 
 \begin{itemize}
     \item \textbf{caliQ = 100}: La imagen mantiene su nitidez; no se perciben diferencias relevantes respecto a la original.
-    \item \textbf{caliQ = 200}: La calidad se ve afectada sutilmente por la aparición de Banding en el cielo y en el contorno del pájaro.
-    \item \textbf{caliQ = 400}: El banding se hace mucho mas evidente empeorando los degradados y deteriorando la impresión, tanto el pájaro como el captus conservan una nitidez aceptable aunque las espinas pierden un poco de detalle y definición .
-    \item \textbf{caliQ = 800}: La figura del pájaro se conserva bien pero su contorno empeora notablemente y los tonos del cielo se reducen a dos tonalidades y las espinas del captus emperoran notablemente.
-    \item \textbf{caliQ = 1600}: Degradación severa, aparecen colores nuevos se pierde completamente el decha en las pinchos del cactus y el pájaro se ve extreamadamente pixelado y borroso y cuadriculado.
+    \item \textbf{caliQ = 200}: La calidad se ve afectada sutilmente por la aparición de banding en el cielo y en el contorno del pájaro.
+    \item \textbf{caliQ = 400}: El banding se hace mucho más evidente, empeorando los degradados y deteriorando la impresión general. Tanto el pájaro como el cactus conservan una nitidez aceptable, aunque las espinas pierden algo de detalle y definición.
+    \item \textbf{caliQ = 800}: La figura del pájaro se conserva bien, pero su contorno empeora notablemente. Los tonos del cielo se reducen a dos tonalidades y las espinas del cactus se deterioran significativamente.
+    \item \textbf{caliQ = 1600}: Degradación severa; aparecen colores nuevos, se pierde completamente el detalle en las espinas del cactus y el pájaro se ve extremadamente pixelado, borroso y cuadriculado.
 \end{itemize}
 
+
 \subsubsection*{Análisis cuantitativo}
+
+Las transiciones suaves (degradados) se representan con bajas y medias frecuencias, no con altas (que representan el detalle fino/ruido). El banding es la manifestación de que las bajas/medias frecuencias que describen la variación gradual del color se han redondeado demasiado, creando "escalones" en el tono
+
+respecto a la tasa de compresión obtenida es bastante promedio y no hay una diferencia significativa real entre el compresor custom y el default pues la diferencia no supera el 0.5\% en factores de calidad realistas como 100 y 200.
+La tasa de compresión es buena pues haz zonas muy uniformes de colores como el marco  y el cielo. 
+
+El SNR no tiene una medida muy buena es otra forma mas de confirmar que esta imagen es mas difícil para el compresor que otras.
 
 \begin{center}
     \includegraphics[width=1\textwidth]{../../source/Graficas/Grafica_cactus.png}
@@ -784,19 +833,10 @@ A continuación se presenta una comparación visual de la imagen original frente
 \vspace{0.5cm}
 
 
-Las transiciones suaves (degradados) se representan con bajas y medias frecuencias, no con altas (que representan el detalle fino/ruido). El banding es la manifestación de que las bajas/medias frecuencias que describen la variación gradual del color se han redondeado demasiado, creando "escalones" en el tono
-
-respecto a la tasa de compresión obtenida es bastante promedio y no hay una diferencia significativa real entre el compresor custom y el default pues la diferencia no superarn el 0.5\% en factores de calidad realistas como 100 y 200.
-La tasa de compresión es buena pues haz zonas muy uniformes de colores como el marco  y el cielo. 
-
-El SNR no tiene una medida muy buena es otra forma mas de confirmar que esta imagen es mas difícil para el compresor que otras.
-
-
 \subsubsection*{Conclusión Cactus}
-Esta imagen fue elegida por su cielo degradado y la cantidad de detalles que tenia tanto el pájaro como las espinas del cactus, en el análisis cualitativos hemos comprobado como esperabamos que las transiciones de colors del cielo se perdiesen por la aparicion de banding, tambien esperabamos la perdida de detalle en el plumaje del cactus wren esto no ha sido asi repecto a las espinas visualmente no se ha detectacdo ringing quizas un analisis con mas detalle revelaría este artefacto.
+Esta imagen fue elegida por su cielo degradado y la cantidad de detalles que tenía, tanto en el pájaro como en las espinas del cactus. En el análisis cualitativo, hemos comprobado, como esperábamos, que las transiciones de color del cielo se perdían por la aparición de banding. También esperábamos la pérdida de detalle en el plumaje del cactus wren; sin embargo, esto no ha sido así. Respecto a las espinas, visualmente no se ha detectado ringing; quizás un análisis más detallado revelaría este artefacto.
 
-
-Para esta imagen la calidad elegida seria 100 un equilibrio bueno entre compresión y nitidez calidad 200 sería una buena opción para esta imagen si se fuese a mostrar en un tamaño pequeño.
+Para esta imagen, la calidad elegida sería $100$, un buen equilibrio entre compresión y nitidez. La calidad $200$ sería una buena opción si se fuese a mostrar en un tamaño pequeño.
 
 % ---------------------------------------------------------
 
@@ -826,15 +866,19 @@ Para esta imagen la calidad elegida seria 100 un equilibrio bueno entre compresi
 
 \subsubsection*{Análisis Cualitativo de Grietas}
 
-A continuación se presenta una comparación visual de la imagen original frente a sus versiones procesadas con distintos valores de \texttt{caliQ}. El objetivo es identificar el punto en el que la degradación se vuelve perceptible.
 
 \begin{itemize}
     \item \textbf{caliQ = 100}: La imagen mantiene su nitidez; no se perciben diferencias relevantes respecto a la original.
-    \item \textbf{caliQ = 200}: La imagen disminuye sutilmente su nitidez pero conservando correctamente los detalles.
-    \item \textbf{caliQ = 400}: Aparece banding en cielo de la imagen, y el fondo empieza estar borroso pero el frente de l imagen se conserva excelentemente introduciendo un poco de ringing en las grietas .
-    \item \textbf{caliQ = 800}: La imagen se ve afectaba brutalmente por la cuantificación cambiado las tonalidades del suelo y convirtiendo las plantas y el fondo en bloques de colores  perdiendo todo detalle que quedaba, las grietas se conservan bien.
-    \item \textbf{caliQ = 1600}: Hay una degradación severa, los colores de las grietas mejorar visualmente debido a la cuantificación pero esto es casualidad porque los colores que surgen son mas acertos que los del nivel anterior respecto al fondo y las plantas ya nose puede distinguir nada. Pero gratamente podemos observar que las grietas se han coservado bien suponemos que esto se dee a  su color es negro y se puede representar con el primer componetne Ac de cada bloque y no son necesriaos coeficietnes de alta frecuencia .
+    \item \textbf{caliQ = 200}: La imagen pierde ligeramente nitidez, pero conserva correctamente los detalles.
+    \item \textbf{caliQ = 400}: Aparece banding en el cielo y el fondo comienza a verse borroso, aunque el frente se mantiene bien; se introduce un leve ringing en las grietas.
+    \item \textbf{caliQ = 800}: La imagen se ve afectada significativamente por la cuantificación; las tonalidades del suelo cambian y las plantas y el fondo se convierten en bloques de color, perdiendo casi todo detalle, aunque las grietas se conservan.
+    \item \textbf{caliQ = 1600}: Degradación severa. Los colores de las grietas mejoran visualmente de manera fortuita, pero los colores del fondo y las plantas se pierden completamente. Las grietas se conservan bien, probablemente porque su color negro puede representarse con el primer componente AC de cada bloque, sin necesidad de coeficientes de alta frecuencia.
 \end{itemize}
+
+\subsubsection*{Análisis Cuantitativo de Grietas}
+
+La imagen de la grieta ha resultado ser una de las más desafiantes para el compresor. Incluso con caliQ muy bajo, se obtuvo una tasa de compresión deficiente en ambos compresores y un SNR bajo. Las tasas de compresión obtenidas para esta imagen, tanto con calidades estándar como con calidades deseables, son bajas en comparación con las de las demás imágenes analizadas hasta el momento.
+
 
 \begin{center}
     \includegraphics[width=1\textwidth]{../../source/Graficas/Grafica_grietas.png}
@@ -851,7 +895,9 @@ A continuación se presenta una comparación visual de la imagen original frente
 \vspace{0.5cm}
 
 \subsubsection*{Conclusión Grietas}
+La conclusión obtenida es muy interesante: aunque no se observó el aliasing que se esperaba, encontramos un caso muy difícil para el compresor. Lo más sorprendente es cómo se conservan las grietas de la imagen, mientras que el suelo queda prácticamente en blanco y negro y el fondo se vuelve indistinguible. El frente de la imagen se aprecia correctamente a pesar de haberse utilizado una cuantificación tan severa.  
 
+Esto destaca un resultado muy sorprendente: un caso tan difícil para el compresor produce dos comportamientos visuales distintos dentro de la misma imagen: una parte relativamente fácil de comprimir y otra muy difícil.
 
 % ---------------------------------------------------------
 
@@ -878,17 +924,23 @@ A continuación se presenta una comparación visual de la imagen original frente
 \end{center} 
 \vspace{0.5cm}
  
-A continuación se presenta una comparación visual de la imagen original frente a sus versiones procesadas con distintos valores de \texttt{caliQ}. El objetivo es identificar el punto en el que la degradación se vuelve perceptible.
+\subsubsection*{Análisis Cualitativo de Brassica}
 
 \begin{itemize}
     \item \textbf{caliQ = 100}: La imagen mantiene su nitidez; no se perciben diferencias relevantes respecto a la original.
-    \item \textbf{caliQ = 200}: La imagen disminuye sutilmente su nitidez pero conservando correctamente los detalles.
-    \item \textbf{caliQ = 400}: La imagen empieza verse borrosa en las zonas con los detalles mas pequeños como es el centro de la imagen asimismo se pueden ver algo de bloking y banding en las hojas exteriores en la zona morada de la brassica los bordes han perdido su forma y definición.
-    \item \textbf{caliQ = 800}: Se aprecia blocking y bloking y banding ent oda la imagen los bordes de las hojas mas centrales ya no son distinguible surgen algunos bloque con ruido  
-    \item \textbf{caliQ = 1600}: Ampliamos el centro de la imagen hasta ver los bloques de $8 \times $8 pixeles; La cuantización en esta imagen es tan fuerte que prácticamente ha eliminado toda la información de alta frecuencia. En los bloques de $8 \times 8$ sólo quedan el coeficiente DC y algunos coeficientes de baja frecuencia. Al conservar tan pocos coeficientes, la imagen pierde continuidad y comienzan a hacerse visibles las propias funciones base de la DCT, en algunos bloques podriamos incluso averiguar cuales son los coeficientes restantes al cuantizar .
-
+    \item \textbf{caliQ = 200}: La imagen pierde ligeramente nitidez, pero conserva correctamente los detalles.
+    \item \textbf{caliQ = 400}: La imagen comienza a verse borrosa en las zonas con detalles más pequeños, como el centro. También se observan algo de blocking y banding en las hojas exteriores, especialmente en la zona morada de la brassica. Los bordes han perdido forma y definición.
+    \item \textbf{caliQ = 800}: Se aprecia blocking y banding en toda la imagen; los bordes de las hojas más centrales ya no son distinguibles y aparecen algunos bloques con ruido.
+    \item \textbf{caliQ = 1600}: Ampliando el centro de la imagen hasta ver los bloques de $8 \times 8$ píxeles, se observa que la cuantización es tan fuerte que prácticamente ha eliminado toda la información de alta frecuencia. En cada bloque sólo quedan el coeficiente DC y algunos coeficientes de baja frecuencia. Al conservar tan pocos coeficientes, la imagen pierde continuidad y comienzan a hacerse visibles las propias funciones base de la DCT; en algunos bloques incluso se podría inferir cuáles coeficientes permanecen tras la cuantización.
 \end{itemize}
 
+\subsubsection*{Análisis Cuantitativo de Brassica}
+
+El MSE obtenido para esta imagen es elevado desde el principio, lo que podemos asociar a una alta complejidad para el compresor.  
+
+Respecto a la tasa de compresión, se observa que es baja incluso para factores de calidad bajos, lo que indica nuevamente que esta era una imagen complicada para el compresor. La diferencia entre ambos compresores a partir de caliQ $100$ es inferior al $0.5\%$, por lo que no resulta remarcable.  
+
+El SNR también era bajo desde el inicio, obteniéndose resultados poco satisfactorios. 
 
 \begin{center}
     \includegraphics[width=1\textwidth]{../../source/Graficas/Grafica_brassica.png}
@@ -904,17 +956,13 @@ A continuación se presenta una comparación visual de la imagen original frente
 \end{table}
 \vspace{0.5cm}
 
-
-El MSE obtenido para está imagen es elevado desde el principio esto podemos a sociarlo a una alta complejida para el comppresor.
-
-Respecot a la tasa de comresion vemos que es baja para el factor de calidad 5 mas indicaciones de que esta era uma imagen cmplicada para el comrpesor  la diferencia a partir de calidq 100 entre ambos comresores es inferior al 50\% no es remarcable
-
-El SNR Era bajo desd el principio tambien obtenemos unos resultados no muy buenos.
+ 
 
 \subsubsection*{Conclusión Brassica}
-El objetivo de esta imagen era comprobar como se comportaba el comrpesor en situaciones con muchos bordes irregulares de un tamaño pequeño, hemos visto qeu estos bordes eran demasiado pequeños el compresor se comprobar bien con los factores de calidad inferiores a 200 pero como los detalles eran tan pequeños se perdian creandose bloques
-Las tres metricas utilizas nos llevan a la conclsuion de que esta es una imagen con una dificulta de compresior por encima de lo normal .
-La imagen aparrente mente contaba con no muchas tonalidades finalmente no ha sido asi.
+El objetivo de esta imagen era comprobar cómo se comportaba el compresor en situaciones con muchos bordes irregulares de pequeño tamaño. Hemos visto que estos bordes eran demasiado pequeños; el compresor funcionaba correctamente con factores de calidad inferiores a $200$, pero al ser los detalles tan finos se perdían, generándose bloques.  
+
+Las tres métricas utilizadas nos llevan a la conclusión de que esta es una imagen con una dificultad de compresión superior a lo normal. Aunque aparentemente la imagen contaba con pocas tonalidades, finalmente esto no fue así.
+
 
 % ---------------------------------------------------------
 
@@ -941,13 +989,24 @@ La imagen aparrente mente contaba con no muchas tonalidades finalmente no ha sid
 \end{center} 
 \vspace{0.5cm}
 
+\subsubsection*{Análisis Cualitativo de Colinas}
+
 \begin{itemize}
     \item \textbf{caliQ = 100}: La imagen mantiene su nitidez; no se perciben diferencias relevantes respecto a la original.
-    \item \textbf{caliQ = 200}: Cmienza a haber un pco de bandign en el cielo pero la imagen mantiene una nitidez excelente
-    \item \textbf{caliQ = 400}: El bandign se incremetna en el cilo y aparece bloking en el resto de la imagen 
-    \item \textbf{caliQ = 800}: Todos los artefactos se incrementa y se aprecia algo de ringing en los bordes de las colinas 
-    \item \textbf{caliQ = 1600}: Encontramos interesanet que para esta calidad y la anterior los bloques de $8 \times $8 quedan reducidos a un solo color esto nos indica que lso coeficientes de lumniancia han sido anuladso todos menos el componente DC.
+    \item \textbf{caliQ = 200}: Comienza a aparecer un ligero banding en el cielo, pero la imagen mantiene una nitidez excelente.
+    \item \textbf{caliQ = 400}: El banding se incrementa en el cielo y aparece blocking en el resto de la imagen.
+    \item \textbf{caliQ = 800}: Los artefactos se intensifican notablemente, especialmente el banding en el cielo, y comienza a apreciarse ringing en los bordes de las colinas.
+    \item \textbf{caliQ = 1600}: El blocking es muy evidente; los bloques de $8 \times 8$ píxeles quedan prácticamente reducidos a un único color, lo que indica que todos los coeficientes de luminancia han sido anulados salvo el componente DC.
 \end{itemize}
+
+\subsubsection*{Análisis Cuantitativo de Colinas}
+
+Se obtiene una tasa de compresión excelente desde factores de calidad muy bajos, concretamente a partir de $25$, con diferencias poco significativas al aumentar la calidad.
+
+El MSE se sitúa en un rango bajo–medio y no se incrementa de forma suave a medida que aumentan los factores de calidad.
+
+El SNR presenta valores adecuados, indicando un buen nivel de distorsión para los niveles de compresión aplicados.
+
 
 \begin{center}
     \includegraphics[width=1\textwidth]{../../source/Graficas/Grafica_colinas.png}
@@ -964,17 +1023,12 @@ La imagen aparrente mente contaba con no muchas tonalidades finalmente no ha sid
 \vspace{0.5cm}
 
 
-
-Obtenemos una buena tasa de compresion desde factores de calidad bajo con una diferencia poco significativa dedsde 
-
-El MSE No es  muy elevado y tampoco se incrementa excesivametne  durante el aumento de lso factores de calidad
-
-El SNR Tambien nos da una buen nivel de distorsion
-
 \subsubsection*{Conclusión para colinas}
+Esta imagen era ideal para analizar el comportamiento del compresor ante gradientes suaves y cambios progresivos de tonalidad. El resultado obtenido ha sido el esperado: se alcanza un buen equilibrio entre compresión y distorsión.
 
-Esta imagen era ideal para ver comos se comportaba el compresor con gradiente suaves y cambios de tonalidades el resultado obtenido ha sido el esperado
-Obtenemos un buen nivel de compresion y distorision 
+La imagen ha resultado ser un caso favorable para el compresor, confirmándose nuestra hipótesis de que aparecería banding en el cielo y blocking en niveles de cuantificación elevados. En conjunto, el resultado ha sido satisfactorio.
+
+
 
 
 % ---------------------------------------------------------
@@ -1002,13 +1056,21 @@ Obtenemos un buen nivel de compresion y distorision
 \end{center} 
 \vspace{0.5cm}
 
+\subsubsection*{Análisis Cualitativo de Sailboat}
+
 \begin{itemize}
     \item \textbf{caliQ = 100}: La imagen mantiene su nitidez; no se perciben diferencias relevantes respecto a la original.
-    \item \textbf{caliQ = 200}: Cmienza a haber un pco de bandign en el cielo pero la imagen mantiene una nitidez excelente
-    \item \textbf{caliQ = 400}: El bandign se incremetna en el cilo y aparece bloking en el resto de la imagen 
-    \item \textbf{caliQ = 800}: Todos los artefactos se incrementa y se aprecia algo de ringing en los bordes de las colinas 
-    \item \textbf{caliQ = 1600}: Encontramos interesanet que para esta calidad y la anterior los bloques de $8 \times $8 quedan reducidos a un solo color esto nos indica que lso coeficientes de lumniancia han sido anuladso todos menos el componente DC.
+    \item \textbf{caliQ = 200}: La imagen se conserva bien, apareciendo algo de banding en las nubes, el cielo, el agua y los troncos de los árboles.
+    \item \textbf{caliQ = 400}: El banding se agrava visualmente, pero la imagen todavía se ve correctamente, sin una pérdida de calidad significativa.
+    \item \textbf{caliQ = 800}: El blocking y el banding se vuelven muy evidentes; las hojas de los árboles se transforman en masas sin forma y aparece blocking generalizado.
+    \item \textbf{caliQ = 1600}: La degradación es severa: el fondo se vuelve indistinguible, el agua pierde su color, y los objetos presentan formas borrosas y mal definidas con mezclas de color severas, dando un resultado muy deficiente.
 \end{itemize}
+
+
+\subsubsection*{Análisis Cuantitativo de Sailboat}
+El MSE obtenido para esta imagen es medio, obteniéndose una lectura deficiente para la primera calidad, pero mejorando considerablemente en las calidades posteriores. El SNR es coherente con los resultados, quizás ligeramente inferior a lo habitual, pero aceptable.  
+
+Nuevamente, la diferencia entre el compresor \textit{custom} y el \textit{default} no ha sido significativa, sin superar el $0.5\%$ en los últimos resultados.
 
 
 \begin{center}
@@ -1026,9 +1088,10 @@ Obtenemos un buen nivel de compresion y distorision
 \vspace{0.5cm}
 
 \subsubsection*{Conclusión Sailboat}
+En esta imagen encontramos características similares a la anterior, además de poder comprobar los objetivos planteados, como analizar si las líneas finas se mantienen nítidas. En este caso, los pinos se han convertido en manchas borrosas y las las lineas del barco se han perdido. 
 
-El objetivo de esta imagen era similar a la anterior ver como se comprueba el compboresor con cambios de colore a dferencia de al anterior sta imagen contaba con mass detalles finos 
-Ademas queriamos ver si se comporbtaba de manera similar a la imagen anterior hemos visto que es cierto que el banding y el bloking se empiezan a ver con las mismsas factores de calidad en esta imagen son mas evidentes pues cuentan con un nivel de detalle superior.
+Además, queríamos comparar el comportamiento del compresor con dos imágenes que compartían características similares, como Colinas, que era una imagen un poco más sencilla. En comparación, esta imagen resultó ser de dificultad media, obteniéndose un resultado aproximadamente lineal, con un error MSE aproximadamente el doble que en la imagen más sencilla.
+
 
 
 % ---------------------------------------------------------
@@ -1041,7 +1104,7 @@ Ademas queriamos ver si se comporbtaba de manera similar a la imagen anterior he
     \includegraphics[width=0.3\textwidth]{../../source/Custom/uvas_Q100_Custom.png} 
     \hfill 
     \includegraphics[width=0.3\textwidth]{../../source/Custom/uvas_Q200_Custom.png} 
-     
+    
     \captionof{figure}{Uvas: Comparativa visual con calidades: original, 100 y 200 (caliQ).} 
 \end{center} 
 \vspace{0.5cm} 
@@ -1056,13 +1119,16 @@ Ademas queriamos ver si se comporbtaba de manera similar a la imagen anterior he
 \end{center} 
 \vspace{0.5cm}
 
+\subsubsection*{Análisis Cualitativo Uvas}
 \begin{itemize}
-    \item \textbf{caliQ = 100}: La imagen mantiene su nitidez; no se perciben diferencias relevantes respecto a la original.
-    \item \textbf{caliQ = 200}: Cmienza a haber un pco de bandign en el cielo pero la imagen mantiene una nitidez excelente
-    \item \textbf{caliQ = 400}: El bandign se incremetna en el cilo y aparece bloking en el resto de la imagen 
-    \item \textbf{caliQ = 800}: Todos los artefactos se incrementa y se aprecia algo de ringing en los bordes de las colinas 
-    \item \textbf{caliQ = 1600}: Encontramos interesanet que para esta calidad y la anterior los bloques de $8 \times $8 quedan reducidos a un solo color esto nos indica que lso coeficientes de lumniancia han sido anuladso todos menos el componente DC.
+    \item \textbf{caliQ = 100}: La imagen mantiene su nitidez; se introduce un ligero ringing en los bordes de las uvas.
+    \item \textbf{caliQ = 200}: El ringing se agrava, pero la imagen no presenta defectos visuales graves.
+    \item \textbf{caliQ = 400}: Aparece blocking de forma superficial en las uvas, generando una ligera sensación de borrosidad, y de forma más visible en las hojas del fondo.
+    \item \textbf{caliQ = 800}: Todos los artefactos se incrementan de manera severa, afectando notablemente a la percepción global de la imagen.
+    \item \textbf{caliQ = 1600}: Se pierden las formas esféricas de las uvas, dando lugar a una imagen plana y sin textura; las hojas presentan banding y las uvas se convierten en masas borrosas de color.
 \end{itemize}
+
+\subsubsection*{Análisis Cuantitativo Uvas}
 
 \begin{center}
     \includegraphics[width=1\textwidth]{../../source/Graficas/Grafica_uvas.png}
@@ -1071,22 +1137,24 @@ Ademas queriamos ver si se comporbtaba de manera similar a la imagen anterior he
 \vspace{0.5cm}
 
 \begin{table}[h]
-\centering
-\csvautotabular{../../source/Results/uvas.csv}
-\caption{Resultados Uvas}
-\label{tab:uvas}
+    \centering
+    \csvautotabular{../../source/Results/uvas.csv}
+    \caption{Resultados Uvas}
+    \label{tab:uvas}
 \end{table}
 \vspace{0.5cm}
 
-Hemos obtneido unos niveles de distorison buenos similares a los vistos en colinas 
-La tasa de compresion en este caso es excelente esto se debe al numero reducido y la uniformidad de los colores como era esperables
-La diferencia obtenida con ambos compresor es no es significativa tmapoco 
+Se han obtenido niveles de distorsión buenos, similares a los observados en la imagen de colinas.
 
-Las medidas de rudio son buenas  como se ha ido viendo con anterioridad
+La tasa de compresión en este caso es excelente, lo que se debe al número reducido y a la uniformidad de los colores, tal y como era esperable.
+
+La diferencia obtenida entre ambos compresores no es significativa.
+
+Las medidas de ruido son buenas, en línea con los resultados observados anteriormente.
 
 
 \subsubsection*{Conclusión Uvas}
-Esta imagen fue seleccionada por sus formas esfericas con el objetivo dde ver en que nivel de compresion los objetos comenzaban a aplanarse las conclusionesobtenidas han sido buenas porque no he hemos tneido esa sencion hasta el factor de calidad mas alto el compresor maneja batante vien la trasnsicion entre formas 
+Esta imagen fue seleccionada por sus formas esféricas, con el objetivo de analizar a partir de qué nivel de compresión los objetos comenzaban a aplanarse. Las conclusiones obtenidas han sido positivas, ya que no se ha percibido esta sensación hasta el factor de calidad más alto.
 
 %-------------------------------------------------------------------------------
 
@@ -1113,13 +1181,24 @@ Esta imagen fue seleccionada por sus formas esfericas con el objetivo dde ver en
 \end{center} 
 \vspace{0.5cm}
 
+\subsubsection*{Análisis Cualitativo Pino}
+
 \begin{itemize}
     \item \textbf{caliQ = 100}: La imagen mantiene su nitidez; no se perciben diferencias relevantes respecto a la original.
     \item \textbf{caliQ = 200}: La imagen mantiene su nitidez; no se perciben diferencias relevantes respecto a la original.
     \item \textbf{caliQ = 400}: La imagen mantiene su nitidez; no se perciben diferencias relevantes respecto a la original.
     \item \textbf{caliQ = 800}: La imagen comienza a verse levemente borrosa.
-    \item \textbf{caliQ = 1600}: La imagen se ve borrosa, si nos acercamos podemos detectar un fenomeno similar al comentado en brassica para 1600 caliQ
+    \item \textbf{caliQ = 1600}: La imagen se percibe claramente borrosa; al ampliar la imagen se detecta un fenómeno similar al observado en Brassica para caliQ $1600$.
 \end{itemize}
+\subsubsection*{Análisis Cuantitativo Pino}
+
+Esta imagen es un caso especial, ya que está en blanco y negro (escala de grises). Por ello puede representarse y almacenarse utilizando únicamente la componente de luminancia.
+
+Como comprobación, se ha cuantificado anulando todos los coeficientes correspondientes a las componentes de crominancia, obteniéndose efectivamente la imagen original sin cambios, lo que confirma que únicamente se utiliza la dimensión de luminancia.
+
+Para esta imagen se ha obtenido un error cuadrático medio similar al de las imágenes anteriores, aunque, al tratarse de una imagen en escala de grises, consideramos que este valor es relativamente alto.
+
+La relación de compresión ha sido razonablemente buena, alcanzando valores cercanos al $0.7\%$ en los primeros niveles de compresión y mejorando progresivamente al aumentar el factor de cuantificación.
 
 \begin{center}
     \includegraphics[width=1\textwidth]{../../source/Graficas/Grafica_pino.png}
@@ -1137,46 +1216,37 @@ Esta imagen fue seleccionada por sus formas esfericas con el objetivo dde ver en
 \vspace{0.5cm}
 
 
-Esta imagen es un caso especial pues está en blanco y negro (escala de grises)  por lo que se puede representar y almacenar utilizando solamente la dimesion de luminancia por este motivo la tasa de compresion alcanzada deberia ser superior a las anteriores pero tampoco nos entroamos ant
-
-Nota: para comprobar si era cierto que se comprimia solo utilizando la dieension de crominancia ha sido cuantificada anulando todos los coeficientes de las dimensiones de color obteniendo efectivamente la imagen original sin cambios.
-
-Para esta imagen hemos obtenido una erorr cuadradico similar al de las imagenes anteriores pero destacamos que como esta es una imagen en blanco consideramos el resultado alto.
-
-La relación de compresion ha sido realativamente buena pues para los primeros niveles de ecompresion obtenemos un 70 y va mejorando 
 
 \subsubsection*{Conclusión Pino}
-Para está imagen el objetivo era ver como se comprotaba para una imagen que necesite una cuantizacion baja de los coeficientes de alta frecuencia y comrpobar si seguia percibiendo las sensacion de rugosidad y nitidez
+El objetivo de esta imagen era analizar el comportamiento del compresor en un caso que requiere una cuantificación baja de los coeficientes de alta frecuencia y comprobar si se mantenía la sensación de rugosidad y nitidez.
+El resultado obtenido ha sido bueno visualmente pero medio y respecto al error MSE.
 
 
 
 
 \subsection{Estudio sobre los efectos de la varianza}
 
-\subsubsection*{Introduccion}
-El Obejtivo de este analisis era comprobar si la varianza de la iamgen afectava al tiempo de compresion de una imagen ademas de estudiar los resultados obtenidso en relación a las dimensiones de la imagen.
+\subsubsection*{Introducción}
+El objetivo de este análisis era comprobar si la varianza de la imagen afectaba al tiempo de compresión, así como estudiar los resultados obtenidos en relación con las dimensiones de la imagen.
 
 \begin{center}
     \includegraphics[width=0.7\textwidth]{./Images/estudioImagenes.png}
 \end{center}
 \vspace{0.5cm}
 
+Para poder llevar a cabo este análisis, era necesario disponer de imágenes de distinto tamaño manteniendo un nivel de varianza constante en cada dimensión. Por ejemplo, si una imagen de $512 \times 512$ presenta una varianza de $4000$, una imagen de $1024 \times 1024$ debería mantener igualmente una varianza de $4000$.
 
-Para poder hacer esto posible era necesario tener imagenes de diferente tamaño pero obteniendo un nivel de varianza igual en cada dimension Por ejemplo: Si la varianza de una iamgen 512x512 era de 4000 su varianza para dimensiones 1024x1024 deberia ser 4000 constante. 
 
 \begin{center}
     \includegraphics[width=0.8\textwidth]{./Images/colinas9x9.png}
 \end{center}
 \vspace{0.5cm}
 
-
-
-
 \[
 [512, 1024, 1536, 2048, 3072]
 \]
 
-\subsubsection{Resultados obtenidos}
+\subsubsection*{Resultados obtenidos}
 El gráfico muestra el Tiempo de Compresión (en segundos) en función del Tamaño de la Imagen (en píxeles, $N \times N$) para diez imágenes de prueba, agrupadas según su nivel de Varianza (Baja, Media y Alta) bajo una Calidad $Q=100$.
 
 Una observación relevante es que la \textbf{varianza no ha resultado ser un indicador fiable del tiempo de compresión}. Aunque cabría esperar que las imágenes con mayor varianza presentaran tiempos más elevados, los resultados muestran varias contradicciones claras. Por ejemplo, la imagen \textit{Franjas}, clasificada con \textbf{alta varianza}, ha sido consistentemente una de las que menos tiempo ha tardado en comprimirse. En contraste, \textit{Brassica}, cuya varianza no era especialmente alta, ha resultado ser la imagen que más tiempo ha requerido, destacándose con una diferencia notable frente al resto.
@@ -1190,7 +1260,7 @@ Una observación relevante es que la \textbf{varianza no ha resultado ser un ind
 \vspace{0.5cm}
 
 \begin{itemize}
-    \item \textbf{Tendencia Principal (Crecimiento Acelerado):}  
+    \item \textbf{Tendencia Principal:}  
     La gráfica muestra claramente que el tamaño de la imagen es el factor dominante en el tiempo de compresión. El comportamiento no es lineal, sino \textbf{acelerado}, evidenciando un crecimiento que se aproxima a lo exponencial. A partir de un umbral cercano a los \textbf{2048×2048 píxeles} se aprecia un punto de inflexión donde el incremento del tiempo se vuelve mucho más pronunciado.
 
     \item \textbf{Eficiencia en Tamaños Pequeños:}  
@@ -1212,13 +1282,13 @@ Estos resultados evidencian que la varianza, considerada de forma aislada, no es
 \subsection{Codificación zonal}
 En esta sección se aborda la compresión y codificación zonal mediante un estudio visual y lo más objetivo posible. Se analizará cómo la división por zonas y la selección de coeficientes influyen en la calidad reconstruida
 
-El estudio se ha realizado para una mascara fija de $5$ coeficientes para las dimensiones de color y 5 tamaños de zona de la dimensión de luminancia: 
+El estudio se ha realizado para una mascara fija de $5$ coeficientes para las dimensiones de color y $5$ tamaños de zona de la dimensión de luminancia: 
 \[
 [5, 7, 10, 15, 20]
 \]
 
 
-He seleccionado una imagen representativa de cada grupo siguiendo el criterio del error cuadrático medio —bajo, medio y alto—. En el análisis nos centraremos principalmente en el resultado visual obtenido, dejando en segundo plano el tamaño final, ya que no se ha aplicado ningún proceso de cuantificación.
+He seleccionado una imagen representativa de cada grupo siguiendo el criterio del error cuadrático medio —bajo, medio y alto—. En el análisis nos centraremos principalmente en el resultado visual, dejando en segundo plano el tamaño final, ya que en esta prueba no se ha aplicado la cuantificación por factor CaliQ ni la matriz de pesos del estándar JPEG. En su lugar, se emplea un truncamiento de coeficientes (Codificación Zonal), una forma de cuantificación
 
 
 \begin{center} 
@@ -1294,13 +1364,16 @@ He seleccionado una imagen representativa de cada grupo siguiendo el criterio de
 \end{center} 
 \vspace{0.5cm}
 
-Los cambios o fallos introducidos al conservar 20 y 15 coeficientes de mayor varianza son imperceptibles en comparación con la imagen original. Al conservar únicamente 10 coeficientes, la imagen presenta una ligera borrosidad o una leve pérdida de nitidez.
+Los cambios o fallos introducidos al conservar $20$ y $15$ coeficientes de mayor varianza son imperceptibles en comparación con la imagen original. Al conservar únicamente $10$ coeficientes, la imagen presenta una ligera borrosidad o una leve pérdida de nitidez.
 
 Según los resultados obtenidos, la primera observación es que seleccionar únicamente los cinco coeficientes con mayor varianza en las dimensiones de crominancia constituye una estrategia adecuada para la cuantificación de la imagen, ya que no se aprecian anomalías visuales. La segunda observación es que, en aquellas imágenes en las que el compresor presentaba un mal comportamiento al utilizar las tablas de cuantificación, este método no ha sido capaz de corregir dichos fallos.
 
 
 
 \subsubsection*{Análisis cuantitativo}
+En la imagen se muestran los resultados de aplicar cuantificación zonal para el compresor \textit{default} y el compresor \textit{custom}. Dado que la única compresión aplicada consiste en anular los coeficientes no seleccionados por la máscara, la tasa de compresión obtenida no es elevada.
+
+Este gráfico permite apreciar la ventaja del compresor \textit{custom} frente al \textit{default}, ya que en imágenes con un gran número de valores distintos, las tablas por defecto de JPEG no están diseñadas ni optimizadas para manejar correctamente conjuntos de datos tan extensos como los obtenidos.
 
 
 
@@ -1320,12 +1393,8 @@ Según los resultados obtenidos, la primera observación es que seleccionar úni
 
 
 
-En la imagen se pueden apreciar los resultados aplicando cuantificación zonal para el compresor default y el compresor custom, debido a que la unica compresión que estamos aplicando es la anulación de los coeficientes no selecciondaos por la mascara la tasa de compresion no es excelente.
-
-Gracias a este grafico podemos apreciar la ventaja que proporciona el compresor custom frente al defautlt pues en una imagen con un numero alto de valores distintos las tablas por defecto de jpg no estan adaptadas ni pensadas para trabar con numeros tan grandes como los obtenidos .
 
 
-A continuacion mostramos algunas de los resultados visuales obtenidos 
 
 %--------------------------------------------------------------------------------------------
 
@@ -1335,7 +1404,7 @@ A continuacion mostramos algunas de los resultados visuales obtenidos
 
 En este apartado se presenta la codificación por N mayores, donde se selecciona un número distinto de coeficientes para las componentes de luminancia y un número fijo para las de color $5$ para ser concretos. Este enfoque permite ajustar la compresión según la relevancia perceptual de cada canal. A continuación se muestran los resultados obtenidos aplicando esta técnica.
 
-Continuamos utilizando las mismas imagenes que para la codificación zonal.
+Continuamos utilizando las mismas imágenes que para la codificación zonal.
 
 \begin{center} 
     \includegraphics[width=0.3\textwidth]{./Images/brassica.png} 
@@ -1345,7 +1414,7 @@ Continuamos utilizando las mismas imagenes que para la codificación zonal.
     \includegraphics[width=0.3\textwidth]{../../source/Mayores/Custom/brassica_Q10_Custom.png} 
 
 
-    \captionof{figure}{.pngmparativa visual con calidades: original, 100 y 200 (caliQ).} 
+    \captionof{figure}{Brassica: Codificación zonal con calidades: original, 15 y 10 coeficientes.} 
 \end{center} 
 \vspace{0.5cm} 
 
@@ -1356,7 +1425,7 @@ Continuamos utilizando las mismas imagenes que para la codificación zonal.
     \hfill 
     \includegraphics[width=0.3\textwidth]{../../source/Mayores/Custom/brassica_Q3_Custom.png} 
 
-    \captionof{figure}{Brassica: Comparativa visual con calidades: 5, 10 y 15 coeficientes.} 
+    \captionof{figure}{Brassica: Codificación zonal con calidades: 7, 5 y 3 coeficientes.} 
 \end{center} 
 \vspace{0.5cm}
 
@@ -1368,7 +1437,7 @@ Continuamos utilizando las mismas imagenes que para la codificación zonal.
     \includegraphics[width=0.3\textwidth]{../../source/Mayores/Custom/grietas_Q10_Custom.png} 
 
 
-    \captionof{figure}{.pngmparativa visual con calidades: original, 100 y 200 (caliQ).} 
+    \captionof{figure}{Grietas: Codificación zonal con calidades: original, 15 y 10 coeficientes.} 
 \end{center} 
 \vspace{0.5cm} 
 
@@ -1379,7 +1448,7 @@ Continuamos utilizando las mismas imagenes que para la codificación zonal.
     \hfill 
     \includegraphics[width=0.3\textwidth]{../../source/Mayores/Custom/grietas_Q3_Custom.png} 
 
-    \captionof{figure}{grietas: Comparativa visual con calidades: 5, 10 y 15 coeficientes.} 
+    \captionof{figure}{Grietas: Codificación zonal con calidades: 7, 5 y 3 coeficientes.} 
 \end{center} 
 \vspace{0.5cm}
 
@@ -1391,7 +1460,7 @@ Continuamos utilizando las mismas imagenes que para la codificación zonal.
     \includegraphics[width=0.3\textwidth]{../../source/Mayores/Custom/lenna_Q10_Custom.png} 
 
 
-    \captionof{figure}{.pngmparativa visual con calidades: original, 100 y 200 (caliQ).} 
+    \captionof{figure}{Lenna: Codificación zonal con calidades: original, 15 y 10 coeficientes.} 
 \end{center} 
 \vspace{0.5cm} 
 
@@ -1402,22 +1471,22 @@ Continuamos utilizando las mismas imagenes que para la codificación zonal.
     \hfill 
     \includegraphics[width=0.3\textwidth]{../../source/Mayores/Custom/lenna_Q3_Custom.png} 
 
-    \captionof{figure}{lenna: Comparativa visual con calidades: 5, 10 y 15 coeficientes.} 
+    \captionof{figure}{Lenna: Codificación zonal con calidades: 7, 5 y 3 coeficientes.} 
 \end{center} 
 \vspace{0.5cm}
 
-La principal ventaja que se observa es que la forma del objeto no se pierde, sino que se conserva muy bien. Esto supone una clara superioridad del método, ya que con un número muy reducido de coeficientes la imagen sigue siendo identificable y mantiene una fidelidad notable respecto a la imagen original.
-La desventaja principal es la perdida de nitidez e introducción de borrosidad debido en gran parte a la perdida de detalles.
+
+
+La principal ventaja que se observa es que la forma del objeto no se pierde, sino que se conserva muy bien porque. Esto supone una clara superioridad del método, ya que con un número muy reducido de coeficientes la imagen sigue siendo identificable y mantiene una fidelidad notable respecto a la imagen original.
+La desventaja principal es la perdida de nitidez e introducción de Ringing debido en gran parte a la perdida de detalles.
 
 Seleccionar los N mayores coeficientes de una imagen es un método eficaz para la compresión, ya que —como se aprecia en las imágenes mostradas anteriormente— las versiones truncadas mantienen una gran similitud visual con las originales. No obstante, cuando se toman menos de cinco coeficientes, la reconstrucción se vuelve claramente insuficiente y los resultados dejan de ser satisfactorios.
 
-
-
 \subsubsection*{Análisis cuantitativo}
-Las siguientes tablas muestran una distribución del MSE interesante pues si comparamos el MSE de brassica lo estariamos asociando a un factor CaliQ  entre 600 y 800 los efectos del truncamiento para ser menos evidentes debido a  que los defectos graves que se introducen con un factor de caliQ son muchos evidentes como pintar bloques de un solo color pero cuando utilizamos $N mayores$ ese fenomeno no ocurre.
+Las siguientes tablas muestran una distribución del MSE interesante pues si comparamos el MSE de brassica lo estamos asociando a un factor CaliQ  entre 600 y 800 los efectos del truncamiento para ser menos evidentes debido a  que los defectos graves que se introducen con un factor de caliQ son muchos evidentes como pintar bloques de un solo color pero cuando utilizamos $N mayores$ ese fenómeno no ocurre.
 
 Conservar 15 coeficientes en el caso de Brassica produce un MSE similar al obtenido con un factor de calidad $Q=400$
-Q=400. Aparentemente, la codificación por coeficientes resulta superior a ese factor de calidad, ya que para niveles comparables el error MSE asociado al factor Q
+Aparentemente, la codificación por coeficientes resulta superior a ese factor de calidad, ya que para niveles comparables el error MSE asociado al factor CaliQ
 Q es mayor.
 
 Finalmente, para el grupo con MSE entre 0 y 250 los resultados son claramente superiores, ya que conservando únicamente 5 coeficientes se obtienen resultados comparables —no superiores, pero sí igual de buenos— a los alcanzados con un factor de calidad 
@@ -1439,11 +1508,11 @@ Q entre 50 y 100. Esto demuestra que ambas técnicas pueden ser efectivas cuando
 
 % --- CONCLUSIONES ---
 \newpage
-\section{Conclusiónes}
+\section{conclusiones}
 
 Las conclusiones derivadas del estudio experimental realizado se detallan a continuación. En primer lugar, se observa que la implementación en MATLAB opera con una eficiencia limitada, sin llegar a explotar plenamente las capacidades de hardware del equipo en el que se ejecuta.
 
-En segundo lugar, la mejora obtenida al aplicar tablas de compresión personalizadas para cada imagen no supone un aumento significativo en la tasa de compresión. Las tablas estándar del formato JPEG funcionan correctamente, ofreciendo resultados que solo superarían a las personalizadas en casos donde el factor \texttt{caliQ} es inferior a 5 (mínima cuantización). Sin embargo, aplicar una cuantización tan baja carece de sentido práctico, ya que en ese escenario sería preferible optar por un algoritmo sin pérdida como PNG. Para factores de compresión mayores, la mejora no supera el 0.5\%, por lo que concluimos que la personalización de las tablas no es estrictamente necesaria. Sería recomendable realizar un estudio sobre los dispositivos encargados de la compresión para verificar si la relación coste-beneficio del ahorro de tamaño justifica el proceso.
+En segundo lugar, la mejora obtenida al aplicar tablas de compresión personalizadas para cada imagen no supone un aumento significativo en la tasa de compresión. Las tablas estándar del formato JPEG funcionan correctamente, ofreciendo resultados que solo superarían a las personalizadas en casos donde el factor \texttt{caliQ} es inferior a 5 (mínima cuantización). Sin embargo, aplicar una cuantización tan baja carece de sentido práctico, ya que en ese escenario sería preferible optar por un algoritmo sin pérdida como PNG. Para factores de compresión mayores, la mejora no suele superar el 0.2\% para factores caliQ $100$, por lo que concluimos que la personalización de las tablas no es estrictamente necesaria. Sería recomendable realizar un estudio sobre los dispositivos encargados de la compresión para verificar si la relación coste-beneficio del ahorro de tamaño justifica el proceso.
 
 En cuanto a la calidad visual, se concluye que cualquier factor de calidad por debajo de 100 introduce distorsiones mínimas o imperceptibles para el ojo humano. El factor 200 representa una frontera: algunas imágenes conservan su nitidez, mientras que otras comienzan a mostrarse ligeramente borrosas. Para un factor de \texttt{caliQ} de 400, la degradación es evidente incluso en los mejores casos, y factores superiores resultan en una calidad inaceptable con una pérdida completa de detalle.
 
@@ -1457,10 +1526,9 @@ El razonamiento que sustenta esta conclusión se basa en las observaciones reali
 
 
 En el caso de la selección de N mayores coeficientes, la conclusión es que se trata de un método menos escalable. Si se fija un número de coeficientes a conservar válido para una amplia variedad de imágenes, en muchos casos se mantienen coeficientes innecesarios; por el contrario, si se elige el número que funciona mejor para la mayoría, aquellas imágenes que requieren más coeficientes quedan fuertemente penalizadas. En comparación, el uso de tablas de cuantificación con un factor de calidad 
-Q=100
-Q=100 mostró un comportamiento más equilibrado y consistente en la mayoría de las imágenes analizadas.
+$Q=100$ mostró un comportamiento más equilibrado y consistente en la mayoría de las imágenes analizadas.
 
-\section*{Conclusión Personal}
+\section{Conclusión Personal}
 
 Este tipo de proyectos generan en mí sentimientos encontrados. Por un lado, valoro la oportunidad de trabajar y realizar un estudio basado en mis propias hipótesis. A diferencia de otros enfoques donde se procesa un conjunto masivo de fotos para luego seleccionar los resultados más interesantes, he optado por realizar un estudio real seleccionando imágenes específicas sobre las cuales planteaba una hipótesis inicial. Hasta la finalización del estudio no se conocía la certeza de dichas suposiciones, emulando la labor de un investigador real. Espero que este enfoque justifique si, en ocasiones, los resultados pueden parecer monótonos.
 
@@ -1472,19 +1540,37 @@ Para finalizar, considero que este trabajo ha sido interesante, aunque simultán
 
 
 % --- BIBLIOGRAFÍA ---
+% --- BIBLIOGRAFÍA FORMAL ---
 \newpage
 \begin{thebibliography}{9}
 
-    \bibitem{ref1} Autor, \textit{Título del libro}, Editorial, Año.
+    \bibitem{wiki_artefactos} Wikipedia. ``Artefactos de anillo''. Disponible en: \url{https://es.wikipedia.org/wiki/Artefactos_de_anillo} [Consultado: Diciembre 2025].
     
-    \bibitem{ref2} Autor, ``Título del artículo'', \textit{Revista}, Volumen, Número, Año.
-    
-    \bibitem{wiki_artefactos} Wikipedia, ``Artefactos de anillo''. Disponible en: \url{https://es.wikipedia.org/wiki/Artefactos_de_anillo}
-    
-    \bibitem{sciencedirect_blocking} ScienceDirect, ``Blocking Artifact''. Disponible en: \url{https://www.sciencedirect.com/topics/computer-science/blocking-artifact}
-
-    \bibitem{citekey} \url {https://www.oliviergibaru.org/courses/img/DCT_2D.png}
+    \bibitem{sciencedirect_blocking} ScienceDirect. ``Blocking Artifact''. Disponible en: \url{https://www.sciencedirect.com/topics/computer-science/blocking-artifact} [Consultado: Diciembre 2025].
 
 \end{thebibliography}
+
+% --- RECURSOS MULTIMEDIA (IMÁGENES Y DATASETS) ---
+\section*{Recursos Multimedia Utilizados}
+
+\subsection*{Imágenes y Gráficos con URL Directa}
+\begin{itemize}
+    \item Gráfico 2D DCT: \url{https://www.oliviergibaru.org/courses/img/DCT_2D.png}
+    \item Artefactos digitales: \url{https://matthews.sites.wfu.edu/misc/DigPhotog/alias/artifact.jpg}
+    \item Color de marca (Discord): \url{https://pickcoloronline.com/es/brands/discord/colors-of-discord-512.png}
+\end{itemize}
+
+\subsection*{Imágenes de Datasets y Archivos Locales}
+\begin{itemize}
+    \item Imágenes de prueba (Lenna, Sailboat):
+    \begin{itemize}
+        \item \url{https://www.hlevkin.com/hlevkin/TestImages/lenna.bmp}
+        \item \url{https://www.hlevkin.com/hlevkin/TestImages/sailboat.bmp}
+        \item \url{https://sipi.usc.edu/database/database.php?volume=textures&image=15#top}
+    \end{itemize}
+    \item Imágenes adicionales: Obtenidas del dataset \url{https://data.mendeley.com/datasets/sp4g8h7v8k/1}
+    \item Imágenes de Base64 (Códigos largos): Usadas como ejemplo en el documento.
+\end{itemize}
+
 
 \end{document}

@@ -81,9 +81,9 @@ XScanrec=DecodeScans_dflt(CodedY,CodedCb,CodedCr,[mamp namp]);
 Xlabrec=invscan(XScanrec);
 
 % Descuantizacion de etiquetas
-%Xtransrec=desquantmat(Xlabrec, caliQ);
+Xtransrec=desquantmat(Xlabrec, caliQ);
 
-Xtransrec=Xlabrec;
+%Xtransrec=Xlabrec; Cambiar si se usa truncamiento zonal o mayores
 
 % Calcula iDCT bidimensional en bloques de 8 x 8 pixeles
 % Como resultado, reconstruye una imagen YCbCr con tamaño ampliado

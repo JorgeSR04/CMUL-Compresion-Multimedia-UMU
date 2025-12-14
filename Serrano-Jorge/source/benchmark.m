@@ -24,10 +24,10 @@ end
 lista_imagenes = {archivos_imagen.name};
 
 % Factores de calidad a probar
-lista_caliQ = [20]; %[5, 25, 50, 100, 200, 400, 800, 1600];
+lista_caliQ = [5, 25, 50, 100, 200, 400, 800, 1600]; % Modificado segun se utilizaba estrategias de cuantififcación
 
 % ¿Qué calidades queremos GUARDAR físicamente para la entrega?
-calidades_a_guardar =[20]; %[5, 25, 50, 100, 200, 400, 800, 1600];
+calidades_a_guardar =[5, 25, 50, 100, 200, 400, 800, 1600];
 
 disp('=== INICIANDO BATERÍA DE PRUEBAS CON MÉTRICAS AVANZADAS ===');
 

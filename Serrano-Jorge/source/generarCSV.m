@@ -48,7 +48,7 @@ function generarCSV(resultados)
         % PARTE 2: CSV (Específico para LaTeX)
         % ---------------------------------------------------------
         % 1. Definimos cabeceras compatibles con LaTeX (SIN SSIM).
-        headers_latex = 'CaliQ,MSE,Dflt RC,Cst RC,PSNR';
+        headers_latex = 'CaliQ,MSE,Dflt RC,Cst RC,SNR';
         
         % 2. Matriz de datos SOLO NUMÉRICA (SIN SSIM).
         DatosMatrizCSV = [CaliQ, D_MSE, D_RC, C_RC, D_SNR];

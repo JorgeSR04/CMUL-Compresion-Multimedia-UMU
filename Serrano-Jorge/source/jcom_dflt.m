@@ -39,8 +39,9 @@ lenx = m * n * 3;
 Xtrans = imdct(Xamp);
 
 % Cuantizacion de coeficientes
-%Xlab=quantmat(Xtrans, caliQ);
-Xlab = quantmat_zonal(Xtrans);
+Xlab=quantmat(Xtrans, caliQ);
+
+%Xlab = quantmat_zonal(Xtrans); -Cambiado segun la estrategia aplicada
 %Xlab = quantmat_n_largest(Xtrans);
 
 

@@ -41,8 +41,9 @@ Xtrans = imdct(Xamp);
 % Cuantizacion de coeficientes coefiecentes enteros
 
 
-%Xlab=quantmat(Xtrans, caliQ);
-Xlab = quantmat_zonal(Xtrans);
+Xlab=quantmat(Xtrans, caliQ);
+
+%Xlab = quantmat_zonal(Xtrans);  - Cambiado segun la estrategia aplicada
 %Xlab = quantmat_n_largest(Xtrans);
 
 % Genera un scan por cada componente de color
